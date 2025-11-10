@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.groupthree.group3_bookfairsimulator.LoginController">
+   <children>
+      <ComboBox fx:id="userInput" layoutX="225.0" layoutY="75.0" prefWidth="150.0" promptText="Select A User" />
+      <PasswordField fx:id="passInput" layoutX="226.0" layoutY="108.0" promptText="Enter Your Password" />
+      <Button layoutX="278.0" layoutY="141.0" mnemonicParsing="false" onAction="#login" text="Login" />
+      <Button layoutX="249.0" layoutY="174.0" mnemonicParsing="false" onAction="#forgotPass" text="Forgot Password" />
+      <Label layoutX="261.0" layoutY="14.0" text="Login">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="163.0" layoutY="79.0" text="User:" />
+      <Label layoutX="163.0" layoutY="112.0" text="Password:" />
+      <Label layoutX="158.0" layoutY="209.0" text="Create New Account">
+         <font>
+            <Font name="System Bold Italic" size="30.0" />
+         </font>
+      </Label>
+      <Label layoutX="162.0" layoutY="262.0" text="User: " />
+      <Label layoutX="163.0" layoutY="289.0" text="Password:" />
+      <PasswordField fx:id="newPassInput" layoutX="226.0" layoutY="285.0" promptText="Enter Your Password" />
+      <TextField fx:id="newUserInput" layoutX="226.0" layoutY="258.0" promptText="Enter User Name" />
+      <PasswordField fx:id="checkNewPass" layoutX="226.0" layoutY="312.0" promptText="Confirm Your Password" />
+      <Label layoutX="163.0" layoutY="316.0" text="Password:" />
+      <Button layoutX="397.0" layoutY="272.0" mnemonicParsing="false" onAction="#createAccount" text="Create Account" />
+      <Label fx:id="loginLabel" layoutX="383.0" layoutY="141.0" prefHeight="59.0" prefWidth="203.0" />
+      <CheckBox fx:id="showPass" layoutX="383.0" layoutY="112.0" mnemonicParsing="false" onAction="#showPassword" text="Show Password" />
+      <Label fx:id="createAccountLabel" layoutX="398.0" layoutY="307.0" prefHeight="59.0" prefWidth="188.0" />
+   </children>
+</AnchorPane>
