@@ -1,47 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="520.0" prefWidth="920.0"
-            xmlns="http://javafx.com/javafx/8.0.171"
+<AnchorPane prefHeight="620.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.farmer_seed_dealer_project.nusrat.FarmerDashboardController">
-   <children>
+            fx:controller="com.example.farmer_seed_dealer_project.nusrat.Goal1Controller">
 
-      <!-- Title -->
-      <Text layoutX="24.0" layoutY="56.0" text="Farmer Dashboard">
-         <font>
-            <Font name="System Bold" size="36.0"/>
-         </font>
-      </Text>
+   <!-- Toggle group for Seed/Fertilizer -->
+   <fx:define>
+      <ToggleGroup fx:id="inputTypeGroup"/>
+   </fx:define>
 
-      <!-- Left: Goals list -->
-      <Label layoutX="26.0" layoutY="82.0" text="Goals"/>
-      <VBox layoutX="24.0" layoutY="104.0" spacing="10.0">
-         <children>
-            <Button text="Goal 1" onAction="#onGoal1"/>
-            <Button text="Goal 2" onAction="#onGoal2"/>
-            <Button text="Goal 3" onAction="#onGoal3"/>
-            <Button text="Goal 4" onAction="#onGoal4"/>
-            <Button text="Goal 5" onAction="#onGoal5"/>
-            <Button text="Goal 6" onAction="#onGoal6"/>
-            <Button text="Goal 7" onAction="#onGoal7"/>
-            <Button text="Goal 8" onAction="#onGoal8"/>
-         </children>
-      </VBox>
+   <!-- Title -->
+   <Text layoutX="280.0" layoutY="45.0" text="Local Availability">
+      <font>
+         <Font name="System Bold" size="32.0" />
+      </font>
+   </Text>
+   <Label layoutX="282.0" layoutY="55.0" text="View local seed &amp; fertilizer availability"/>
 
-      <!-- Right: Content area where goal screens load -->
-      <Label layoutX="180.0" layoutY="82.0" text="Content"/>
-      <AnchorPane fx:id="contentPane"
-                  layoutX="180.0" layoutY="104.0"
-                  prefWidth="710.0" prefHeight="380.0"
-                  style="-fx-background-color: #f5f5f5; -fx-background-radius: 8;">
-      </AnchorPane>
+   <!-- Location filters -->
+   <Text layoutX="40.0" layoutY="110.0" text="District">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="districtCombo" layoutX="40.0" layoutY="120.0" prefWidth="180.0" promptText="Select district"/>
 
-      <!-- Footer actions (optional) -->
-      <Button layoutX="24.0" layoutY="490.0" text="Logout" onAction="#onLogout"/>
-      <Button layoutX="820.0" layoutY="490.0" text="Close" onAction="#onClose"/>
-   </children>
+   <Text layoutX="240.0" layoutY="110.0" text="Upazila">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="upazilaCombo" layoutX="240.0" layoutY="120.0" prefWidth="180.0" promptText="Select upazila"/>
+
+   <Text layoutX="440.0" layoutY="110.0" text="Union">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="unionCombo" layoutX="440.0" layoutY="120.0" prefWidth="180.0" promptText="Select union"/>
+
+   <Button layoutX="640.0" layoutY="120.0" text="Load Locations" onAction="#onFetchLocationLists" prefWidth="130.0"/>
+
+   <!-- Input type & subtype -->
+   <Text layoutX="40.0" layoutY="180.0" text="Input Type">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <RadioButton fx:id="seedRadio"        layoutX="40.0"  layoutY="190.0" text="Seed"       toggleGroup="$inputTypeGroup" onAction="#onInputTypeChanged"/>
+   <RadioButton fx:id="fertilizerRadio"  layoutX="120.0"  layoutY="190.0" text="Fertilizer" toggleGroup="$inputTypeGroup" onAction="#onInputTypeChanged"/>
+
+   <Text layoutX="240.0" layoutY="180.0" text="Crop Code">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="cropCodeCombo"  layoutX="240.0" layoutY="190.0" prefWidth="180.0" promptText="e.g., BRRI-28"/>
+
+   <Text layoutX="440.0" layoutY="180.0" text="Fertilizer Grade">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="fertGradeCombo" layoutX="440.0" layoutY="190.0" prefWidth="180.0" promptText="e.g., Urea, TSP"/>
+
+   <Button layoutX="640.0" layoutY="190.0" text="Validate Filters" onAction="#onValidateFilters" prefWidth="130.0"/>
+   <Button layoutX="780.0" layoutY="190.0" text="Load Inventory"  onAction="#onRequestInventory" prefWidth="110.0"/>
+
+   <Label  fx:id="validationMsg" layoutX="40.0" layoutY="225.0" textFill="#c0392b"/>
+
+   <!-- Sort row -->
+   <Text layoutX="40.0" layoutY="265.0" text="Sort By">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="sortCombo" layoutX="100.0" layoutY="253.0" prefWidth="160.0" promptText="price asc/desc"/>
+   <Button   layoutX="270.0" layoutY="253.0" text="Apply Sort" onAction="#onApplySort" prefWidth="100.0"/>
+
+   <Button layoutX="520.0" layoutY="253.0" text="View Details" onAction="#onOpenSelectedDetails" prefWidth="120.0"/>
+   <Button layoutX="650.0" layoutY="253.0" text="Back to Dashboard" onAction="#onBackToDashboard" prefWidth="150.0"/>
+
+   <Label fx:id="inventoryMsg" layoutX="380.0" layoutY="257.0" textFill="#7f8c8d"/>
+
+   <!-- Inventory table -->
+   <TableView fx:id="inventoryTable" layoutX="40.0" layoutY="290.0" prefHeight="230.0" prefWidth="820.0">
+      <columns>
+         <TableColumn fx:id="colItemId"       prefWidth="90.0"  text="Item ID"/>
+         <TableColumn fx:id="colName"         prefWidth="130.0" text="Name"/>
+         <TableColumn fx:id="colVarOrGrade"   prefWidth="130.0" text="Variety/Grade"/>
+         <TableColumn fx:id="colAvailQty"     prefWidth="100.0"  text="Avail. Qty"/>
+         <TableColumn fx:id="colUnit"         prefWidth="70.0"  text="Unit"/>
+         <TableColumn fx:id="colUnitPrice"    prefWidth="100.0"  text="Unit Price"/>
+         <TableColumn fx:id="colSupplier"     prefWidth="130.0" text="Supplier"/>
+         <TableColumn fx:id="colLastUpdated"  prefWidth="130.0" text="Last Updated"/>
+      </columns>
+   </TableView>
+
+   <!-- Bottom navigation buttons -->
+   <Button layoutX="40.0"  layoutY="560.0" text="Back" onAction="#onBack" prefWidth="100.0"/>
+   <Button layoutX="760.0" layoutY="560.0" text="Save" onAction="#onValidateAndSubmit" prefWidth="100.0"/>
+
 </AnchorPane>

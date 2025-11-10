@@ -1,20 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.171"
+<AnchorPane prefHeight="620.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/23.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.example.farmer_seed_dealer_project.nusrat.Goal1Controller"
-            prefWidth="700.0" prefHeight="360.0">
-   <children>
-      <Text layoutX="24.0" layoutY="44.0" text="Goal 1 Screen">
-         <font><Font name="System Bold" size="28.0"/></font>
-      </Text>
+            fx:controller="com.example.farmer_seed_dealer_project.nusrat.Goal7Controller">
 
-      <Label layoutX="24.0" layoutY="70.0" text="(Placeholder — replace with real fields when you share Goal 1)"/>
+   <!-- Title -->
+   <Text layoutX="180.0" layoutY="40.0" text="Crop Calendar &amp; Cultivation Guide">
+      <font><Font name="System Bold" size="26.0"/></font>
+   </Text>
+   <Label layoutX="182.0" layoutY="50.0" text="View monthly activities, fertilizer &amp; irrigation timing, and tips"/>
 
-      <Button layoutX="24.0" layoutY="100.0" text="Primary Action" onAction="#onPrimaryAction"/>
-   </children>
+   <!-- Category selection row -->
+   <Text layoutX="40.0" layoutY="100.0" text="Crop Category">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="categoryCombo" layoutX="40.0" layoutY="110.0" prefWidth="240.0" promptText="Rice / Wheat / Maize / Veg…"/>
+   <Button layoutX="300.0" layoutY="110.0" text="Load Crops" onAction="#onLoadCrops" prefWidth="120.0"/>
+   <Label fx:id="loadMsg" layoutX="440.0" layoutY="114.0" textFill="#7f8c8d"/>
+
+   <!-- Crop + Location selection row -->
+   <Text layoutX="40.0" layoutY="160.0" text="Crop">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="cropCombo" layoutX="40.0" layoutY="170.0" prefWidth="200.0" promptText="Select crop"/>
+
+   <Text layoutX="260.0" layoutY="160.0" text="Or Type Name">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <TextField fx:id="cropNameField" layoutX="260.0" layoutY="170.0" prefWidth="240.0" promptText="e.g., BRRI Dhan-28"/>
+
+   <Text layoutX="520.0" layoutY="160.0" text="District">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="districtCombo" layoutX="520.0" layoutY="170.0" prefWidth="160.0" promptText="Select district"/>
+
+   <Text layoutX="700.0" layoutY="160.0" text="Upazila">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <ComboBox fx:id="upazilaCombo" layoutX="700.0" layoutY="170.0" prefWidth="160.0" promptText="Select upazila"/>
+
+   <!-- Validation and fetch buttons -->
+   <Button layoutX="40.0" layoutY="220.0" text="Validate Selection" onAction="#onValidateSelection" prefWidth="160.0"/>
+   <Label fx:id="validateMsg" layoutX="220.0" layoutY="224.0" textFill="#c0392b"/>
+
+   <Button layoutX="40.0" layoutY="260.0" text="Load Calendar" onAction="#onLoadCalendar" prefWidth="140.0"/>
+   <Label  fx:id="fetchMsg" layoutX="200.0" layoutY="264.0" textFill="#7f8c8d"/>
+
+   <!-- Calendar table -->
+   <Text layoutX="40.0" layoutY="310.0" text="Monthly Crop Activities">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <TableView fx:id="calendarTable" layoutX="40.0" layoutY="320.0" prefHeight="180.0" prefWidth="820.0">
+      <columns>
+         <TableColumn fx:id="colMonth"      prefWidth="110.0" text="Month"/>
+         <TableColumn fx:id="colActivity"   prefWidth="200.0" text="Activity"/>
+         <TableColumn fx:id="colFertilizer" prefWidth="170.0" text="Fertilizer Schedule"/>
+         <TableColumn fx:id="colIrrigation" prefWidth="160.0" text="Irrigation Timing"/>
+         <TableColumn fx:id="colPest"       prefWidth="180.0" text="Pest Control Tips"/>
+      </columns>
+   </TableView>
+
+   <!-- Techniques panel -->
+   <Text layoutX="40.0" layoutY="525.0" text="Recommended Techniques">
+      <font><Font name="System Bold" size="13.0"/></font>
+   </Text>
+   <TextArea fx:id="techniquesArea" layoutX="240.0" layoutY="510.0" prefWidth="620.0" prefHeight="65.0"
+             wrapText="true" promptText="Will show variety-specific cultivation techniques, notes and cautions…"/>
+
+   <!-- Bottom Navigation -->
+   <Button layoutX="40.0"  layoutY="585.0" text="Back to Dashboard" onAction="#onBackToDashboard" prefWidth="180.0"/>
+   <Button layoutX="680.0" layoutY="585.0" text="Clear" onAction="#onClear" prefWidth="180.0"/>
+
 </AnchorPane>

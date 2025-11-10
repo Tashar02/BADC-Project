@@ -7,7 +7,7 @@
 <AnchorPane prefHeight="520.0" prefWidth="920.0"
             xmlns="http://javafx.com/javafx/8.0.171"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.app.farmer.FarmerDashboardController">
+            fx:controller="com.example.farmer_seed_dealer_project.nusrat.FarmerDashboardController">
    <children>
 
       <!-- Title -->
