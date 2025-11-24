@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="620.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.farmer_seed_dealer_project.nusrat.Goal9Controller">
+   <children>
+
+      <!-- Header -->
+      <Text layoutX="24.0" layoutY="45.0" text="Goal 9 — Upload Wholesale Stock Updates">
+         <font>
+            <Font name="System Bold" size="24.0"/>
+         </font>
+      </Text>
+
+      <!-- ScrollPane to contain the form -->
+      <ScrollPane layoutX="24.0" layoutY="65.0" prefWidth="852.0" prefHeight="485.0"
+                  fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                  style="-fx-background-color: transparent;">
+         <content>
+            <VBox spacing="10.0">
+               <padding>
+                  <Insets top="10" right="20" bottom="10" left="10"/>
+               </padding>
+
+               <!-- Stock Update Form -->
+               <GridPane hgap="15.0" vgap="15.0" prefWidth="800.0">
+
+                  <!-- Item Type Selection -->
+                  <Label text="Item Type:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <ComboBox fx:id="itemTypeCombo" prefWidth="250.0" promptText="Select item type"
+                            GridPane.columnIndex="1" GridPane.rowIndex="0">
+                  </ComboBox>
+
+                  <!-- Product Name -->
+                  <Label text="Product Name:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="productNameField" promptText="Enter product name" prefWidth="250.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                  <!-- Seed Type (visible when Seed is selected) -->
+                  <Label fx:id="seedTypeLabel" text="Seed Type:" GridPane.columnIndex="0" GridPane.rowIndex="2" visible="false">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <ComboBox fx:id="seedTypeCombo" prefWidth="250.0" promptText="Select seed type"
+                            GridPane.columnIndex="1" GridPane.rowIndex="2" visible="false">
+                  </ComboBox>
+
+                  <!-- Fertilizer Type (visible when Fertilizer is selected) -->
+                  <Label fx:id="fertilizerTypeLabel" text="Fertilizer Type:" GridPane.columnIndex="0" GridPane.rowIndex="3" visible="false">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <ComboBox fx:id="fertilizerTypeCombo" prefWidth="250.0" promptText="Select fertilizer type"
+                            GridPane.columnIndex="1" GridPane.rowIndex="3" visible="false">
+                  </ComboBox>
+
+                  <!-- Available Quantity -->
+                  <Label text="Available Quantity:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="quantityField" promptText="Enter quantity (kg/bags)" prefWidth="250.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                  <!-- Price Per Unit -->
+                  <Label text="Price Per Unit (৳):" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="priceField" promptText="Enter price per unit" prefWidth="250.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                  <!-- Upload Date -->
+                  <Label text="Upload Date:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <DatePicker fx:id="uploadDatePicker" prefWidth="250.0" promptText="Select date"
+                              GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                  <!-- Additional Notes -->
+                  <Label text="Additional Notes:" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextArea fx:id="notesArea" promptText="Enter additional notes (optional)" prefWidth="250.0" prefHeight="60.0"
+                            GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+                  <!-- Validation Message -->
+                  <Label fx:id="validationLabel" text="" textFill="RED" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                     <font><Font size="12.0"/></font>
+                  </Label>
+
+                  <!-- Action Buttons -->
+                  <HBox spacing="15.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                     <children>
+                        <Button text="Submit Stock Update" onAction="#onSubmitStockUpdate"
+                                style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"
+                                prefWidth="180.0" prefHeight="35.0"/>
+                        <Button text="Clear Form" onAction="#onClearForm"
+                                style="-fx-background-color: #ff9800; -fx-text-fill: white; -fx-font-size: 14px;"
+                                prefWidth="120.0" prefHeight="35.0"/>
+                     </children>
+                  </HBox>
+
+               </GridPane>
+
+               <!-- Success Message Area -->
+               <Label fx:id="successLabel" text="" textFill="GREEN">
+                  <font><Font size="14.0" name="System Bold"/></font>
+               </Label>
+
+            </VBox>
+         </content>
+      </ScrollPane>
+
+      <!-- Navigation Buttons - Fixed at bottom -->
+      <HBox layoutX="24.0" layoutY="570.0" spacing="10.0"
+            AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="24.0">
+         <children>
+            <Button text="← Back to Dashboard" onAction="#onBackToDashboard"
+                    style="-fx-font-size: 13px;" prefWidth="160.0" prefHeight="30.0"/>
+            <Button text="View Stock List" onAction="#onViewStockList"
+                    style="-fx-font-size: 13px;" prefWidth="130.0" prefHeight="30.0"/>
+         </children>
+      </HBox>
+
+   </children>
+</AnchorPane>

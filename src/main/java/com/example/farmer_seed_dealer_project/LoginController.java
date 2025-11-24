@@ -19,13 +19,13 @@ public class LoginController {
     @javafx.fxml.FXML
     private PasswordField passInput;
 
-    // Static password
+    // Static password for both roles
     private static final String STATIC_PASSWORD = "1234";
 
     @javafx.fxml.FXML
     public void initialize() {
-        // Only one role for now
-        userInput.getItems().setAll("Farmer");
+        // Two roles available
+        userInput.getItems().setAll("Farmer", "Seed Dealer");
         userInput.getSelectionModel().selectFirst();
     }
 
@@ -36,20 +36,35 @@ public class LoginController {
             return;
         }
 
-        // Validate credentials
-        if ("Farmer".equals(userInput.getValue()) && STATIC_PASSWORD.equals(passInput.getText())) {
-            // Navigate to Farmer Dashboard
-            AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
-                    HelloApplication.class.getResource("nusrat/farmerDashboard.fxml")
-            ));
-            Scene scene = new Scene(root);
-            HelloApplication.stage.setTitle("Farmer Dashboard");
-            HelloApplication.stage.setScene(scene);
+        // Validate credentials and navigate based on role
+        if (!STATIC_PASSWORD.equals(passInput.getText())) {
+            showError("Invalid credentials. Please check your user and password.");
             return;
         }
 
-        // Otherwise invalid
-        showError("Invalid credentials. Please check your user and password.");
+        // Navigate based on user role
+        String selectedRole = userInput.getValue();
+        AnchorPane root;
+        String title;
+
+        if ("Farmer".equals(selectedRole)) {
+            root = FXMLLoader.load(Objects.requireNonNull(
+                    HelloApplication.class.getResource("nusrat/farmerDashboard.fxml")
+            ));
+            title = "Farmer Dashboard";
+        } else if ("Seed Dealer".equals(selectedRole)) {
+            root = FXMLLoader.load(Objects.requireNonNull(
+                    HelloApplication.class.getResource("nusrat/seedDealerDashboard.fxml")
+            ));
+            title = "Seed Dealer Dashboard";
+        } else {
+            showError("Invalid user role selected.");
+            return;
+        }
+
+        Scene scene = new Scene(root);
+        HelloApplication.stage.setTitle(title);
+        HelloApplication.stage.setScene(scene);
     }
 
     private void showError(String msg) {
