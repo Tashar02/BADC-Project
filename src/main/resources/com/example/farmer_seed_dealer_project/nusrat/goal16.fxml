@@ -12,7 +12,7 @@
    <children>
 
       <!-- Header -->
-      <Text layoutX="24.0" layoutY="45.0" text="Goal 16 — Fertilizer Import &amp; Price Announcements">
+      <Text layoutX="24.0" layoutY="45.0" text="Fertilizer Import &amp; Price Announcements">
          <font>
             <Font name="System Bold" size="24.0"/>
          </font>

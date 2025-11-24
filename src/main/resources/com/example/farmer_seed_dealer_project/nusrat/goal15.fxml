@@ -12,7 +12,7 @@
    <children>
 
       <!-- Header -->
-      <Text layoutX="24.0" layoutY="45.0" text="Goal 15 — Request Supply Reallocation/Transfer">
+      <Text layoutX="24.0" layoutY="45.0" text="Request Supply Reallocation/Transfer">
          <font>
             <Font name="System Bold" size="24.0"/>
          </font>
