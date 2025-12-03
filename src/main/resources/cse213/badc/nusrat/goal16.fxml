@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="620.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cse213.badc.nusrat.Goal16Controller">
+   <children>
+
+      <!-- Header -->
+      <Text layoutX="24.0" layoutY="45.0" text="Fertilizer Import &amp; Price Announcements">
+         <font>
+            <Font name="System Bold" size="24.0"/>
+         </font>
+      </Text>
+
+      <!-- Search Bar -->
+      <HBox layoutX="24.0" layoutY="60.0" spacing="10.0" alignment="CENTER_LEFT">
+         <children>
+            <TextField fx:id="searchField" promptText="Search announcements..." prefWidth="350.0"/>
+            <Button text="Search" onAction="#onSearch"
+                    style="-fx-background-color: #2196F3; -fx-text-fill: white;" prefWidth="80.0"/>
+         </children>
+      </HBox>
+
+      <!-- Main Content -->
+      <HBox layoutX="24.0" layoutY="100.0" spacing="15.0" prefWidth="852.0" prefHeight="450.0">
+
+         <!-- Left: Categories -->
+         <VBox spacing="10.0" prefWidth="200.0">
+            <children>
+               <Label text="Categories:">
+                  <font><Font name="System Bold" size="14.0"/></font>
+               </Label>
+               <Button fx:id="allBtn" text="All Announcements" onAction="#onSelectAll"
+                       style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-alignment: CENTER_LEFT;"
+                       prefWidth="200.0" prefHeight="30.0"/>
+               <Button fx:id="importBtn" text="Import Notifications" onAction="#onSelectImport"
+                       style="-fx-alignment: CENTER_LEFT;" prefWidth="200.0" prefHeight="30.0"/>
+               <Button fx:id="priceBtn" text="Price Updates" onAction="#onSelectPrice"
+                       style="-fx-alignment: CENTER_LEFT;" prefWidth="200.0" prefHeight="30.0"/>
+               <Button fx:id="guidelinesBtn" text="Government Guidelines" onAction="#onSelectGuidelines"
+                       style="-fx-alignment: CENTER_LEFT;" prefWidth="200.0" prefHeight="30.0"/>
+               <Button fx:id="marketBtn" text="Market Alerts" onAction="#onSelectMarket"
+                       style="-fx-alignment: CENTER_LEFT;" prefWidth="200.0" prefHeight="30.0"/>
+            </children>
+         </VBox>
+
+         <!-- Right: Announcements List -->
+         <ScrollPane prefWidth="637.0" prefHeight="450.0" fitToWidth="true" hbarPolicy="NEVER">
+            <content>
+               <VBox fx:id="announcementsContainer" spacing="12.0">
+                  <padding>
+                     <Insets top="5" right="10" bottom="5" left="5"/>
+                  </padding>
+
+                  <Label fx:id="validationLabel" text="" textFill="RED" visible="false">
+                     <font><Font size="12.0"/></font>
+                  </Label>
+
+                  <Label fx:id="noResultsLabel" text="No announcements found."
+                         visible="false" style="-fx-text-fill: #888;">
+                     <font><Font size="13.0"/></font>
+                  </Label>
+
+               </VBox>
+            </content>
+         </ScrollPane>
+
+      </HBox>
+
+      <!-- Navigation -->
+      <HBox layoutX="24.0" layoutY="570.0" spacing="10.0"
+            AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="24.0">
+         <children>
+            <Button text="← Back to Dashboard" onAction="#onBackToDashboard"
+                    style="-fx-font-size: 13px;" prefWidth="160.0" prefHeight="30.0"/>
+            <Button text="Subscribe Updates" onAction="#onSubscribe"
+                    style="-fx-font-size: 13px;" prefWidth="150.0" prefHeight="30.0"/>
+         </children>
+      </HBox>
+
+   </children>
+</AnchorPane>

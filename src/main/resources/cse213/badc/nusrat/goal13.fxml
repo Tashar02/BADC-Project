@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="620.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/8.0.171"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="cse213.badc.nusrat.Goal13Controller">
+   <children>
+
+      <!-- Header -->
+      <Text layoutX="24.0" layoutY="45.0" text="Submit Sales Performance Reports">
+         <font>
+            <Font name="System Bold" size="24.0"/>
+         </font>
+      </Text>
+
+      <!-- ScrollPane to contain the form -->
+      <ScrollPane layoutX="24.0" layoutY="65.0" prefWidth="852.0" prefHeight="485.0"
+                  fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                  style="-fx-background-color: transparent;">
+         <content>
+            <VBox spacing="15.0">
+               <padding>
+                  <Insets top="10" right="20" bottom="10" left="10"/>
+               </padding>
+
+               <!-- OP: Instructions -->
+               <VBox spacing="8.0" style="-fx-background-color: #E3F2FD; -fx-padding: 12; -fx-background-radius: 8;">
+                  <children>
+                     <Label text="Sales Report Submission Instructions:">
+                        <font><Font name="System Bold" size="14.0"/></font>
+                     </Label>
+                     <Label text="• Fill in all required fields marked with asterisk (*)" wrapText="true">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+                     <Label text="• Provide accurate sales data for the selected period" wrapText="true">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+                     <Label text="• Upload supporting documents (invoices, receipts) in PDF or image format" wrapText="true">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+                     <Label text="• Submit reports by the 5th of each month for previous month's sales" wrapText="true">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+                  </children>
+               </VBox>
+
+               <!-- UID: Sales Report Form -->
+               <GridPane hgap="15.0" vgap="15.0" prefWidth="800.0">
+
+                  <!-- Sales Period -->
+                  <Label text="Sales Period: *" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                     <children>
+                        <DatePicker fx:id="startDatePicker" promptText="Start Date" prefWidth="140.0"/>
+                        <Label text="to">
+                           <font><Font size="13.0"/></font>
+                        </Label>
+                        <DatePicker fx:id="endDatePicker" promptText="End Date" prefWidth="140.0"/>
+                     </children>
+                  </HBox>
+
+                  <!-- Product Category -->
+                  <Label text="Product Category: *" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <ComboBox fx:id="productCategoryCombo" promptText="Select category" prefWidth="300.0"
+                            GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+                  <!-- Product Name/Type -->
+                  <Label text="Product Name/Type: *" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="productNameField" promptText="e.g., BRRI Dhan 29, Urea" prefWidth="300.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+                  <!-- Quantity Sold -->
+                  <Label text="Quantity Sold: *" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <HBox spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <TextField fx:id="quantitySoldField" promptText="Enter quantity" prefWidth="180.0"/>
+                        <ComboBox fx:id="unitCombo" promptText="Unit" prefWidth="100.0"/>
+                     </children>
+                  </HBox>
+
+                  <!-- Revenue Generated -->
+                  <Label text="Revenue Generated (৳): *" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="revenueField" promptText="Enter revenue amount" prefWidth="300.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+                  <!-- Cost of Goods Sold -->
+                  <Label text="Cost of Goods Sold (৳):" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="costField" promptText="Enter cost (optional)" prefWidth="300.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+
+                  <!-- Number of Transactions -->
+                  <Label text="Number of Transactions:" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="transactionsField" promptText="Total transactions" prefWidth="300.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+
+                  <!-- Target Area -->
+                  <Label text="Target Area:" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextField fx:id="targetAreaField" promptText="District/Upazila" prefWidth="300.0"
+                             GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+
+                  <!-- Remarks/Notes -->
+                  <Label text="Remarks/Notes:" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                     <font><Font size="14.0"/></font>
+                  </Label>
+                  <TextArea fx:id="remarksArea" promptText="Additional information or notes"
+                            prefWidth="300.0" prefHeight="70.0"
+                            GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+
+               </GridPane>
+
+               <!-- UID: Document Upload Section -->
+               <VBox spacing="10.0" style="-fx-background-color: #FFF3E0; -fx-padding: 15; -fx-background-radius: 8;">
+                  <children>
+                     <Label text="Upload Supporting Documents:">
+                        <font><Font name="System Bold" size="15.0"/></font>
+                     </Label>
+                     <Label text="Upload invoices, receipts, or other sales records (PDF, JPG, PNG)">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+
+                     <!-- Document Upload -->
+                     <HBox spacing="10.0" alignment="CENTER_LEFT">
+                        <children>
+                           <TextField fx:id="documentsPathField" promptText="No files selected"
+                                      editable="false" prefWidth="500.0"/>
+                           <Button text="Choose Files" onAction="#onChooseDocuments"
+                                   style="-fx-background-color: #2196F3; -fx-text-fill: white;"
+                                   prefWidth="120.0"/>
+                           <Button fx:id="clearDocumentsBtn" text="Clear" onAction="#onClearDocuments"
+                                   style="-fx-background-color: #757575; -fx-text-fill: white;"
+                                   prefWidth="80.0" visible="false"/>
+                        </children>
+                     </HBox>
+
+                     <!-- File List -->
+                     <ListView fx:id="filesListView" prefHeight="100.0" visible="false"/>
+
+                  </children>
+               </VBox>
+
+               <!-- VL: Validation Message -->
+               <Label fx:id="validationLabel" text="" textFill="RED" wrapText="true">
+                  <font><Font size="12.0"/></font>
+               </Label>
+
+               <!-- Action Buttons -->
+               <HBox spacing="15.0" alignment="CENTER_LEFT">
+                  <children>
+                     <Button text="Submit Report" onAction="#onSubmitReport"
+                             style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 14px;"
+                             prefWidth="150.0" prefHeight="35.0"/>
+                     <Button text="Save as Draft" onAction="#onSaveAsDraft"
+                             style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 14px;"
+                             prefWidth="140.0" prefHeight="35.0"/>
+                     <Button text="Clear Form" onAction="#onClearForm"
+                             style="-fx-background-color: #757575; -fx-text-fill: white; -fx-font-size: 14px;"
+                             prefWidth="120.0" prefHeight="35.0"/>
+                  </children>
+               </HBox>
+
+               <!-- OP: Confirmation Message Area (hidden by default) -->
+               <VBox fx:id="confirmationBox" spacing="10.0" visible="false"
+                     style="-fx-background-color: #C8E6C9; -fx-padding: 15; -fx-background-radius: 8;">
+                  <children>
+                     <Label text="✓ Sales Report Submitted Successfully!">
+                        <font><Font name="System Bold" size="16.0"/></font>
+                     </Label>
+                     <Label fx:id="submissionIdLabel" text="Submission ID: ">
+                        <font><Font size="13.0"/></font>
+                     </Label>
+                     <Label fx:id="submissionDateLabel" text="Submission Date: ">
+                        <font><Font size="13.0"/></font>
+                     </Label>
+                     <Label text="Your sales report has been recorded. BADC officials will review your submission.">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+                     <Label fx:id="feedbackLabel" text="" wrapText="true">
+                        <font><Font size="12.0"/></font>
+                     </Label>
+                  </children>
+               </VBox>
+
+            </VBox>
+         </content>
+      </ScrollPane>
+
+      <!-- Navigation Buttons - Fixed at bottom -->
+      <HBox layoutX="24.0" layoutY="570.0" spacing="10.0"
+            AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="24.0">
+         <children>
+            <Button text="← Back to Dashboard" onAction="#onBackToDashboard"
+                    style="-fx-font-size: 13px;" prefWidth="160.0" prefHeight="30.0"/>
+            <Button text="View Past Reports" onAction="#onViewPastReports"
+                    style="-fx-font-size: 13px;" prefWidth="150.0" prefHeight="30.0"/>
+         </children>
+      </HBox>
+
+   </children>
+</AnchorPane>
