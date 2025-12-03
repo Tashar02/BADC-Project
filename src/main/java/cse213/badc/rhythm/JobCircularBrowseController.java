@@ -62,8 +62,6 @@ public class JobCircularBrowseController {
     @FXML
     private TextField expEndYearTextField;
     @FXML
-    private TextArea expResponsibilitiesTextArea;
-    @FXML
     private TableView<WorkExperience> experienceTableView;
     @FXML
     private TableColumn<WorkExperience, String> employerTC;
@@ -109,29 +107,20 @@ public class JobCircularBrowseController {
         educationList = new ArrayList<>();
         experienceList = new ArrayList<>();
 
-        loadCircularsToTable(circularList);
-    }
-
-    private void loadCircularsToTable(ArrayList<Circular> circulars) {
-        circularTableView.getItems().clear();
-        circularTableView.getItems().addAll(circulars);
+        circularTableView.getItems().addAll(circularList);
     }
 
     @FXML
     public void searchByTitleOA(ActionEvent actionEvent) {
         String searchText = searchTitleTextField.getText().toLowerCase();
-        ArrayList<Circular> filtered = filterCircularsByTitle(searchText);
-        loadCircularsToTable(filtered);
-    }
-
-    private ArrayList<Circular> filterCircularsByTitle(String searchText) {
         ArrayList<Circular> filtered = new ArrayList<>();
         for (Circular c: circularList) {
             if (c.getTitle().toLowerCase().contains(searchText)) {
                 filtered.add(c);
             }
         }
-        return filtered;
+        circularTableView.getItems().clear();
+        circularTableView.getItems().addAll(filtered);
     }
 
     @FXML
@@ -144,18 +133,14 @@ public class JobCircularBrowseController {
         }
 
         selectedCircular = selected;
-        displayCircularDetails(selected);
-    }
-
-    private void displayCircularDetails(Circular circular) {
-        String details = "Circular ID: " + circular.getCircularId() + "\n" +
-                "Title: " + circular.getTitle() + "\n" +
-                "Department: " + circular.getDepartment() + "\n" +
-                "Deadline: " + circular.getDeadline() + "\n" +
-                "Eligibility: " + circular.getEligibility() + "\n" +
-                "Vacancies: " + circular.getVacancies() + "\n" +
-                "Application Fee: " + circular.getApplicationFee() + "\n" +
-                "Age Limit: " + circular.getAgeLimit();
+        String details = "Circular ID: " + selected.getCircularId() + "\n" +
+                "Title: " + selected.getTitle() + "\n" +
+                "Department: " + selected.getDepartment() + "\n" +
+                "Deadline: " + selected.getDeadline() + "\n" +
+                "Eligibility: " + selected.getEligibility() + "\n" +
+                "Vacancies: " + selected.getVacancies() + "\n" +
+                "Application Fee: " + selected.getApplicationFee() + "\n" +
+                "Age Limit: " + selected.getAgeLimit();
         detailsTextArea.setText(details);
     }
 
@@ -166,7 +151,12 @@ public class JobCircularBrowseController {
         String yearStr = eduYearTextField.getText();
         String gpaStr = eduGpaTextField.getText();
 
-        if (validateEducationInput(degree, institution, yearStr, gpaStr)) {
+        if (degree.isEmpty() || institution.isEmpty() || yearStr.isEmpty() || gpaStr.isEmpty()) {
+            showAlert("Input Error", "Please fill all education fields");
+            return;
+        }
+
+        try {
             int year = Integer.parseInt(yearStr);
             float gpa = Float.parseFloat(gpaStr);
 
@@ -175,35 +165,17 @@ public class JobCircularBrowseController {
             if (education.validateEducation()) {
                 educationList.add(education);
                 educationTableView.getItems().add(education);
-                clearEducationFields();
+                eduDegreeTextField.clear();
+                eduInstitutionTextField.clear();
+                eduYearTextField.clear();
+                eduGpaTextField.clear();
                 statusLabel.setText("Education added successfully");
             } else {
                 showAlert("Validation Error", "Invalid education details");
             }
-        } else {
-            showAlert("Input Error", "Please fill all education fields correctly");
+        } catch (Exception e) {
+            showAlert("Input Error", "Please enter valid data");
         }
-    }
-
-    private boolean validateEducationInput(String degree, String institution, String year, String gpa) {
-        if (degree.isEmpty() || institution.isEmpty() || year.isEmpty() || gpa.isEmpty()) {
-            return false;
-        }
-
-        try {
-            Integer.parseInt(year);
-            Float.parseFloat(gpa);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private void clearEducationFields() {
-        eduDegreeTextField.clear();
-        eduInstitutionTextField.clear();
-        eduYearTextField.clear();
-        eduGpaTextField.clear();
     }
 
     @FXML
@@ -225,47 +197,32 @@ public class JobCircularBrowseController {
         String jobTitle = expJobTitleTextField.getText();
         String startYearStr = expStartYearTextField.getText();
         String endYearStr = expEndYearTextField.getText();
-        String responsibilities = expResponsibilitiesTextArea.getText();
 
-        if (validateExperienceInput(employer, jobTitle, startYearStr, endYearStr, responsibilities)) {
+        if (employer.isEmpty() || jobTitle.isEmpty() || startYearStr.isEmpty() || endYearStr.isEmpty()) {
+            showAlert("Input Error", "Please fill all experience fields");
+            return;
+        }
+
+        try {
             int startYear = Integer.parseInt(startYearStr);
             int endYear = Integer.parseInt(endYearStr);
 
-            WorkExperience experience = new WorkExperience(employer, jobTitle, startYear, endYear, responsibilities);
+            WorkExperience experience = new WorkExperience(employer, jobTitle, startYear, endYear);
 
             if (experience.validateExperience()) {
                 experienceList.add(experience);
                 experienceTableView.getItems().add(experience);
-                clearExperienceFields();
+                expEmployerTextField.clear();
+                expJobTitleTextField.clear();
+                expStartYearTextField.clear();
+                expEndYearTextField.clear();
                 statusLabel.setText("Work experience added successfully");
             } else {
                 showAlert("Validation Error", "Invalid work experience details");
             }
-        } else {
-            showAlert("Input Error", "Please fill all experience fields correctly");
+        } catch (Exception e) {
+            showAlert("Input Error", "Please enter valid data");
         }
-    }
-
-    private boolean validateExperienceInput(String employer, String jobTitle, String startYear, String endYear, String responsibilities) {
-        if (employer.isEmpty() || jobTitle.isEmpty() || startYear.isEmpty() || endYear.isEmpty() || responsibilities.isEmpty()) {
-            return false;
-        }
-
-        try {
-            Integer.parseInt(startYear);
-            Integer.parseInt(endYear);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
-    private void clearExperienceFields() {
-        expEmployerTextField.clear();
-        expJobTitleTextField.clear();
-        expStartYearTextField.clear();
-        expEndYearTextField.clear();
-        expResponsibilitiesTextArea.clear();
     }
 
     @FXML
@@ -311,21 +268,17 @@ public class JobCircularBrowseController {
         );
 
         if (application.isFormComplete()) {
-            saveApplicationToFile(application);
-            statusLabel.setText("Application Submitted! ID: " + application.getApplicationId());
-            clearFormOA(actionEvent);
+            try {
+                FileWriter writer = new FileWriter("applications.txt", true);
+                writer.write(application.toString() + "\n");
+                writer.close();
+                statusLabel.setText("Application Submitted! ID: " + application.getApplicationId());
+                clearFormOA(actionEvent);
+            } catch (Exception e) {
+                showAlert("File Error", "Failed to save application");
+            }
         } else {
             showAlert("Validation Error", "Application form is incomplete or has errors");
-        }
-    }
-
-    private void saveApplicationToFile(JobApplication application) {
-        try {
-            FileWriter writer = new FileWriter("applications.txt", true);
-            writer.write(application.toString() + "\n");
-            writer.close();
-        } catch (Exception e) {
-            showAlert("File Error", "Failed to save application");
         }
     }
 
@@ -337,14 +290,21 @@ public class JobCircularBrowseController {
         emailTextField.clear();
         addressTextArea.clear();
         nidTextField.clear();
-        clearEducationFields();
-        clearExperienceFields();
+        eduDegreeTextField.clear();
+        eduInstitutionTextField.clear();
+        eduYearTextField.clear();
+        eduGpaTextField.clear();
+        expEmployerTextField.clear();
+        expJobTitleTextField.clear();
+        expStartYearTextField.clear();
+        expEndYearTextField.clear();
         educationList.clear();
         experienceList.clear();
         educationTableView.getItems().clear();
         experienceTableView.getItems().clear();
         selectedCircular = null;
         detailsTextArea.clear();
+        statusLabel.setText("");
     }
 
     private String generateApplicationId() {

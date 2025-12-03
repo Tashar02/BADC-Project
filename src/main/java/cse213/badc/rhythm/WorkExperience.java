@@ -7,14 +7,12 @@ public class WorkExperience implements Serializable {
     private String jobTitle;
     private int startYear;
     private int endYear;
-    private String responsibilities;
 
-    public WorkExperience(String employer, String jobTitle, int startYear, int endYear, String responsibilities) {
+    public WorkExperience(String employer, String jobTitle, int startYear, int endYear) {
         this.employer = employer;
         this.jobTitle = jobTitle;
         this.startYear = startYear;
         this.endYear = endYear;
-        this.responsibilities = responsibilities;
     }
 
     public String getEmployer() {
@@ -49,14 +47,6 @@ public class WorkExperience implements Serializable {
         this.endYear = endYear;
     }
 
-    public String getResponsibilities() {
-        return responsibilities;
-    }
-
-    public void setResponsibilities(String responsibilities) {
-        this.responsibilities = responsibilities;
-    }
-
     public boolean validateExperience() {
         if (employer == null || employer.isEmpty() || employer.length() > 150) {
             return false;
@@ -73,9 +63,6 @@ public class WorkExperience implements Serializable {
         if (startYear > endYear) {
             return false;
         }
-        if (responsibilities == null || responsibilities.length() > 500) {
-            return false;
-        }
         return true;
     }
 
@@ -86,7 +73,6 @@ public class WorkExperience implements Serializable {
                 ", jobTitle='" + jobTitle + '\'' +
                 ", startYear=" + startYear +
                 ", endYear=" + endYear +
-                ", responsibilities='" + responsibilities + '\'' +
                 '}';
     }
 }
