@@ -6,52 +6,39 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.FileWriter;
+import java.io.File;
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class HelpdeskController {
-
     @FXML
     private TextField subjectTextField;
-
     @FXML
     private ComboBox<String> categoryComboBox;
-
     @FXML
     private TextArea descriptionTextArea;
-
     @FXML
     private Label messageLabel;
-
-    @FXML
-    private CheckBox showResolvedOnlyCheckBox;
-
     @FXML
     private TableView<HelpdeskTicket> ticketHistoryTableView;
-
     @FXML
     private TableColumn<HelpdeskTicket, String> ticketIdTC;
-
     @FXML
     private TableColumn<HelpdeskTicket, String> subjectTC;
-
     @FXML
     private TableColumn<HelpdeskTicket, String> statusTC;
-
     @FXML
     private TableColumn<HelpdeskTicket, String> submissionDateTC;
-
     @FXML
     private TableColumn<HelpdeskTicket, String> lastUpdatedTC;
-
     @FXML
     private TextField detailsSubjectTextField;
-
     @FXML
     private TextArea detailsDescriptionTextArea;
 
     private ArrayList<HelpdeskTicket> allTickets;
-    private int ticketCounter = 1001;
+    private int ticketCounter;
 
     @FXML
     public void initialize() {
@@ -68,16 +55,79 @@ public class HelpdeskController {
         categoryComboBox.getItems().addAll(categories);
 
         allTickets = new ArrayList<>();
-        loadSampleTickets();
+        ticketCounter = 1000;
+        loadTicketsFromFile();
+        displayTickets();
+    }
 
-        displayTickets(false);
+    private void loadTicketsFromFile() {
+        try {
+            File file = new File("helpdesk_tickets.txt");
+            Scanner scanner = new Scanner(file);
+
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+
+                if (line.startsWith("HelpdeskTicket")) {
+                    int idStart = line.indexOf("ticketId='") + "ticketId='".length();
+                    int idEnd = line.indexOf("'", idStart);
+                    String ticketId = line.substring(idStart, idEnd);
+
+                    int subjStart = line.indexOf("subject='", idEnd) + "subject='".length();
+                    int subjEnd = line.indexOf("'", subjStart);
+                    String subject = line.substring(subjStart, subjEnd);
+
+                    int catStart = line.indexOf("category='", subjEnd) + "category='".length();
+                    int catEnd = line.indexOf("'", catStart);
+                    String category = line.substring(catStart, catEnd);
+
+                    int descStart = line.indexOf("description='", catEnd) + "description='".length();
+                    int descEnd = line.indexOf("'", descStart);
+                    String description = line.substring(descStart, descEnd);
+
+                    int statStart = line.indexOf("status='", descEnd) + "status='".length();
+                    int statEnd = line.indexOf("'", statStart);
+                    String status = line.substring(statStart, statEnd);
+
+                    int subDateStart = line.indexOf("submissionDate='", statEnd) + "submissionDate='".length();
+                    int subDateEnd = line.indexOf("'", subDateStart);
+                    String submissionDate = line.substring(subDateStart, subDateEnd);
+
+                    int lastUpdStart = line.indexOf("lastUpdated='", subDateEnd) + "lastUpdated='".length();
+                    int lastUpdEnd = line.indexOf("'", lastUpdStart);
+                    String lastUpdated = line.substring(lastUpdStart, lastUpdEnd);
+
+                    int remarksStart = line.indexOf("remarks='", lastUpdEnd) + "remarks='".length();
+                    int remarksEnd = line.indexOf("'", remarksStart);
+                    String remarks = line.substring(remarksStart, remarksEnd);
+
+                    HelpdeskTicket ticket = new HelpdeskTicket(
+                            ticketId,
+                            subject,
+                            category,
+                            description,
+                            status,
+                            submissionDate,
+                            lastUpdated,
+                            remarks
+                    );
+
+                    allTickets.add(ticket);
+                    ticketCounter++;
+                }
+            }
+
+            scanner.close();
+        } catch (Exception e) {
+            showAlert("File Error", "Could not read helpdesk tickets file");
+        }
     }
 
     @FXML
     public void submitTicketOA(ActionEvent actionEvent) {
-        String subject = subjectTextField.getText().trim();
+        String subject = subjectTextField.getText();
         String category = categoryComboBox.getValue();
-        String description = descriptionTextArea.getText().trim();
+        String description = descriptionTextArea.getText();
 
         if (!validateTicketFields(subject, category, description)) {
             return;
@@ -86,7 +136,9 @@ public class HelpdeskController {
         LocalDate today = LocalDate.now();
         String submissionDate = today.getDayOfMonth() + "-" + today.getMonthValue() + "-" + today.getYear();
 
-        String ticketId = "TKT" + ticketCounter++;
+        String ticketId = "TKT" + ticketCounter;
+        ticketCounter++;
+
         HelpdeskTicket newTicket = new HelpdeskTicket(
                 ticketId,
                 subject,
@@ -107,6 +159,7 @@ public class HelpdeskController {
 
             messageLabel.setText("Ticket created successfully. Ticket ID: " + ticketId);
             clearFormOA(null);
+            displayTickets();
         } catch (Exception e) {
             showAlert("File Error", "Failed to save ticket");
         }
@@ -118,12 +171,6 @@ public class HelpdeskController {
         categoryComboBox.setValue(null);
         descriptionTextArea.setText("");
         messageLabel.setText("");
-    }
-
-    @FXML
-    public void filterTicketsOA(ActionEvent actionEvent) {
-        boolean showResolvedOnly = showResolvedOnlyCheckBox.isSelected();
-        displayTickets(showResolvedOnly);
     }
 
     @FXML
@@ -168,60 +215,12 @@ public class HelpdeskController {
         return true;
     }
 
-    private void displayTickets(boolean showResolvedOnly) {
+    private void displayTickets() {
         ticketHistoryTableView.getItems().clear();
 
         for (HelpdeskTicket ticket: allTickets) {
-            if (showResolvedOnly) {
-                if (ticket.getStatus().equals("Resolved")) {
-                    ticketHistoryTableView.getItems().add(ticket);
-                }
-            } else {
-                ticketHistoryTableView.getItems().add(ticket);
-            }
+            ticketHistoryTableView.getItems().add(ticket);
         }
-    }
-
-    private void loadSampleTickets() {
-        LocalDate today = LocalDate.now();
-        String todayStr = today.getDayOfMonth() + "-" + today.getMonthValue() + "-" + today.getYear();
-
-        HelpdeskTicket ticket1 = new HelpdeskTicket(
-                "TKT1000",
-                "Application status not showing",
-                "Application Status",
-                "I submitted my job application 2 weeks ago but the status page shows nothing",
-                "Open",
-                todayStr,
-                todayStr,
-                ""
-        );
-
-        HelpdeskTicket ticket2 = new HelpdeskTicket(
-                "TKT1001",
-                "Cannot login to account",
-                "Technical Issue",
-                "Getting error when trying to login with my credentials",
-                "Resolved",
-                "20-11-2025",
-                "22-11-2025",
-                "Password was reset. User able to login successfully."
-        );
-
-        HelpdeskTicket ticket3 = new HelpdeskTicket(
-                "TKT1002",
-                "Form field names unclear",
-                "Document Problem",
-                "Not sure what information to fill in the education section",
-                "Open",
-                "28-11-2025",
-                "28-11-2025",
-                ""
-        );
-
-        allTickets.add(ticket1);
-        allTickets.add(ticket2);
-        allTickets.add(ticket3);
     }
 
     private void showAlert(String title, String message) {
