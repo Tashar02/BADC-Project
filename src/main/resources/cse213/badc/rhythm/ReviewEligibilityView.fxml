@@ -44,8 +44,6 @@
 
     <TextArea fx:id="experienceTextArea" editable="false" layoutX="462.0" layoutY="326.0" prefHeight="100" prefWidth="450.0" style="-fx-font-size: 10; -fx-control-inner-background: #f5f5f5;" wrapText="true" />
 
-    <Button layoutX="462.0" layoutY="436.0" onAction="#viewFullPolicyOA" prefWidth="120" style="-fx-padding: 5; -fx-font-size: 10;" text="View Full Policy" />
-
-    <Label fx:id="statusLabel" layoutX="462.0" layoutY="480.0" style="-fx-font-size: 10;" />
+    <Button layoutX="462.0" layoutY="436.0" onAction="#saveFullPolicyOA" prefWidth="120" style="-fx-padding: 5; -fx-font-size: 10;" text="View Full Policy" />
 
 </AnchorPane>

@@ -20,7 +20,6 @@ public class ReviewEligibilityController {
     @FXML
     private TextArea experienceTextArea;
     @FXML
-    private Label statusLabel;
 
     private ArrayList<Circular> circularList;
     private ArrayList<EligibilityCriteria> eligibilityList;
@@ -77,14 +76,13 @@ public class ReviewEligibilityController {
             applicationFeeTextField.setText(criteria.getApplicationFee());
             qualificationsTextArea.setText(criteria.getQualifications());
             experienceTextArea.setText(criteria.getExperience());
-            statusLabel.setText("Eligibility criteria for " + circular.getTitle() + " displayed");
         } else {
             showAlert("Error", "Circular or eligibility criteria not found");
         }
     }
 
     @FXML
-    public void viewFullPolicyOA(ActionEvent actionEvent) {
+    public void saveFullPolicyOA(ActionEvent actionEvent) {
         String circularId = circularIdTextField.getText();
 
         if (circularId.isEmpty()) {
@@ -102,7 +100,6 @@ public class ReviewEligibilityController {
             }
 
             writer.close();
-            statusLabel.setText("Policy document saved successfully");
         } catch (Exception e) {
             showAlert("File Error", "Failed to save policy document");
         }
