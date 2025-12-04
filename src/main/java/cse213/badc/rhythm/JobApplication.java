@@ -133,31 +133,6 @@ public class JobApplication implements Serializable {
         this.status = status;
     }
 
-    public boolean validatePersonalInfo() {
-        if (fullName == null || fullName.isEmpty() || fullName.length() > 100) {
-            return false;
-        }
-        if (!dateOfBirth.matches("\\d{2}-\\d{2}-\\d{4}")) {
-            return false;
-        }
-        if (!isAgeValid()) {
-            return false;
-        }
-        if (!contactNumber.matches("01\\d{9}")) {
-            return false;
-        }
-        if (email != null && !email.isEmpty() && !email.contains("@")) {
-            return false;
-        }
-        if (presentAddress == null || presentAddress.isEmpty() || presentAddress.length() > 200) {
-            return false;
-        }
-        if (!nationalId.matches("\\d{10}|\\d{13}|\\d{17}")) {
-            return false;
-        }
-        return true;
-    }
-
     private boolean isAgeValid() {
         try {
             LocalDate birthDate = LocalDate.parse(dateOfBirth);
@@ -170,22 +145,55 @@ public class JobApplication implements Serializable {
         }
     }
 
+    public boolean validatePersonalInfo() {
+        if (fullName == null || fullName.isEmpty() || fullName.length() > 100) {
+            System.out.println("Full name is empty");
+            return false;
+        }
+        if (!isAgeValid()) {
+            System.out.println("Age is invalid");
+            return false;
+        }
+        if (contactNumber.startsWith("01") || contactNumber.startsWith("+8801")) {
+            if (contactNumber.length() != 11) {
+                System.out.println("Contact number is invalid");
+                return false;
+            }
+        }
+        if (email != null && !email.isEmpty() && !email.contains("@")) {
+            System.out.println("Email is invalid");
+            return false;
+        }
+        if (presentAddress == null || presentAddress.isEmpty() || presentAddress.length() > 200) {
+            System.out.println("Address is invalid");
+            return false;
+        }
+        if (nationalId.length() != 10 && nationalId.length() != 13) {
+            System.out.println("NID is invalid");
+            return false;
+        }
+        return true;
+    }
 
     public boolean isFormComplete() {
         if (!validatePersonalInfo()) {
+            System.out.println("Personal info is invalid");
             return false;
         }
         if (educationList == null || educationList.isEmpty()) {
+            System.out.println("Education list is empty");
             return false;
         }
         for (Education edu: educationList) {
             if (!edu.validateEducation()) {
+                System.out.println("Education list is invalid");
                 return false;
             }
         }
         if (experienceList != null) {
             for (WorkExperience exp: experienceList) {
                 if (!exp.validateExperience()) {
+                    System.out.println("Experience is invalid");
                     return false;
                 }
             }
@@ -196,14 +204,16 @@ public class JobApplication implements Serializable {
     @Override
     public String toString() {
         return "JobApplication{" +
-                "applicationId='" + applicationId + '\'' +
+                "presentAddress='" + presentAddress + '\'' +
+                ", applicationId='" + applicationId + '\'' +
                 ", circularId='" + circularId + '\'' +
                 ", fullName='" + fullName + '\'' +
                 ", dateOfBirth='" + dateOfBirth + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", presentAddress='" + presentAddress + '\'' +
                 ", nationalId='" + nationalId + '\'' +
+                ", educationList=" + educationList +
+                ", experienceList=" + experienceList +
                 ", submissionDate='" + submissionDate + '\'' +
                 ", status='" + status + '\'' +
                 '}';

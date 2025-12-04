@@ -71,8 +71,6 @@ public class JobCircularBrowseController {
     private TableColumn<WorkExperience, Integer> startYearTC;
     @FXML
     private TableColumn<WorkExperience, Integer> endYearTC;
-    @FXML
-    private Label statusLabel;
 
     private ArrayList<Circular> circularList;
     private ArrayList<Education> educationList;
@@ -97,6 +95,8 @@ public class JobCircularBrowseController {
         endYearTC.setCellValueFactory(new PropertyValueFactory<>("endYear"));
 
         circularList = new ArrayList<>();
+
+        /* The circulars need to come from User-6 Goal-1 , this is sample data provided */
         circularList.add(new Circular("C001", "Senior Officer", "Administration", "31-12-2025",
                 "Graduate with 3 years experience", 5, 500, 35));
         circularList.add(new Circular("C002", "Research Officer", "Research", "15-01-2026",
@@ -125,6 +125,7 @@ public class JobCircularBrowseController {
 
     @FXML
     public void viewDetailsOA(ActionEvent actionEvent) {
+        /* Selection procedure was referenced from getSelectionModel: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableView.html#getSelectionModel-- */
         Circular selected = circularTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
@@ -169,12 +170,12 @@ public class JobCircularBrowseController {
                 eduInstitutionTextField.clear();
                 eduYearTextField.clear();
                 eduGpaTextField.clear();
-                statusLabel.setText("Education added successfully");
+                showAlert("Success", "Education added successfully");
             } else {
                 showAlert("Validation Error", "Invalid education details");
             }
         } catch (Exception e) {
-            showAlert("Input Error", "Please enter valid data");
+            showAlert("Input Error", "Please provide correct input data");
         }
     }
 
@@ -185,7 +186,7 @@ public class JobCircularBrowseController {
         if (selected != null) {
             educationList.remove(selected);
             educationTableView.getItems().remove(selected);
-            statusLabel.setText("Education entry removed");
+            showAlert("Success", "Education entry removed");
         } else {
             showAlert("Select Entry", "Please select an education entry to remove");
         }
@@ -216,7 +217,7 @@ public class JobCircularBrowseController {
                 expJobTitleTextField.clear();
                 expStartYearTextField.clear();
                 expEndYearTextField.clear();
-                statusLabel.setText("Work experience added successfully");
+                showAlert("Success", "Work experience added successfully");
             } else {
                 showAlert("Validation Error", "Invalid work experience details");
             }
@@ -232,7 +233,7 @@ public class JobCircularBrowseController {
         if (selected != null) {
             experienceList.remove(selected);
             experienceTableView.getItems().remove(selected);
-            statusLabel.setText("Work experience entry removed");
+            showAlert("Success", "Work experience entry removed");
         } else {
             showAlert("Select Entry", "Please select a work experience entry to remove");
         }
@@ -272,7 +273,7 @@ public class JobCircularBrowseController {
                 FileWriter writer = new FileWriter("applications.txt", true);
                 writer.write(application.toString() + "\n");
                 writer.close();
-                statusLabel.setText("Application Submitted! ID: " + application.getApplicationId());
+                showAlert("Success", "Application Submitted! ID: " + application.getApplicationId());
                 clearFormOA(actionEvent);
             } catch (Exception e) {
                 showAlert("File Error", "Failed to save application");
@@ -304,7 +305,6 @@ public class JobCircularBrowseController {
         experienceTableView.getItems().clear();
         selectedCircular = null;
         detailsTextArea.clear();
-        statusLabel.setText("");
     }
 
     private String generateApplicationId() {
