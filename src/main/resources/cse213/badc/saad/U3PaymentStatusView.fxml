@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mainproject.saad.U3PaymentStatusController">
+   <children>
+      <Label fx:id="totalEarningLabel" layoutX="148.0" layoutY="81.0" prefHeight="17.0" prefWidth="171.0" />
+      <Label alignment="CENTER" layoutX="159.0" layoutY="38.0" prefHeight="17.0" prefWidth="306.0" text="Earning Status" />
+      <Label layoutX="70.0" layoutY="79.0" prefHeight="17.0" prefWidth="85.0" text="Total Earning:" />
+      <TableView fx:id="earningTableView" layoutX="70.0" layoutY="118.0" prefHeight="200.0" prefWidth="483.0">
+        <columns>
+          <TableColumn fx:id="idCol" prefWidth="102.0" text="Task ID" />
+          <TableColumn fx:id="dateCol" prefWidth="221.0" text="Report Submission Date" />
+            <TableColumn fx:id="earningCol" prefWidth="159.0" text="Earning" />
+        </columns>
+      </TableView>
+      <Label fx:id="totalEarningLabel1" layoutX="166.0" layoutY="328.0" prefHeight="17.0" prefWidth="306.0" text="Earning per Order (based of approved report)" />
+      <Button layoutX="420.0" layoutY="361.0" mnemonicParsing="false" onAction="#backOA" prefHeight="25.0" prefWidth="134.0" text="Go Back" />
+   </children>
+</AnchorPane>
