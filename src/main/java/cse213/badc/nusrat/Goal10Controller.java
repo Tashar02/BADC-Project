@@ -17,7 +17,7 @@ import java.util.Objects;
 
 public class Goal10Controller {
 
-    // Search and Filter Components
+    
     @FXML private TextField searchField;
     @FXML private ComboBox<String> districtFilter;
     @FXML private ComboBox<String> statusFilter;
