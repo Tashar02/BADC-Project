@@ -46,36 +46,30 @@ public class Goal10Controller {
     public void initialize() {
       
         setupFilters();
-        setupTableColumns();
-       
-
+        setupTableColumns();  
       
-        
-        dealerPagination.setVisible(false);
     }
 
     private void setupFilters() {
-        // Populate District Filter
+       
         districtFilter.getItems().addAll(
                 "All Districts", "Dhaka", "Rajshahi", "Chittagong", "Khulna",
                 "Barisal", "Sylhet", "Rangpur", "Mymensingh"
         );
         districtFilter.setValue("All Districts");
 
-        // event-7: VL - Renewal status must be one of [Approved, Pending, Rejected]
         statusFilter.getItems().addAll(
                 "All Status", "Approved", "Pending", "Rejected", "Under Review"
         );
         statusFilter.setValue("All Status");
 
-        // Populate Category Filter
+      
         categoryFilter.getItems().addAll(
                 "All Categories", "Seed", "Fertilizer", "Both"
         );
         categoryFilter.setValue("All Categories");
     }
 
-    // event-5: OP - Present Dealer List in Table/Grid View
     private void setupTableColumns() {
         dealerIdColumn.setCellValueFactory(new PropertyValueFactory<>("dealerId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -85,7 +79,7 @@ public class Goal10Controller {
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
         validityColumn.setCellValueFactory(new PropertyValueFactory<>("validityPeriod"));
 
-        // Custom cell factory for status column with color coding
+       
         statusColumn.setCellFactory(column -> new TableCell<DealerRecord, String>() {
             @Override
             protected void updateItem(String item, boolean empty) {
@@ -95,7 +89,7 @@ public class Goal10Controller {
                     setStyle("");
                 } else {
                     setText(item);
-                    // event-10: OP - Approved dealers show green badge; rejected ones show red
+                   
                     if (item.equals("Approved")) {
                         setStyle("-fx-background-color: #C8E6C9; -fx-text-fill: #2E7D32; -fx-font-weight: bold;");
                     } else if (item.equals("Rejected")) {
@@ -107,7 +101,7 @@ public class Goal10Controller {
             }
         });
 
-        // event-9: UIE - Select a Dealer for Detailed View (Action buttons in each row)
+      
         actionColumn.setCellFactory(param -> new TableCell<DealerRecord, Void>() {
             private final Button viewBtn = new Button("View");
             private final HBox pane = new HBox(5, viewBtn);
@@ -128,12 +122,8 @@ public class Goal10Controller {
         });
     }
 
-    // Setup pagination control
-    private void setupPagination() {
-        dealerPagination.setPageFactory(this::createPage);
-    }
-
-    // event-5: OP - System displays a paginated, sortable table view
+   
+   
     private TableView<DealerRecord> createPage(int pageIndex) {
         int fromIndex = pageIndex * ROWS_PER_PAGE;
         int toIndex = Math.min(fromIndex + ROWS_PER_PAGE, filteredDealers.size());
@@ -145,12 +135,12 @@ public class Goal10Controller {
         return dealerTableView;
     }
 
-    // event-4: DP - Fetch latest dealer profile (simulated data)
+    
     @FXML
     private void onLoadDealerData() {
         filterValidationLabel.setText("");
 
-        // Simulated dealer data
+      
         allDealers.clear();
         allDealers.addAll(
                 new DealerRecord("D001", "Abdul Karim", "Dhaka", "Savar", "Seed", "Approved", "01 Jan 2025 - 31 Dec 2025"),
@@ -168,7 +158,7 @@ public class Goal10Controller {
         filteredDealers.clear();
         filteredDealers.addAll(allDealers);
 
-        updatePagination();
+     
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Data Loaded");
@@ -177,10 +167,10 @@ public class Goal10Controller {
         alert.showAndWait();
     }
 
-    // event-6: UID, UIE - Apply Filters or Search
+   
     @FXML
     private void onApplyFilters() {
-        // event-7: VL - Validate Search and Filter Inputs
+       
         if (!validateFilters()) {
             return;
         }
@@ -193,7 +183,7 @@ public class Goal10Controller {
         String selectedStatus = statusFilter.getValue();
         String selectedCategory = categoryFilter.getValue();
 
-        // event-6: The system filters displayed data dynamically
+      
         for (DealerRecord dealer : allDealers) {
             boolean matchesSearch = searchText.isEmpty() ||
                     dealer.getName().toLowerCase().contains(searchText) ||
@@ -214,7 +204,7 @@ public class Goal10Controller {
             }
         }
 
-        updatePagination();
+     
 
         if (filteredDealers.isEmpty()) {
             filterValidationLabel.setText("No dealers found matching your search criteria.");
@@ -222,34 +212,34 @@ public class Goal10Controller {
         }
     }
 
-    // event-7: VL - Validate Search and Filter Inputs
+   
     private boolean validateFilters() {
-        // event-7: Empty input should reset filter to default view
+       
         if (searchField.getText() != null && searchField.getText().trim().isEmpty() &&
                 districtFilter.getValue().equals("All Districts") &&
                 statusFilter.getValue().equals("All Status") &&
                 categoryFilter.getValue().equals("All Categories")) {
-            // Reset to show all data
+         
             filteredDealers.clear();
             filteredDealers.addAll(allDealers);
-            updatePagination();
+          
             return false;
         }
 
-        // event-7: District names must match official list
+       
         if (!districtFilter.getValue().equals("All Districts")) {
-            // Already validated by ComboBox selection
+       
         }
 
-        // event-7: Renewal status must be one of [Approved, Pending, Rejected]
+       ]
         if (!statusFilter.getValue().equals("All Status")) {
-            // Already validated by ComboBox selection
+          
         }
 
         return true;
     }
 
-    // UIE - Reset Filters
+ 
     @FXML
     private void onResetFilters() {
         searchField.clear();
@@ -258,21 +248,14 @@ public class Goal10Controller {
         categoryFilter.setValue("All Categories");
         filterValidationLabel.setText("");
 
-        // event-7: VL - Empty input should reset filter to default view
+      
         filteredDealers.clear();
         filteredDealers.addAll(allDealers);
-        updatePagination();
+       
     }
 
-    private void updatePagination() {
-        int pageCount = (int) Math.ceil((double) filteredDealers.size() / ROWS_PER_PAGE);
-        dealerPagination.setPageCount(pageCount > 0 ? pageCount : 1);
-        dealerPagination.setCurrentPageIndex(0);
-        dealerPagination.setVisible(true);
-        createPage(0);
-    }
+  
 
-    // event-9: UIE - Select a Dealer for Detailed View
     @FXML
     private void onViewDealerDetails() {
         DealerRecord selected = dealerTableView.getSelectionModel().getSelectedItem();
@@ -283,7 +266,7 @@ public class Goal10Controller {
         viewDealerDetails(selected);
     }
 
-    // event-10: OP - Display Dealer Renewal Decision
+  
     private void viewDealerDetails(DealerRecord dealer) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Dealer Details");
@@ -312,7 +295,7 @@ public class Goal10Controller {
         }
     }
 
-    // event-11: UIE, OP - Download or View Renewal Certificate
+    
     @FXML
     private void onDownloadCertificate() {
         DealerRecord selected = dealerTableView.getSelectionModel().getSelectedItem();
@@ -330,26 +313,9 @@ public class Goal10Controller {
                 "Certificate for " + selected.getName() + " will be downloaded.\n(Feature to be implemented)");
     }
 
-    // event-12: DP - Notify Dealer via SMS/Email
-    @FXML
-    private void onSendNotification() {
-        DealerRecord selected = dealerTableView.getSelectionModel().getSelectedItem();
-        if (selected == null) {
-            showAlert(Alert.AlertType.WARNING, "No Selection", "Please select a dealer to send notification.");
-            return;
-        }
+    
 
-        String message = String.format(
-                "Dear Dealer,\nYour BADC dealership status: %s\n%s\n\nContact support for queries.",
-                selected.getStatus(),
-                selected.getStatus().equals("Approved") ? "Valid until: " + selected.getValidityPeriod() : ""
-        );
 
-        showAlert(Alert.AlertType.INFORMATION, "Send Notification",
-                "Notification will be sent to:\n" + selected.getName() + "\n\nMessage:\n" + message);
-    }
-
-    // event-15: DP, OP - Generate Summary Report of Approved Dealers
     @FXML
     private void onExportReport() {
         if (allDealers.isEmpty()) {
@@ -357,7 +323,7 @@ public class Goal10Controller {
             return;
         }
 
-        // Count statistics
+    
         long approved = allDealers.stream().filter(d -> d.getStatus().equals("Approved")).count();
         long pending = allDealers.stream().filter(d -> d.getStatus().equals("Pending") || d.getStatus().equals("Under Review")).count();
         long rejected = allDealers.stream().filter(d -> d.getStatus().equals("Rejected")).count();
@@ -376,7 +342,7 @@ public class Goal10Controller {
         showAlert(Alert.AlertType.INFORMATION, "Export Report", report);
     }
 
-    // UIE - Navigate back to dashboard
+   
     @FXML
     private void onBackToDashboard() {
         try {
@@ -399,7 +365,6 @@ public class Goal10Controller {
         alert.showAndWait();
     }
 
-    // Inner class for Dealer Record
     public static class DealerRecord {
         private String dealerId;
         private String name;
@@ -420,7 +385,7 @@ public class Goal10Controller {
             this.validityPeriod = validityPeriod;
         }
 
-        // Getters
+      
         public String getDealerId() { return dealerId; }
         public String getName() { return name; }
         public String getDistrict() { return district; }
