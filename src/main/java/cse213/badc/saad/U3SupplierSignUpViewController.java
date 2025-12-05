@@ -27,20 +27,27 @@ public class U3SupplierSignUpViewController
     }
 
     @javafx.fxml.FXML
-    public void dashboardOA(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IESDashboardView.fxml"));
+    public void dashboardOA(ActionEvent actionEvent)  {
 
-        Scene scene = new Scene(loader.load());
+        try {
 
-        U3IESDashboardController controller = loader.getController();
-        controller.passIESDashboard(s);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IESDashboardView.fxml"));
 
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loader.load());
 
-        stage.setTitle("IES Dashboard");
-        stage.setScene(scene);
-        stage.show();
+            U3IESDashboardController controller = loader.getController();
+            controller.passIESDashboard(s);
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+
+            stage.setTitle("IES Dashboard");
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e){
+            Helper.showAlert(e.getMessage());
+        }
+
 
     }
 
