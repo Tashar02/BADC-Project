@@ -24,7 +24,6 @@ public class Goal10Controller {
     @FXML private ComboBox<String> categoryFilter;
     @FXML private Label filterValidationLabel;
 
-    // TableView and Columns
     @FXML private TableView<DealerRecord> dealerTableView;
     @FXML private TableColumn<DealerRecord, String> dealerIdColumn;
     @FXML private TableColumn<DealerRecord, String> nameColumn;
@@ -35,26 +34,26 @@ public class Goal10Controller {
     @FXML private TableColumn<DealerRecord, String> validityColumn;
     @FXML private TableColumn<DealerRecord, Void> actionColumn;
 
-    // Pagination
-    @FXML private Pagination dealerPagination;
+    
+    
 
-    // Data
+    
     private ObservableList<DealerRecord> allDealers = FXCollections.observableArrayList();
     private ObservableList<DealerRecord> filteredDealers = FXCollections.observableArrayList();
     private static final int ROWS_PER_PAGE = 10;
 
     @FXML
     public void initialize() {
-        // event-4: DP - Fetch latest dealer profile & default location preferences
+      
         setupFilters();
         setupTableColumns();
-        setupPagination();
+       
 
-        // Initialize with empty data
+      
+        
         dealerPagination.setVisible(false);
     }
 
-    // DP: Setup filter dropdowns
     private void setupFilters() {
         // Populate District Filter
         districtFilter.getItems().addAll(
