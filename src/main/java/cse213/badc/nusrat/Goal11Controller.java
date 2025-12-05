@@ -107,7 +107,7 @@ public class Goal11Controller {
         );
     }
 
-    // UIE: Handle application type change
+    
     private void onApplicationTypeChanged() {
         boolean isRenewal = renewDealershipRadio.isSelected();
 
@@ -212,12 +212,12 @@ public class Goal11Controller {
         clearPreviousLicenseBtn.setVisible(false);
     }
 
-    // Helper method for file chooser
+  
     private File chooseFile(String title, String... extensions) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle(title);
 
-        // Add extension filters
+       
         for (int i = 0; i < extensions.length; i += 2) {
             if (i + 1 < extensions.length) {
                 fileChooser.getExtensionFilters().add(
@@ -233,23 +233,23 @@ public class Goal11Controller {
         return fileChooser.showOpenDialog(HelloApplication.stage);
     }
 
-    // VL, DP, OP: Submit Application
+    
     @FXML
     private void onSubmitApplication() {
         validationLabel.setText("");
         confirmationBox.setVisible(false);
 
-        // VL: Validate all mandatory fields
+        
         if (!validateForm()) {
             return;
         }
 
-        // DP: Process the submitted application data
+       
         String applicationType = newDealershipRadio.isSelected() ? "New Dealership" : "Renewal";
         String applicationId = generateApplicationId();
         String submissionDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd MMM yyyy, hh:mm a"));
 
-        // Simulate database storage
+       
         System.out.println("=== Application Submission ===");
         System.out.println("Application Type: " + applicationType);
         System.out.println("Application ID: " + applicationId);
@@ -261,7 +261,7 @@ public class Goal11Controller {
         System.out.println("Email: " + emailField.getText());
         System.out.println("Documents uploaded: " + getUploadedDocumentCount());
 
-        // OP: Display confirmation message with application ID, submission date, and next steps
+       
         applicationIdLabel.setText("Application ID: " + applicationId);
         submissionDateLabel.setText("Submission Date: " + submissionDate);
 
@@ -274,7 +274,7 @@ public class Goal11Controller {
 
         confirmationBox.setVisible(true);
 
-        // Show success alert
+        
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Application Submitted");
         alert.setHeaderText("Your application has been submitted successfully!");
@@ -282,21 +282,21 @@ public class Goal11Controller {
         alert.showAndWait();
     }
 
-    // VL: Validate form fields
+    
     private boolean validateForm() {
-        // Check applicant name
+       
         if (applicantNameField.getText() == null || applicantNameField.getText().trim().isEmpty()) {
             validationLabel.setText("❌ Please enter applicant name.");
             return false;
         }
 
-        // Check business name
+        
         if (businessNameField.getText() == null || businessNameField.getText().trim().isEmpty()) {
             validationLabel.setText("❌ Please enter business name.");
             return false;
         }
 
-        // Check license number for renewal
+        
         if (renewDealershipRadio.isSelected()) {
             if (licenseNumberField.getText() == null || licenseNumberField.getText().trim().isEmpty()) {
                 validationLabel.setText("❌ Please enter existing license number for renewal.");
@@ -304,63 +304,61 @@ public class Goal11Controller {
             }
         }
 
-        // Check category
+      
         if (categoryCombo.getValue() == null || categoryCombo.getValue().isEmpty()) {
             validationLabel.setText("❌ Please select business category.");
             return false;
         }
 
-        // Check district
+       
         if (districtCombo.getValue() == null || districtCombo.getValue().isEmpty()) {
             validationLabel.setText("❌ Please select district.");
             return false;
         }
 
-        // Check upazila
+     
         if (upazilaCombo.getValue() == null || upazilaCombo.getValue().isEmpty()) {
             validationLabel.setText("❌ Please select upazila.");
             return false;
         }
 
-        // Check address
+      
         if (addressArea.getText() == null || addressArea.getText().trim().isEmpty()) {
             validationLabel.setText("❌ Please enter full address.");
             return false;
         }
 
-        // Check contact number
+       
         if (contactNumberField.getText() == null || contactNumberField.getText().trim().isEmpty()) {
             validationLabel.setText("❌ Please enter contact number.");
             return false;
         }
 
-        // Validate contact number format (11 digits)
         String contact = contactNumberField.getText().trim();
         if (!contact.matches("\\d{11}")) {
             validationLabel.setText("❌ Contact number must be 11 digits.");
             return false;
         }
 
-        // Check email
+      
         if (emailField.getText() == null || emailField.getText().trim().isEmpty()) {
             validationLabel.setText("❌ Please enter email address.");
             return false;
         }
 
-        // Validate email format
         String email = emailField.getText().trim();
         if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
             validationLabel.setText("❌ Please enter a valid email address.");
             return false;
         }
 
-        // Check NID number
+      
         if (nidNumberField.getText() == null || nidNumberField.getText().trim().isEmpty()) {
             validationLabel.setText("❌ Please enter NID number.");
             return false;
         }
 
-        // VL: Check mandatory documents are uploaded in valid formats
+    s
         if (tradeLicenseFile == null) {
             validationLabel.setText("❌ Please upload Trade License document.");
             return false;
@@ -376,7 +374,7 @@ public class Goal11Controller {
             return false;
         }
 
-        // Check previous license for renewal
+       
         if (renewDealershipRadio.isSelected() && previousLicenseFile == null) {
             validationLabel.setText("❌ Please upload Previous License Copy for renewal.");
             return false;
@@ -385,7 +383,7 @@ public class Goal11Controller {
         return true;
     }
 
-    // DP: Generate unique tracking or application ID
+
     private String generateApplicationId() {
         String prefix = newDealershipRadio.isSelected() ? "NEW" : "REN";
         String year = String.valueOf(LocalDateTime.now().getYear());
@@ -403,7 +401,7 @@ public class Goal11Controller {
         return count;
     }
 
-    // UIE: Save as Draft
+    
     @FXML
     private void onSaveAsDraft() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -413,7 +411,7 @@ public class Goal11Controller {
         alert.showAndWait();
     }
 
-    // UIE: Clear Form
+   
     @FXML
     private void onClearForm() {
         applicantNameField.clear();
@@ -441,7 +439,7 @@ public class Goal11Controller {
         onApplicationTypeChanged();
     }
 
-    // UIE: Navigate back to dashboard
+ 
     @FXML
     private void onBackToDashboard() {
         try {
@@ -456,7 +454,7 @@ public class Goal11Controller {
         }
     }
 
-    // UIE: View my applications (placeholder)
+
     @FXML
     private void onViewMyApplications() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
