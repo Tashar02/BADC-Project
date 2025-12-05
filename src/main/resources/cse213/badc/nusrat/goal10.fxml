@@ -104,36 +104,8 @@
             <Label text="No dealer records found. Click 'Load Data' to fetch dealer information."/>
          </placeholder>
       </TableView>
+     
 
-      <!-- Pagination Control -->
-      <Pagination fx:id="dealerPagination" layoutX="24.0" layoutY="515.0"
-                  prefWidth="852.0" maxPageIndicatorCount="10"/>
-
-      <!-- Action Buttons Section -->
-      <HBox layoutX="24.0" layoutY="565.0" spacing="12.0" alignment="CENTER_LEFT">
-         <children>
-            <Button text="Load Data" onAction="#onLoadDealerData"
-                    style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 13px;"
-                    prefWidth="110.0" prefHeight="30.0"/>
-            <Button text="View Details" onAction="#onViewDealerDetails"
-                    style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-size: 13px;"
-                    prefWidth="110.0" prefHeight="30.0"/>
-            <Button text="Download Certificate" onAction="#onDownloadCertificate"
-                    style="-fx-background-color: #FF9800; -fx-text-fill: white; -fx-font-size: 13px;"
-                    prefWidth="160.0" prefHeight="30.0"/>
-            <Button text="Send Notification" onAction="#onSendNotification"
-                    style="-fx-background-color: #9C27B0; -fx-text-fill: white; -fx-font-size: 13px;"
-                    prefWidth="140.0" prefHeight="30.0"/>
-            <Button text="Export Report" onAction="#onExportReport"
-                    style="-fx-background-color: #00BCD4; -fx-text-fill: white; -fx-font-size: 13px;"
-                    prefWidth="120.0" prefHeight="30.0"/>
-         </children>
-      </HBox>
-
-      <!-- Navigation Buttons - Fixed at bottom -->
-      <HBox layoutX="24.0" layoutY="570.0" spacing="10.0"
-            AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="24.0">
-         <children>
             <Button text="← Back to Dashboard" onAction="#onBackToDashboard"
                     style="-fx-font-size: 13px;" prefWidth="160.0" prefHeight="30.0"/>
          </children>
