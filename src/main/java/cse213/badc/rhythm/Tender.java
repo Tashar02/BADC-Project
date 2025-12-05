@@ -1,4 +1,4 @@
-package cse213.badc.saad;
+package cse213.badc.rhythm;
 
 import java.time.LocalDate;
 
@@ -38,20 +38,20 @@ public class Tender {
         this.details = details;
     }
 
-    public LocalDate getPublishDate() {
-        return publishDate;
-    }
-
-    public void setPublishDate(LocalDate publishDate) {
-        this.publishDate = publishDate;
-    }
-
     public String getRegion() {
         return region;
     }
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public LocalDate getPublishDate() {
+        return publishDate;
+    }
+
+    public void setPublishDate(LocalDate publishDate) {
+        this.publishDate = publishDate;
     }
 
     @Override
