@@ -19,13 +19,12 @@ import java.util.Random;
 
 public class Goal11Controller {
 
-    // Radio Buttons for Application Type
     @FXML private RadioButton newDealershipRadio;
     @FXML private RadioButton renewDealershipRadio;
     @FXML private ToggleGroup applicationTypeGroup;
     @FXML private TextArea eligibilityInfoArea;
 
-    // Form Fields
+    
     @FXML private TextField applicantNameField;
     @FXML private TextField businessNameField;
     @FXML private Label licenseNumberLabel;
@@ -39,7 +38,7 @@ public class Goal11Controller {
     @FXML private TextField emailField;
     @FXML private TextField nidNumberField;
 
-    // Document Upload Fields
+   
     @FXML private TextField tradeLicensePathField;
     @FXML private Button clearTradeLicenseBtn;
     @FXML private TextField nidCopyPathField;
@@ -52,14 +51,13 @@ public class Goal11Controller {
     @FXML private TextField previousLicensePathField;
     @FXML private Button clearPreviousLicenseBtn;
 
-    // Validation and Confirmation
     @FXML private Label validationLabel;
     @FXML private VBox confirmationBox;
     @FXML private Label applicationIdLabel;
     @FXML private Label submissionDateLabel;
     @FXML private TextArea nextStepsArea;
 
-    // File storage
+ 
     private File tradeLicenseFile;
     private File nidCopyFile;
     private File premisesPhotoFile;
@@ -68,19 +66,19 @@ public class Goal11Controller {
 
     @FXML
     public void initialize() {
-        // OP: Display eligibility criteria and required documents
+       
         setupEligibilityInfo();
         setupFormFields();
 
-        // UIE: Listen for application type changes
+       
         newDealershipRadio.setOnAction(e -> onApplicationTypeChanged());
         renewDealershipRadio.setOnAction(e -> onApplicationTypeChanged());
 
-        // Set initial state
+        
         onApplicationTypeChanged();
     }
 
-    // OP: Setup eligibility information based on application type
+    
     private void setupEligibilityInfo() {
         String newDealerInfo = "New Dealership Eligibility:\n" +
                 "• Must have valid Trade License\n" +
@@ -93,16 +91,16 @@ public class Goal11Controller {
     }
 
     private void setupFormFields() {
-        // Populate Category ComboBox
+       
         categoryCombo.getItems().addAll("Seed Only", "Fertilizer Only", "Seed and Fertilizer");
 
-        // Populate District ComboBox
+        
         districtCombo.getItems().addAll(
                 "Dhaka", "Rajshahi", "Chittagong", "Khulna", "Barisal",
                 "Sylhet", "Rangpur", "Mymensingh"
         );
 
-        // Populate Upazila ComboBox (sample data)
+       
         upazilaCombo.getItems().addAll(
                 "Savar", "Paba", "Rangunia", "Dumuria", "Companiganj",
                 "Badarganj", "Bakerganj", "Trishal", "Keraniganj", "Godagari"
@@ -113,14 +111,14 @@ public class Goal11Controller {
     private void onApplicationTypeChanged() {
         boolean isRenewal = renewDealershipRadio.isSelected();
 
-        // Show/hide license number field for renewal
+    
         licenseNumberLabel.setVisible(isRenewal);
         licenseNumberField.setVisible(isRenewal);
 
-        // Show/hide previous license upload for renewal
+       
         previousLicenseBox.setVisible(isRenewal);
 
-        // Update eligibility info
+      
         if (isRenewal) {
             String renewalInfo = "Renewal Eligibility:\n" +
                     "• Must have existing valid or recently expired BADC dealership license\n" +
@@ -133,7 +131,7 @@ public class Goal11Controller {
         }
     }
 
-    // UIE: File chooser methods for document uploads
+    
     @FXML
     private void onChooseTradeLicense() {
         tradeLicenseFile = chooseFile("Select Trade License", "PDF Files", "*.pdf", "Image Files", "*.jpg", "*.png");
