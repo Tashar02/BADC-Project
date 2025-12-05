@@ -1,4 +1,4 @@
-package com.example.mainproject.saad;
+package cse213.badc.saad;
 
 public class RegionalReport extends Report{
     private int totalApplications, totalApprovedApplications;

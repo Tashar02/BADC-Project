@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mainproject.saad.U4VerifyContractorRegistrationController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.U4VerifyContractorRegistrationController">
     <children>
         <Label alignment="CENTER" layoutX="182.0" layoutY="24.0" prefHeight="17.0" prefWidth="236.0" text="Contractor Registrations" />
       <TableView fx:id="applicationsTableView" layoutX="315.0" layoutY="101.0" prefHeight="260.0" prefWidth="271.0">

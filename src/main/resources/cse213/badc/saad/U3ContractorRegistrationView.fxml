@@ -5,7 +5,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mainproject.saad.U3ContractorRegistrationController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.U3ContractorRegistrationController">
    <children>
       <Label alignment="CENTER" layoutX="126.0" layoutY="55.0" prefHeight="17.0" prefWidth="348.0" text="Registration Form" />
       <Label layoutX="39.0" layoutY="145.0" text="Company name: " />

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mainproject.saad.U3ViewTendersController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.U3ViewTendersController">
    <children>
       <Label alignment="CENTER" layoutX="179.0" layoutY="23.0" prefHeight="17.0" prefWidth="242.0" text="Government Tenders" />
       <TableView fx:id="tenderTableView" layoutX="21.0" layoutY="61.0" prefHeight="278.0" prefWidth="289.0">

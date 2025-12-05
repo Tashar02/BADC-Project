@@ -1,4 +1,4 @@
-package com.example.mainproject.saad;
+package cse213.badc.saad;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -121,7 +121,7 @@ public class U3SubmitMaintenanceReportController {
     @javafx.fxml.FXML
     public void cancelSupplierReportOA(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("U3IEWDashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IEWDashboardView.fxml"));
         Scene scene = new Scene(loader.load());
 
         U3IESDashboardController controller = loader.getController();

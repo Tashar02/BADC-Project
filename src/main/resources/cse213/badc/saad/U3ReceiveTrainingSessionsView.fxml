@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.mainproject.saad.U3ReceiveTrainingSessionsController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.U3ReceiveTrainingSessionsController">
    <children>
       <Label alignment="CENTER" layoutX="176.0" layoutY="22.0" prefHeight="17.0" prefWidth="268.0" text="Training Sessions" />
       <Button layoutX="13.0" layoutY="50.0" mnemonicParsing="false" onAction="#loadTableOA" prefHeight="25.0" prefWidth="163.0" text="Load Training Sessions" />
