@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="567.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G8_AdmitCardListController">
+
+    <Label layoutX="344.0" layoutY="22.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="View Admit Card" />
+
+    <Label layoutX="30.0" layoutY="60.0" style="-fx-font-size: 11; -fx-font-weight: bold;" text="Approved Applications:" />
+
+    <TableView fx:id="approvedApplicationsTableView" layoutX="30.0" layoutY="85.0" prefHeight="400.0" prefWidth="740.0" style="-fx-font-size: 10;">
+        <columns>
+            <TableColumn fx:id="applicationIdTC" prefWidth="150.0" text="Application ID" />
+            <TableColumn fx:id="applicantNameTC" prefWidth="200.0" text="Applicant Name" />
+            <TableColumn fx:id="circularTC" prefWidth="200.0" text="Circular" />
+            <TableColumn fx:id="statusTC" prefWidth="188.79986572265625" text="Status" />
+        </columns>
+    </TableView>
+
+    <Button layoutX="325.0" layoutY="506.0" onAction="#viewAdmitCardOA" prefWidth="150.0" style="-fx-padding: 5; -fx-font-size: 10;" text="View Admit Card" />
+
+</AnchorPane>

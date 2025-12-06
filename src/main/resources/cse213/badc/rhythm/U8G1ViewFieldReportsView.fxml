@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="544.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U8G1_ViewFieldReportsController">
+
+    <Label layoutX="400.0" layoutY="24.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Field Reports" />
+
+    <TableView fx:id="fieldReportsTableView" layoutX="30.0" layoutY="62.0" prefHeight="450.0" prefWidth="840.0" style="-fx-font-size: 11;">
+        <columns>
+            <TableColumn fx:id="reportIdTC" prefWidth="120.0" text="Report ID" />
+            <TableColumn fx:id="authorIdTC" prefWidth="120.0" text="Author ID" />
+            <TableColumn fx:id="summaryTC" prefWidth="300.0" text="Summary" />
+            <TableColumn fx:id="statusTC" prefWidth="100.0" text="Status" />
+            <TableColumn fx:id="reportDateTC" prefWidth="199.199951171875" text="Report Date" />
+        </columns>
+    </TableView>
+
+</AnchorPane>

@@ -1,6 +1,6 @@
 package cse213.badc.saad;
 
-import cse213.badc.rhythm.ViewTendersController;
+import cse213.badc.rhythm.U8G3_ViewTendersController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -119,7 +119,7 @@ public class U3IESDashboardController
 
         Scene scene = new Scene(loader.load());
 
-        ViewTendersController controller = loader.getController();
+        U8G3_ViewTendersController controller = loader.getController();
         controller.passTenderInterface(currentUser);
 
         Stage stage = (Stage) ((Node) (actionEvent.getSource())).getScene().getWindow();
