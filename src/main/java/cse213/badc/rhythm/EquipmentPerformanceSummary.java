@@ -10,11 +10,11 @@ public class EquipmentPerformanceSummary implements AnalyticsSummary {
     }
 
     @Override
-    public double getAveragePerformance() {
+    public float getAveragePerformance() {
         if (equipmentList.isEmpty()) {
             return 0;
         }
-        double total = 0;
+        float total = 0;
         for (EquipmentAnalytics ea: equipmentList) {
             total += ea.getUptimePercentage();
         }

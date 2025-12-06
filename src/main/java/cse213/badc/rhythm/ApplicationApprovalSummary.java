@@ -10,11 +10,11 @@ public class ApplicationApprovalSummary implements AnalyticsSummary {
     }
 
     @Override
-    public double getAveragePerformance() {
+    public float getAveragePerformance() {
         if (applicationList.isEmpty()) {
             return 0;
         }
-        return (getApprovedCount() * 100.0) / applicationList.size();
+        return (getApprovedCount() * 100.0f) / applicationList.size();
     }
 
     @Override

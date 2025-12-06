@@ -19,7 +19,7 @@ public class U8G2_ViewEquipmentPerformanceController {
     @FXML
     private TableColumn<EquipmentAnalytics, String> locationTC;
     @FXML
-    private TableColumn<EquipmentAnalytics, Double> uptimeTC;
+    private TableColumn<EquipmentAnalytics, Float> uptimeTC;
     @FXML
     private TableColumn<EquipmentAnalytics, String> statusTC;
     @FXML

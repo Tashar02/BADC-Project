@@ -5,7 +5,7 @@ import java.time.LocalDate;
 public class EquipmentAnalytics extends Analytics {
     private String pumpId;
     private String location;
-    private double uptimePercentage;
+    private float uptimePercentage;
     private String status;
 
     public EquipmentAnalytics(String pumpId, String location, float uptimePercentage, String region) {
@@ -16,7 +16,7 @@ public class EquipmentAnalytics extends Analytics {
         this.status = getStatusFromUptime(uptimePercentage);
     }
 
-    private String getStatusFromUptime(double uptime) {
+    private String getStatusFromUptime(float uptime) {
         if (uptime >= 90) {
             return "Excellent";
         } else if (uptime >= 80) {
@@ -34,12 +34,12 @@ public class EquipmentAnalytics extends Analytics {
         return location;
     }
 
-    public double getUptimePercentage() {
+    public float getUptimePercentage() {
         return uptimePercentage;
     }
 
     @Override
-    public double getPerformanceScore() {
+    public float getPerformanceScore() {
         return uptimePercentage;
     }
 

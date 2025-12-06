@@ -26,6 +26,6 @@ public abstract class Analytics implements Serializable {
         return lastUpdated;
     }
 
-    public abstract double getPerformanceScore();
+    public abstract float getPerformanceScore();
     public abstract String getStatus();
 }

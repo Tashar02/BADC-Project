@@ -28,7 +28,7 @@ public class ApplicationAnalytics extends Analytics {
     }
 
     @Override
-    public double getPerformanceScore() {
+    public float getPerformanceScore() {
         if (status.equals("Approved")) {
             return 100;
         } else if (status.equals("Pending")) {
