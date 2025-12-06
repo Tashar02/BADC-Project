@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -31,27 +32,36 @@ public class U4SubmitFieldReportController
     private Label reportLabel;
     @javafx.fxml.FXML
     private Label appComplaintsLabel;
-    ArrayList<MaintenanceReport> mrList;
-    ArrayList<Complaints> compList;
-    ArrayList<FarmerApplication> faList;
-    private int appApp, appCom, appRep;
     @javafx.fxml.FXML
     private TextField idTF;
     @javafx.fxml.FXML
     private TextArea summaryTA;
 
+    ArrayList<MaintenanceReport> mrList;
+    ArrayList<Complaints> compList;
+    ArrayList<FarmerApplication> faList;
+
+    private int appApp = 0, appCom = 0, appRep = 0;
+
     @javafx.fxml.FXML
     public void initialize() throws IOException {
+
+
+        faList = new ArrayList<>();
+        compList = new ArrayList<>();
+        mrList = new ArrayList<>();
+
+        // Load from files
         Helper.loadFrom("allApplications.bin", faList);
         Helper.loadFrom("allComplaints.bin", compList);
         Helper.loadFrom("allMaintenanceReports.bin", mrList);
     }
 
     FieldOfficer currentUser;
+
     public void passRegionalReportInterface(FieldOfficer fo){
         currentUser = fo;
     }
-
 
     @javafx.fxml.FXML
     public void applicationOA(ActionEvent actionEvent) {
@@ -60,10 +70,6 @@ public class U4SubmitFieldReportController
 
     @javafx.fxml.FXML
     public void submitOA(ActionEvent actionEvent) throws IOException {
-        if (appApp == 0 | appCom == 0 | appRep == 0){
-            Helper.showAlert("Please load first");
-            return;
-        }
 
 
         RegionalReport rr = new RegionalReport(
@@ -81,41 +87,39 @@ public class U4SubmitFieldReportController
         );
 
         Helper.writeInto("allRegionalReports.bin", rr);
-
-
+        Helper.showAlert(rr.toString());
     }
-
 
     @javafx.fxml.FXML
     public void appReportsOA(ActionEvent actionEvent) {
-        for (MaintenanceReport mr : mrList){
-            if (mr.getStatus().equals("Approved")){
+        appRep = 0;   // Important: reset before recounting
+        for (MaintenanceReport mr : mrList) {
+            if (mr.getStatus().equals("Approved")) {
                 appRep += 1;
             }
         }
-
-        appAplicationsLabel.setText(Integer.toString(appRep));
-
+        appReportsLabel.setText(Integer.toString(appRep));
     }
 
     @javafx.fxml.FXML
     public void appComplaintsOA(ActionEvent actionEvent) {
+        appCom = 0;   // reset
         for (Complaints c : compList){
             if (c.getStatus().equals("Approved")){
                 appCom += 1;
             }
         }
-
         appComplaintsLabel.setText(Integer.toString(appCom));
     }
 
     @javafx.fxml.FXML
     public void backOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U4BFODashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U4BFODashboardView.fxml"));
         Scene scene = new Scene(loader.load());
         U4BFODashboardController controller = loader.getController();
         controller.passBFODashboard(currentUser);
-        Stage stage =   (Stage)  ((Node) actionEvent.getSource()).getScene().getWindow();
+
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setTitle("BFO Dashboard");
         stage.setScene(scene);
         stage.show();
@@ -123,12 +127,12 @@ public class U4SubmitFieldReportController
 
     @javafx.fxml.FXML
     public void appApplicationsOA(ActionEvent actionEvent) {
-        for (FarmerApplication app : faList){
-            if (app.getStatus().equals("Approved")){
+        appApp = 0;
+        for (FarmerApplication app : faList) {
+            if (app.getStatus().equals("Approved")) {
                 appApp += 1;
             }
         }
-
         appAplicationsLabel.setText(Integer.toString(appApp));
     }
 

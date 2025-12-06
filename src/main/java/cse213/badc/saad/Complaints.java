@@ -1,21 +1,21 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Complaints {
+public class Complaints implements Serializable {
     private String complaintId, farmerId, accusedId, details;
     private LocalDate dateOfComplaint;
     private String status, verificationRemark;
     private boolean varified;
 
-    public Complaints(String complaintId, String farmerId, String accusedId, String details, LocalDate dateOfComplaint, String status, String verificationRemark, boolean varified) {
+    public Complaints(String complaintId, String farmerId, String accusedId, String details) {
         this.complaintId = complaintId;
         this.farmerId = farmerId;
         this.accusedId = accusedId;
         this.details = details;
         this.dateOfComplaint = LocalDate.now();
         this.status = "Pending";
-        this.verificationRemark = verificationRemark;
         this.varified = false;
     }
 

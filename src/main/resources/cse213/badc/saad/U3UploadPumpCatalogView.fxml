@@ -30,7 +30,7 @@
       <TableView fx:id="pumpTableView" layoutX="372.0" layoutY="99.0" prefHeight="277.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="idCol" prefWidth="101.0" text="ID" />
-          <TableColumn fx:id="statusCol" prefWidth="98.0" text="Status" />
+          <TableColumn fx:id="statusCol" prefWidth="98.0" text="Is Free" />
         </columns>
       </TableView>
       <Button layoutX="372.0" layoutY="55.0" mnemonicParsing="false" onAction="#showOA" prefHeight="25.0" prefWidth="200.0" text="Show Inventory" />

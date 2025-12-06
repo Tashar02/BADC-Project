@@ -1,14 +1,15 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Supplier {
-    private String supplierID, name, mobileNo, email, companyName, serviceArea, status, verificationRemark;
+public class Supplier implements Serializable {
+    private String supplierID, name, mobileNo, email, companyName, serviceArea, status, verificationRemark, password;
     private long tradeLicenseNo;
     private boolean assigned, verified, applied;
     private LocalDate dateOfRegistration;
 
-    public Supplier(String supplierID, String name, String mobileNo, String email) {
+    public Supplier(String supplierID, String name, String mobileNo, String email, String password) {
         this.supplierID = supplierID;
         this.name = name;
         this.mobileNo = mobileNo;
@@ -16,12 +17,13 @@ public class Supplier {
         this.companyName = "N/A";
         this.serviceArea = "N/A";
         this.tradeLicenseNo = 0;
-        this.status = null;
+        this.status = "N/A";
         this.dateOfRegistration = null;
         this.assigned = false;
         this.verified = false;
         this.applied = false;
-        this.verificationRemark = null;
+        this.verificationRemark = "N/A";
+        this.password = password;
 
     }
 
@@ -127,6 +129,14 @@ public class Supplier {
 
     public void setVerificationRemark(String verificationRemark) {
         this.verificationRemark = verificationRemark;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

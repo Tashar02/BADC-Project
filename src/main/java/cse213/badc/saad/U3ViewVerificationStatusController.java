@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -33,24 +34,28 @@ public class U3ViewVerificationStatusController
     @javafx.fxml.FXML
     private TableColumn<MaintenanceReport, String> idCol;
 
+    Supplier currentUser;
+    public void passStatusInterface(Supplier s){
+        currentUser = s;
+    }
+
     @javafx.fxml.FXML
     public void initialize() {
+
+
+
         filterStatusComboBox.getItems().addAll("Pending", "Rejected", "Approved");
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("reportId"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("reportDate"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        registrationStatusLabel.setText(currentUser.getStatus());
-        registrationRemarkLabel.setText(currentUser.getVerificationRemark());
+
 
 
     }
 
-    Supplier currentUser;
-    public void passStatusInterface(Supplier s){
-        currentUser = s;
-    }
+
 
     @javafx.fxml.FXML
     public void showStatusOA(ActionEvent actionEvent) throws IOException {
@@ -68,7 +73,7 @@ public class U3ViewVerificationStatusController
     @javafx.fxml.FXML
     public void cancelOA(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IESDashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U3IESDashboardView.fxml"));
         Scene scene = new Scene(loader.load());
 
         U3IESDashboardController controller = loader.getController();
@@ -80,5 +85,12 @@ public class U3ViewVerificationStatusController
         stage.setTitle("IES Dashboard");
         stage.show();
 
+    }
+
+    @javafx.fxml.FXML
+    public void loadOA(ActionEvent actionEvent) {
+
+        registrationStatusLabel.setText(currentUser.getStatus());
+        registrationRemarkLabel.setText(currentUser.getVerificationRemark());
     }
 }

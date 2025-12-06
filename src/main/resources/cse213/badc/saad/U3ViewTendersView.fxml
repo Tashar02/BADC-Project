@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.U3ViewTendersController">
+   <children>
+      <Label alignment="CENTER" layoutX="179.0" layoutY="23.0" prefHeight="17.0" prefWidth="242.0" text="Government Tenders" />
+      <TableView fx:id="tenderTableView" layoutX="21.0" layoutY="61.0" prefHeight="278.0" prefWidth="289.0">
+        <columns>
+          <TableColumn fx:id="titleCol" prefWidth="83.0" text="Title" />
+          <TableColumn fx:id="dateCol" prefWidth="112.0" text="Publish Date" />
+            <TableColumn fx:id="regionCol" prefWidth="93.0" text="Region" />
+        </columns>
+      </TableView>
+      <Button layoutX="39.0" layoutY="355.0" mnemonicParsing="false" onAction="#allOA" text="Load All" />
+      <Button layoutX="139.0" layoutY="355.0" mnemonicParsing="false" onAction="#regionOA" text="Load based on my Region" />
+      <Line endX="-100.0" endY="313.0" layoutX="447.0" layoutY="61.0" startX="-100.0" />
+      <Button layoutX="369.0" layoutY="61.0" mnemonicParsing="false" onAction="#detailsOA" prefHeight="25.0" prefWidth="210.0" text="Details" />
+      <Label fx:id="insLabel" layoutX="378.0" layoutY="93.0" prefHeight="17.0" prefWidth="198.0" />
+      <Label fx:id="detailsLabel" layoutX="375.0" layoutY="100.0" prefHeight="201.0" prefWidth="198.0" />
+      <Button layoutX="514.0" layoutY="355.0" mnemonicParsing="false" onAction="#backOA" text="Back" />
+   </children>
+</AnchorPane>

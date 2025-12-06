@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -31,7 +32,7 @@ public class U4VerifyFarmerApplicationsController
 
     @javafx.fxml.FXML
     public void initialize() throws IOException {
-        verificationCB.getItems().addAll("Approved", "Pending");
+        verificationCB.getItems().addAll("Approved", "Rejected");
 
         idCol.setCellValueFactory(new PropertyValueFactory<>("applicationId"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("applicationDate"));
@@ -54,7 +55,7 @@ public class U4VerifyFarmerApplicationsController
 
     @javafx.fxml.FXML
     public void backOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U4BFODashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U4BFODashboardView.fxml"));
         Scene scene = new Scene(loader.load());
         U4BFODashboardController controller = loader.getController();
         controller.passBFODashboard(currentUser);
@@ -65,7 +66,7 @@ public class U4VerifyFarmerApplicationsController
     }
 
     @javafx.fxml.FXML
-    public void verifyOA(ActionEvent actionEvent) {
+    public void verifyOA(ActionEvent actionEvent) throws IOException {
 
         if (f == null){
             Helper.showAlert("Load first");
@@ -76,6 +77,22 @@ public class U4VerifyFarmerApplicationsController
         f.setApplicationRemark(remarkTA.getText());
         tableView.getItems().remove(f);
 
+        ArrayList<FarmerApplication> appList = new ArrayList<>();
+        Helper.loadFrom("allApplications.bin", appList);
+        for (FarmerApplication app : appList){
+            if (f.getApplicantId().equals(app.getApplicantId())){
+                app.setStatus(verificationCB.getValue());
+                app.setApplicationRemark(remarkTA.getText());
+            }
+        }
+
+        Helper.deleteFile("allApplications.bin");
+        for (FarmerApplication app : appList){
+            Helper.writeInto("allApplications.bin", app);
+        }
+
+        Helper.showAlert("Verification Done");
+
 
 
 
@@ -85,5 +102,6 @@ public class U4VerifyFarmerApplicationsController
     public void loadOA(ActionEvent actionEvent) {
         f = tableView.getSelectionModel().getSelectedItem();
         detailsLabel.setText(f.toString());
+        Helper.showAlert("Loaded");
     }
 }

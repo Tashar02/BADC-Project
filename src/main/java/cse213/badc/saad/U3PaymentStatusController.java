@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -48,6 +49,26 @@ public class U3PaymentStatusController {
         earningCol.setCellValueFactory(new PropertyValueFactory<>("cost"));
 
 
+
+
+    }
+
+    @javafx.fxml.FXML
+    public void backOA(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U3IESDashboardView.fxml"));
+        Scene scene = new Scene(loader.load());
+
+        U3IESDashboardController controller = loader.getController();
+        controller.passIESDashboard(currentUser);
+
+        Stage stage =   (Stage)  ((Node) actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("IES Dashboard");
+        stage.show();
+    }
+
+    @javafx.fxml.FXML
+    public void loadOA(ActionEvent actionEvent) throws IOException {
         Helper.loadFrom("allMaintenanceReports.bin", mrLst);
 
         for (MaintenanceReport mr : mrLst) {
@@ -62,21 +83,5 @@ public class U3PaymentStatusController {
 
 
         }
-
     }
-
-    @javafx.fxml.FXML
-    public void backOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IESDashboardView.fxml"));
-        Scene scene = new Scene(loader.load());
-
-        U3IESDashboardController controller = loader.getController();
-        controller.passIESDashboard(currentUser);
-
-        Stage stage =   (Stage)  ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setScene(scene);
-        stage.setTitle("IES Dashboard");
-        stage.show();
-    }
-
 }

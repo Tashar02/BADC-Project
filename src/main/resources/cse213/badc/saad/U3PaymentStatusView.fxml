@@ -20,5 +20,6 @@
       </TableView>
       <Label fx:id="totalEarningLabel1" layoutX="166.0" layoutY="328.0" prefHeight="17.0" prefWidth="306.0" text="Earning per Order (based of approved report)" />
       <Button layoutX="420.0" layoutY="361.0" mnemonicParsing="false" onAction="#backOA" prefHeight="25.0" prefWidth="134.0" text="Go Back" />
+      <Button layoutX="461.0" layoutY="77.0" mnemonicParsing="false" onAction="#loadOA" text="Load" />
    </children>
 </AnchorPane>

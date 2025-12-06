@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ public class U4PumpRuntimeAnalysisController
     private PieChart pieChart;
 
     private ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
+
     private double summerACount = 0;
     private double monsoonACount = 0;
     private double winterACount = 0;
@@ -35,20 +37,46 @@ public class U4PumpRuntimeAnalysisController
 
     @javafx.fxml.FXML
     public void initialize() throws IOException {
+
         ArrayList<MaintenanceReport> mrList = new ArrayList<>();
         Helper.loadFrom("allMaintenanceReports.bin", mrList);
-        for (MaintenanceReport mr : mrList){
-            if (mr.getStatus().equals("Approved")){
-                summerACount += 1;
-                monsoonACount += 1;
-                winterACount += 1;
+
+        // reset counters
+        summerACount = 0;
+        monsoonACount = 0;
+        winterACount = 0;
+
+        summerAllCount = 0;
+        monsoonAllCount = 0;
+        winterAllCount = 0;
+
+        for (MaintenanceReport mr : mrList) {
+            String season = mr.getSeason();
+            String status = mr.getStatus();
+
+            if (season == null) continue;
+
+            if ("summer".equalsIgnoreCase(season)) {
+                summerAllCount++;
+                if ("approved".equalsIgnoreCase(status)) summerACount++;
             }
-
-            summerAllCount += 1;
-            monsoonAllCount += 1;
-            winterAllCount += 1;
-
+            else if ("monsoon".equalsIgnoreCase(season)) {
+                monsoonAllCount++;
+                if ("approved".equalsIgnoreCase(status)) monsoonACount++;
+            }
+            else if ("winter".equalsIgnoreCase(season)) {
+                winterAllCount++;
+                if ("approved".equalsIgnoreCase(status)) winterACount++;
+            }
         }
+
+        // default load: approved only
+        list.clear();
+        list.add(new PieChart.Data("Summer", summerACount));
+        list.add(new PieChart.Data("Monsoon", monsoonACount));
+        list.add(new PieChart.Data("Winter", winterACount));
+
+        pieChart.setData(list);
     }
 
 
@@ -60,39 +88,47 @@ public class U4PumpRuntimeAnalysisController
 
     @javafx.fxml.FXML
     public void loadOA(ActionEvent actionEvent) {
+
         list.clear();
         list.add(new PieChart.Data("Summer", summerACount));
         list.add(new PieChart.Data("Monsoon", monsoonACount));
         list.add(new PieChart.Data("Winter", winterACount));
+
         pieChart.setData(list);
-
-
     }
 
-    @javafx.fxml.FXML
-    public void backOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U4BFODashboardView.fxml"));
-        Scene scene = new Scene(loader.load());
-        U4BFODashboardController controller = loader.getController();
-        controller.passBFODashboard(currentUser);
-        Stage stage =   (Stage)  ((Node) actionEvent.getSource()).getScene().getWindow();
-        stage.setTitle("BFO Dashboard");
-        stage.setScene(scene);
-        stage.show();
-    }
 
     @javafx.fxml.FXML
     public void checkOA(ActionEvent actionEvent) {
+
+        list.clear();
+
         if (includeCheckBox.isSelected()){
-            list.clear();
             list.add(new PieChart.Data("Summer", summerAllCount));
             list.add(new PieChart.Data("Monsoon", monsoonAllCount));
             list.add(new PieChart.Data("Winter", winterAllCount));
         } else {
-            list.clear();
             list.add(new PieChart.Data("Summer", summerACount));
             list.add(new PieChart.Data("Monsoon", monsoonACount));
             list.add(new PieChart.Data("Winter", winterACount));
         }
+
+        pieChart.setData(list);
+    }
+
+
+    @javafx.fxml.FXML
+    public void backOA(ActionEvent actionEvent) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U4BFODashboardView.fxml"));
+        Scene scene = new Scene(loader.load());
+
+        U4BFODashboardController controller = loader.getController();
+        controller.passBFODashboard(currentUser);
+
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setTitle("BFO Dashboard");
+        stage.setScene(scene);
+        stage.show();
     }
 }

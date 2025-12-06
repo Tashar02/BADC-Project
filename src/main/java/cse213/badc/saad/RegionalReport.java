@@ -1,6 +1,8 @@
 package cse213.badc.saad;
 
-public class RegionalReport extends Report{
+import java.io.Serializable;
+
+public class RegionalReport extends Report implements Serializable {
     private int totalApplications, totalApprovedApplications;
     private int totalComplaints, totalApprovedComplaints;
     private int totalMaintenanceReports, totalApprovedMaintenanceReports;

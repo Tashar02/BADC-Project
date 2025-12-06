@@ -1,8 +1,9 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public abstract class Report {
+public abstract class Report implements Serializable {
     protected String reportId, authorId, summary, status;
     protected LocalDate reportDate;
 

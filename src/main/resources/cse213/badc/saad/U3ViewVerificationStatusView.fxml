@@ -9,7 +9,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.U3ViewVerificationStatusController">
    <children>
-      <Label alignment="CENTER" layoutX="160.0" layoutY="31.0" prefHeight="17.0" prefWidth="281.0" text="Profile Status" />
+      <Label alignment="CENTER" layoutX="14.0" layoutY="28.0" prefHeight="17.0" prefWidth="281.0" text="Profile Status" />
       <Label layoutX="28.0" layoutY="70.0" prefHeight="17.0" prefWidth="111.0" text="Registration Status: " />
       <Label fx:id="registrationStatusLabel" layoutX="160.0" layoutY="70.0" prefHeight="17.0" prefWidth="120.0" />
       <Label fx:id="registrationRemarkLabel" layoutX="312.0" layoutY="70.0" prefHeight="17.0" prefWidth="259.0" />
@@ -24,5 +24,6 @@
         </columns>
       </TableView>
       <Button layoutX="406.0" layoutY="354.0" mnemonicParsing="false" onAction="#cancelOA" prefHeight="25.0" prefWidth="120.0" text="cancel" />
+      <Button layoutX="482.0" layoutY="24.0" mnemonicParsing="false" onAction="#loadOA" text="Load" />
    </children>
 </AnchorPane>

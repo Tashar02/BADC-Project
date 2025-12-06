@@ -1,8 +1,9 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Task {
+public class Task implements Serializable {
     private String taskId;
     private String assignedSupplier, applicantId, applicantMobileNo, details;
     private boolean reported;

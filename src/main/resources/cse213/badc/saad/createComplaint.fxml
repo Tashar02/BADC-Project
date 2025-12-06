@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/24.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.saad.createComplaint">
+   <children>
+      <Label layoutX="63.0" layoutY="88.0" prefHeight="17.0" prefWidth="120.0" text="Com. Id:" />
+      <TextField fx:id="comIDTF" layoutX="220.0" layoutY="84.0" />
+      <Label layoutX="63.0" layoutY="124.0" prefHeight="17.0" prefWidth="120.0" text="farmer Id" />
+      <TextField fx:id="farIDTF" layoutX="220.0" layoutY="120.0" />
+      <Label layoutX="64.0" layoutY="159.0" prefHeight="17.0" prefWidth="120.0" text="accused id" />
+      <TextField fx:id="accIDTF" layoutX="221.0" layoutY="155.0" />
+      <Label layoutX="63.0" layoutY="200.0" prefHeight="17.0" prefWidth="89.0" text="details:" />
+      <TextArea fx:id="detailsTA" layoutX="220.0" layoutY="200.0" prefHeight="106.0" prefWidth="200.0" />
+      <Button layoutX="442.0" layoutY="341.0" mnemonicParsing="false" onAction="#craeteOA" prefHeight="25.0" prefWidth="89.0" text="Create" />
+   </children>
+</AnchorPane>

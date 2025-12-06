@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -29,14 +30,7 @@ public class U3ViewAssignedInstallationOrdersController
         idCol.setCellValueFactory(new PropertyValueFactory<>("taskId"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("taskDate"));
 
-        ArrayList<Task> tasks = new ArrayList<>();
-        Helper.loadFrom("allTasks.bin", tasks);
 
-        for (Task t : tasks){
-            if (t.getAssignedSupplier().equals(currentUser.getSupplierID())){
-                taskTableView.getItems().add(t);
-            }
-        }
     }
 
     Supplier currentUser;
@@ -46,7 +40,7 @@ public class U3ViewAssignedInstallationOrdersController
 
     @javafx.fxml.FXML
     public void cancelOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IESDashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource ("saad/U3IESDashboardView.fxml"));
 
         Scene scene = new Scene(loader.load());
 
@@ -65,5 +59,17 @@ public class U3ViewAssignedInstallationOrdersController
     public void loadOA(ActionEvent actionEvent) {
         Task t = taskTableView.getSelectionModel().getSelectedItem();
         detailsLabel.setText(t.toString());
+    }
+
+    @javafx.fxml.FXML
+    public void fetchOA(ActionEvent actionEvent) throws IOException {
+        ArrayList<Task> tasks = new ArrayList<>();
+        Helper.loadFrom("allTasks.bin", tasks);
+
+        for (Task t : tasks){
+            if (t.getAssignedSupplier().equals(currentUser.getSupplierID())){
+                taskTableView.getItems().add(t);
+            }
+        }
     }
 }

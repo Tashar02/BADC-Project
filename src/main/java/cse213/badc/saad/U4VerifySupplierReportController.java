@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -62,7 +63,7 @@ public class U4VerifySupplierReportController
 
     @javafx.fxml.FXML
     public void goBackOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U4BFODashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U4BFODashboardView.fxml"));
         Scene scene = new Scene(loader.load());
         U4BFODashboardController controller = loader.getController();
         controller.passBFODashboard(currentUser);
@@ -73,9 +74,23 @@ public class U4VerifySupplierReportController
     }
 
     @javafx.fxml.FXML
-    public void verifyOA(ActionEvent actionEvent) {
+    public void verifyOA(ActionEvent actionEvent) throws IOException {
         report.setStatus(statusComboBox.getValue());
         report.setVerificationRemark(remarksTA.getText());
         reportTableView.getItems().remove(report);
+        ArrayList<MaintenanceReport> rList = new ArrayList<>();
+        Helper.loadFrom("allMaintenanceReports.bin", rList);
+        for (MaintenanceReport r : rList){
+            if (r.getReportId().equals(report.getReportId())){
+                r.setStatus(statusComboBox.getValue());
+                r.setVerificationRemark(remarksTA.getText());
+            }
+        }
+        Helper.deleteFile("allMaintenanceReports.bin");
+        for (MaintenanceReport r : rList){
+            Helper.writeInto("allMaintenanceReports.bin", r);
+        }
+
+        Helper.showAlert("Verification Done");
     }
 }

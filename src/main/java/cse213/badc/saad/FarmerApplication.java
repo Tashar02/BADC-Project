@@ -1,13 +1,14 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class FarmerApplication {
-    private String applicationId, applicantId, status, applicationRemark, applicantLocation, applicantMobileNo;
+public class FarmerApplication implements Serializable {
+    private String applicationId, applicantId, status, applicationRemark, applicantLocation, applicantMobileNo, details;
     private LocalDate applicationDate;
     private boolean assigned;
 
-    public FarmerApplication(String applicationId, String applicantId, String applicantLocation, String applicantMobileNo) {
+    public FarmerApplication(String applicationId, String applicantId, String applicantLocation, String applicantMobileNo, String details) {
         this.applicationId = applicationId;
         this.applicantId = applicantId;
         this.status = "Pending";
@@ -16,6 +17,7 @@ public class FarmerApplication {
         this.assigned = false;
         this.applicantLocation = applicantLocation;
         this.applicantMobileNo = applicantMobileNo;
+        this.details = details;
 
     }
 
@@ -83,6 +85,14 @@ public class FarmerApplication {
         this.applicantMobileNo = applicantMobileNo;
     }
 
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
+    }
+
     @Override
     public String toString() {
         return "FarmerApplication{" +
@@ -92,6 +102,7 @@ public class FarmerApplication {
                 ", applicationRemark='" + applicationRemark + '\'' +
                 ", applicantLocation='" + applicantLocation + '\'' +
                 ", applicantMobileNo='" + applicantMobileNo + '\'' +
+                ", details='" + details + '\'' +
                 ", applicationDate=" + applicationDate +
                 ", assigned=" + assigned +
                 '}';

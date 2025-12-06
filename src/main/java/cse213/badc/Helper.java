@@ -90,6 +90,15 @@ public class Helper {
         }
     }
 
+    public static void deleteFile(String binFile){
+        File file = new File(binFile);
+        if (!file.exists()){
+            showAlert("File Error", "File not found");
+        } else {
+            file.delete();
+        }
+    }
+
     public static boolean appendTextFile(String fileName, String content) {
         try {
             FileWriter fw = new FileWriter(fileName, true);

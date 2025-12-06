@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -54,24 +55,39 @@ public class U4VerifyComplaintsController
         ArrayList<Complaints> compLst = new ArrayList<>();
         Helper.loadFrom("allComplaints.bin", compLst);
         for ( Complaints c : compLst){
-            if (c.getStatus().equals("pending")){
+            if (c.getStatus().equals("Pending")){
                 complaintTableView.getItems().add(c);
             }
         }
     }
 
     @javafx.fxml.FXML
-    public void verifyOA(ActionEvent actionEvent) {
+    public void verifyOA(ActionEvent actionEvent) throws IOException {
         c.setStatus(verificationComboBox.getValue());
         c.setVarified(true);
         c.setVerificationRemark(remarkTA.getText());
         complaintTableView.getItems().remove(c);
 
+        ArrayList<Complaints> coList = new ArrayList<>();
+        Helper.loadFrom("allComplaints.bin", coList);
+        for (Complaints co : coList){
+            if (c.getComplaintId().equals(co.getComplaintId())){
+                co.setStatus(verificationComboBox.getValue());
+                co.setVarified(true);
+                co.setVerificationRemark(remarkTA.getText());
+            }
+        }
+        Helper.deleteFile("allComplaints.bin");
+        for (Complaints co : coList){
+            Helper.writeInto("allComplaints.bin", co);
+        }
+
+
     }
 
     @javafx.fxml.FXML
     public void goBackOA(ActionEvent actionEvent) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U4BFODashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U4BFODashboardView.fxml"));
         Scene scene = new Scene(loader.load());
         U4BFODashboardController controller = loader.getController();
         controller.passBFODashboard(currentUser);

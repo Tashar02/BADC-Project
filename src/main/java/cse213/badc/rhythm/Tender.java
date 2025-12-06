@@ -1,8 +1,9 @@
 package cse213.badc.rhythm;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Tender {
+public class Tender implements Serializable {
     private String tenderId, title, details, region;
     private LocalDate publishDate;
 

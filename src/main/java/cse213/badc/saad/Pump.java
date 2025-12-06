@@ -1,8 +1,9 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pump {
+public class Pump implements Serializable {
     private String equipmentId, model, pumpType, supplierId;
     private int power, rentPrice, purchasePrice;
     private LocalDate dateOfUpload;

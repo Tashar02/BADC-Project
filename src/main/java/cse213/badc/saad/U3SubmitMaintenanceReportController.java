@@ -1,13 +1,16 @@
 package cse213.badc.saad;
 
 import cse213.badc.Helper;
+import cse213.badc.BADCApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,15 +21,11 @@ public class U3SubmitMaintenanceReportController {
     @javafx.fxml.FXML
     private ComboBox<String> outcomeComboBox;
     @javafx.fxml.FXML
-    private ComboBox<String> taskComboBox;
-    @javafx.fxml.FXML
     private TextArea remarkTA;
     @javafx.fxml.FXML
     private CheckBox correctCheckBox;
     @javafx.fxml.FXML
     private DatePicker workDatePicker;
-    @javafx.fxml.FXML
-    private ComboBox<String> equipmentIdComboBox;
     @javafx.fxml.FXML
     private TextField idTF;
     @javafx.fxml.FXML
@@ -35,31 +34,19 @@ public class U3SubmitMaintenanceReportController {
     private TextField runtimeTF;
     @javafx.fxml.FXML
     private ComboBox<String> seasonComboBox;
+    @javafx.fxml.FXML
+    private TextField equipmentTF;
+    @javafx.fxml.FXML
+    private TableColumn<Task, String> idCol;
+    @javafx.fxml.FXML
+    private TableView<Task> tableView;
 
     @javafx.fxml.FXML
     public void initialize() throws IOException {
         outcomeComboBox.getItems().addAll("Not Started Yet", "Early Stage", "In Progress", "Completed");
         seasonComboBox.getItems().addAll("Summer", "Monsoon", "Winter");
 
-        ArrayList<Task> tasks = new ArrayList<>();
-        Helper.loadFrom("allTasks.bin", tasks);
-        ArrayList<String> taskIds = new ArrayList<>();
-        for (Task t : tasks) {
-            if (t.getAssignedSupplier().equals(currentUser.getSupplierID()) && !t.isReported()) {
-                taskIds.add(t.getTaskId());
-            }
-        }
-        taskComboBox.getItems().addAll(taskIds);
-
-        ArrayList<Pump> pumps = new ArrayList<>();
-        Helper.loadFrom("allPumps.bin", pumps);
-        ArrayList<String> pumpIds = new ArrayList<>();
-        for (Pump p : pumps) {
-            if (p.getSupplierId().equals(currentUser.getSupplierID())) {
-                pumpIds.add(p.getEquipmentId());
-            }
-        }
-        equipmentIdComboBox.getItems().addAll(pumpIds);
+        idCol.setCellValueFactory(new PropertyValueFactory<>("taskId"));
 
 
     }
@@ -90,8 +77,21 @@ public class U3SubmitMaintenanceReportController {
             return;
         }
 
-// String reportId, String authorId, String summary, int pumpRuntime, int cost, /
-// /LocalDate workDate, String season, String workOutcome, String equipmentId, String taskId
+        Task task = tableView.getSelectionModel().getSelectedItem();
+
+        File file = new File("allMaintenanceReports.bin");
+        if (file.exists()){
+            ArrayList<MaintenanceReport> nList = new ArrayList<>();
+            Helper.loadFrom("allMaintenanceReports.bin", nList);
+            for (MaintenanceReport n : nList){
+                if (n.getReportId().equals(idTF.getText())){
+                    Helper.showAlert("Cant duplicate id");
+                    return;
+                }
+            }
+        }
+
+
 
         MaintenanceReport mr = new MaintenanceReport(
                 idTF.getText(),
@@ -102,19 +102,31 @@ public class U3SubmitMaintenanceReportController {
                 workDatePicker.getValue(),
                 seasonComboBox.getValue(),
                 outcomeComboBox.getValue(),
-                equipmentIdComboBox.getValue(),
-                taskComboBox.getValue()
+                equipmentTF.getText(),
+                task.getTaskId()
         );
+
+        Helper.showAlert(mr.toString());
 
         Helper.writeInto("allMaintenanceReports.bin", mr);
         ArrayList<Task> tasks = new ArrayList<>();
         Helper.loadFrom("allTasks.bin", tasks);
+
         for (Task t : tasks) {
-            if (t.getTaskId().equals(taskComboBox.getValue())) {
+            if (t.getTaskId().equals(task.getTaskId())) {
                 t.setReported(true);
-                taskComboBox.getItems().remove(t.getTaskId());
             }
         }
+
+        Helper.deleteFile("allTasks.bin");
+
+        for (Task t : tasks) {
+            Helper.writeInto("allTasks.bin", t);
+        }
+
+        tableView.getItems().remove(task);
+
+
 
 
     }
@@ -122,7 +134,7 @@ public class U3SubmitMaintenanceReportController {
     @javafx.fxml.FXML
     public void cancelSupplierReportOA(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("saad/U3IEWDashboardView.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U3IESDashboardView.fxml"));
         Scene scene = new Scene(loader.load());
 
         U3IESDashboardController controller = loader.getController();
@@ -136,4 +148,15 @@ public class U3SubmitMaintenanceReportController {
     }
 
 
+    @javafx.fxml.FXML
+    public void loadOA(ActionEvent actionEvent) throws IOException {
+        ArrayList<Task> tasks = new ArrayList<>();
+        Helper.loadFrom("allTasks.bin", tasks);
+        for (Task t : tasks) {
+            if (t.getAssignedSupplier().equals(currentUser.getSupplierID()) && !t.isReported()) {
+                tableView.getItems().add(t);
+            }
+        }
+
+    }
 }

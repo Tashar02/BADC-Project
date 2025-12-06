@@ -1,8 +1,9 @@
 package cse213.badc.saad;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class MaintenanceReport extends Report{
+public class MaintenanceReport extends Report implements Serializable {
     private String taskId, equipmentId, workOutcome, season, verificationRemark;
     private LocalDate workDate;
     private int cost, pumpRuntime;
