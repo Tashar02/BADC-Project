@@ -25,7 +25,7 @@ public class Helper {
         alert.showAndWait();
     }
 
-    public static <T>void writeInto(String binFile, T data) throws IOException {
+    public static <T> void writeInto(String binFile, T data) throws IOException {
         File file = new File(binFile);
         FileOutputStream fos;
         ObjectOutputStream oos;
@@ -42,7 +42,7 @@ public class Helper {
         oos.close();
     }
 
-    public static <T>void loadFrom(String binFile, ArrayList<T> lst) throws IOException {
+    public static <T> void loadFrom(String binFile, ArrayList<T> lst) throws IOException {
         File file = new File(binFile);
 
         if (!file.exists()) {
@@ -108,6 +108,16 @@ public class Helper {
             stage.close();
         } catch (Exception e) {
             Helper.showAlert("Error", "Could not close window");
+        }
+    }
+
+    public static void setScene(ActionEvent actionEvent, Scene scene) {
+        try {
+            javafx.stage.Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (Exception e) {
+            showAlert("Error", "Could not load scene");
         }
     }
 }
