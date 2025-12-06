@@ -101,4 +101,13 @@ public class Helper {
             return false;
         }
     }
+
+    public static void closeWindow(ActionEvent actionEvent) {
+        try {
+            Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            Helper.showAlert("Error", "Could not close window");
+        }
+    }
 }
