@@ -5,48 +5,38 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-
-public class U3SupplierSignUpViewController
+public class createFieldOfficerController
 {
     @javafx.fxml.FXML
-    private TextField nameTF;
-    @javafx.fxml.FXML
-    private TextField emailTF;
-    @javafx.fxml.FXML
     private TextField idTF;
-    @javafx.fxml.FXML
-    private TextField mobileTF;
-    Supplier s;
+    FieldOfficer fo;
     @javafx.fxml.FXML
     private TextField passTF;
+    @javafx.fxml.FXML
+    private ComboBox<String> regionCB;
 
     @javafx.fxml.FXML
     public void initialize() {
+        regionCB.getItems().addAll("Dhaka", "Chattogram", "Rajshahi", "Khulna", "Sylhet", "Barishal", "Rangpur", "Mymensingh");
     }
 
 
     @javafx.fxml.FXML
     public void createOA(ActionEvent actionEvent) throws IOException {
-
-        // String supplierID, String name, String mobileNo, String email
-
-        s = new Supplier(idTF.getText(), nameTF.getText(), mobileTF.getText(), emailTF.getText(), passTF.getText());
-        try {
-            Helper.writeInto("allSuppliers.bin", s);
-        } catch (Exception e){
-            Helper.showAlert(e.getMessage());
-        }
-        Helper.showAlert("Writing done");
-
+        fo = new FieldOfficer(idTF.getText(), regionCB.getValue(), passTF.getText());
+        Helper.writeInto("allFieldOfficers.bin", fo);
+        Helper.showAlert("Writing success");
     }
 
     @javafx.fxml.FXML
-    public void logOA(ActionEvent actionEvent) throws IOException {
+    public void goLogInOA(ActionEvent actionEvent) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("saad/logInbySaad.fxml"));
 
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -56,5 +46,6 @@ public class U3SupplierSignUpViewController
         stage.setTitle("Log IN");
 
         stage.show();
+
     }
 }

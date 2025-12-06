@@ -17,6 +17,8 @@
       <TextField fx:id="mobileTF" layoutX="133.0" layoutY="138.0" />
       <TextField fx:id="emailTF" layoutX="133.0" layoutY="172.0" />
       <Button layoutX="345.0" layoutY="271.0" mnemonicParsing="false" onAction="#createOA" prefHeight="25.0" prefWidth="192.0" text="Create" />
-      <Button layoutX="345.0" layoutY="312.0" mnemonicParsing="false" onAction="#dashboardOA" prefHeight="25.0" prefWidth="192.0" text="Go to dashboard" />
+      <Button layoutX="345.0" layoutY="312.0" mnemonicParsing="false" onAction="#logOA" prefHeight="25.0" prefWidth="192.0" text="log in" />
+      <Label layoutX="314.0" layoutY="73.0" text="Password" />
+      <TextField fx:id="passTF" layoutX="389.0" layoutY="69.0" />
    </children>
 </AnchorPane>
