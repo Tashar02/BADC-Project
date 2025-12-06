@@ -74,4 +74,9 @@ public class U8G3_ViewTendersController
             }
         }
     }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
+    }
 }

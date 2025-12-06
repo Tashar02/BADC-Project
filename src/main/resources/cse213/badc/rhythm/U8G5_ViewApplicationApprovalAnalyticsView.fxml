@@ -53,9 +53,8 @@
                 <Label fx:id="summaryLabel" wrapText="true" />
             </VBox>
 
-            <HBox spacing="10">
-                <Button onAction="#backOA" text="Back" />
-            </HBox>
+            <HBox spacing="10" />
+         <Button onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
         </VBox>
     </center>

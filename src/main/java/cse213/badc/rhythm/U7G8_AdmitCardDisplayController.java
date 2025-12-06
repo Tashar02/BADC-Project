@@ -3,7 +3,7 @@ package cse213.badc.rhythm;
 import cse213.badc.BADCApplication;
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,7 +11,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 
 public class U7G8_AdmitCardDisplayController {
-    @FXML
+    @javafx.fxml.FXML
     private TextArea admitCardTextArea;
 
     private ApprovedApplication approvedApplication;
@@ -40,7 +40,7 @@ public class U7G8_AdmitCardDisplayController {
         admitCardTextArea.setText(admitCardText);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backToApplicationsListOA(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("rhythm/U7G8_AdmitCardListView.fxml"));

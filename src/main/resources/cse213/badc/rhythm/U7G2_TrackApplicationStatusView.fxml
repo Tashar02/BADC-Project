@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="320.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G2_TrackApplicationStatusController">
+<AnchorPane prefHeight="415.0" prefWidth="609.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G2_TrackApplicationStatusController">
 
     <Label layoutX="242.0" layoutY="22.0" style="-fx-font-size: 12; -fx-font-weight: bold;" text="Track Application Status" />
 
@@ -16,8 +16,6 @@
     <TextField fx:id="ApplicationIdTextField" layoutX="166.0" layoutY="79.0" prefHeight="22.0" prefWidth="289.0" style="-fx-font-size: 10;" />
 
     <Button layoutX="482.0" layoutY="79.0" onAction="#searchApplicationStatusOA" style="-fx-padding: 3; -fx-font-size: 10;" text="Search" />
-
-    <Label layoutX="10" layoutY="165" style="-fx-font-size: 10; -fx-font-weight: bold;" />
 
     <Label layoutX="266.0" layoutY="140.0" style="-fx-font-size: 11; -fx-font-weight: bold;" text="Status History:" />
 
@@ -32,7 +30,6 @@
     </TableView>
 
     <Button layoutX="276.0" layoutY="342.0" onAction="#clearSearchOA" prefWidth="70" style="-fx-padding: 3; -fx-font-size: 10;" text="Clear" />
-
-    <Label fx:id="messageLabel" layoutX="200" layoutY="418" style="-fx-font-size: 10;" />
+   <Button layoutX="241.0" layoutY="381.0" onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

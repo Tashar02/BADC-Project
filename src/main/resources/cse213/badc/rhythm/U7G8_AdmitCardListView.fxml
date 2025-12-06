@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="567.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G8_AdmitCardListController">
+<AnchorPane prefHeight="587.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G8_AdmitCardListController">
 
     <Label layoutX="344.0" layoutY="22.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="View Admit Card" />
 
@@ -22,5 +22,6 @@
     </TableView>
 
     <Button layoutX="325.0" layoutY="506.0" onAction="#viewAdmitCardOA" prefWidth="150.0" style="-fx-padding: 5; -fx-font-size: 10;" text="View Admit Card" />
+   <Button layoutX="330.0" layoutY="545.0" onAction="#backToDashboardOA" prefHeight="25.0" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

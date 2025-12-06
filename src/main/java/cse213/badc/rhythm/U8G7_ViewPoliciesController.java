@@ -1,33 +1,36 @@
 package cse213.badc.rhythm;
 
-import javafx.fxml.FXML;
+import cse213.badc.Helper;
+import javafx.event.ActionEvent;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class U8G7_ViewPoliciesController {
-    @FXML
+    @javafx.fxml.FXML
     private TableView<PolicyDocument> policiesTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<PolicyDocument, String> policyIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<PolicyDocument, String> titleTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<PolicyDocument, String> descriptionTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<PolicyDocument, LocalDate> issueDateTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<PolicyDocument, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private Label totalPoliciesLabel;
 
     private ArrayList<PolicyDocument> policies;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         policyIdTC.setCellValueFactory(new PropertyValueFactory<>("policyId"));
         titleTC.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -83,5 +86,10 @@ public class U8G7_ViewPoliciesController {
         }
 
         totalPoliciesLabel.setText(Integer.toString(policies.size()));
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

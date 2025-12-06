@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="496.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G6_NotificationPreferencesController">
+<AnchorPane prefHeight="558.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G6_NotificationPreferencesController">
 
     <Label layoutX="250.0" layoutY="20.0" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Notification Preferences" />
 
@@ -46,5 +46,6 @@
     <Button layoutX="186.0" layoutY="474.0" onAction="#savePreferencesOA" prefWidth="120.0" style="-fx-padding: 5; -fx-font-size: 10;" text="Save Preferences" />
 
     <Button layoutX="375.0" layoutY="474.0" onAction="#clearFormOA" prefWidth="120.0" style="-fx-padding: 5; -fx-font-size: 10;" text="Clear Form" />
+   <Button layoutX="270.0" layoutY="514.0" onAction="#backToDashboardOA" prefHeight="16.0" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

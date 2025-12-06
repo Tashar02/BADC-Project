@@ -105,5 +105,6 @@
     </TableView>
    <Button layoutX="717.0" layoutY="634.0" onAction="#submitApplicationOA" prefHeight="20.0" prefWidth="100.0" style="-fx-padding: 2; -fx-font-size: 10;" text="Submit application" />
    <Button layoutX="12.0" layoutY="637.0" onAction="#removeExperienceOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Remove Education" />
+   <Button layoutX="344.0" layoutY="637.0" onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

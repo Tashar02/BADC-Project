@@ -2,6 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -137,5 +138,10 @@ public class U7G5_WithdrawApplicationController {
         } catch (IOException e) {
             Helper.showAlert("File Error", "Could not write to applications file");
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

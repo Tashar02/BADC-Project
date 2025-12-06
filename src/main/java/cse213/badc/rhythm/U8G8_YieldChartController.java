@@ -2,14 +2,14 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.chart.PieChart;
 import javafx.scene.Node;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 
 public class U8G8_YieldChartController {
-    @FXML
+    @javafx.fxml.FXML
     private PieChart yieldPieChart;
 
     private ArrayList<SeedTrial> trials;
@@ -32,7 +32,7 @@ public class U8G8_YieldChartController {
         yieldPieChart.setLegendVisible(true);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backToMainOA(ActionEvent actionEvent) {
         try {
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();

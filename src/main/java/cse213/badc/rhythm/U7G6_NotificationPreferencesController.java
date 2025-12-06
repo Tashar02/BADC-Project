@@ -2,7 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 
 import java.io.IOException;
@@ -10,30 +10,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class U7G6_NotificationPreferencesController {
-    @FXML
+    @javafx.fxml.FXML
     private CheckBox hrCheckBox;
-    @FXML
+    @javafx.fxml.FXML
     private CheckBox itCheckBox;
-    @FXML
+    @javafx.fxml.FXML
     private CheckBox financeCheckBox;
-    @FXML
+    @javafx.fxml.FXML
     private CheckBox operationsCheckBox;
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> jobLevelComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private CheckBox emailCheckBox;
-    @FXML
+    @javafx.fxml.FXML
     private CheckBox smsCheckBox;
-    @FXML
+    @javafx.fxml.FXML
     private TextField emailTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField phoneTextField;
-    @FXML
+    @javafx.fxml.FXML
     private Label currentPreferencesLabel;
 
     private NotificationPreference currentPreference;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         ArrayList<String> jobLevels = new ArrayList<>();
         jobLevels.add("Entry Level");
@@ -49,7 +49,7 @@ public class U7G6_NotificationPreferencesController {
         displayCurrentPreferences();
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void savePreferencesOA(ActionEvent actionEvent) throws IOException {
         ArrayList<String> selectedDepartments = new ArrayList<>();
         if (hrCheckBox.isSelected()) {
@@ -113,7 +113,7 @@ public class U7G6_NotificationPreferencesController {
         Helper.showAlert("Success", "Preferences saved successfully");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void clearFormOA(ActionEvent actionEvent) {
         hrCheckBox.setSelected(false);
         itCheckBox.setSelected(false);
@@ -183,5 +183,10 @@ public class U7G6_NotificationPreferencesController {
         }
 
         return true;
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

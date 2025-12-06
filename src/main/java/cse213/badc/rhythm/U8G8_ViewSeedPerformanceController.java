@@ -2,7 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,34 +11,35 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class U8G8_ViewSeedPerformanceController {
-    @FXML
+    @javafx.fxml.FXML
     private TableView<SeedTrial> seedPerformanceTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SeedTrial, String> trialIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SeedTrial, String> seedNameTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SeedTrial, String> cropTypeTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SeedTrial, Float> testAreaTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SeedTrial, Float> averageYieldTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SeedTrial, Float> germinationRateTC;
-    @FXML
+    @javafx.fxml.FXML
     private Label totalTrialsLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label avgYieldLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label avgGerminationLabel;
 
     private ArrayList<SeedTrial> seedTrials;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         trialIdTC.setCellValueFactory(new PropertyValueFactory<>("trialId"));
         seedNameTC.setCellValueFactory(new PropertyValueFactory<>("seedName"));
@@ -130,7 +131,7 @@ public class U8G8_ViewSeedPerformanceController {
         avgGerminationLabel.setText(String.format("%.2f %%", avgGermination));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewPerformanceChartOA(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("U8G8_PerformanceChartView.fxml"));
@@ -147,7 +148,7 @@ public class U8G8_ViewSeedPerformanceController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewYieldChartOA(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("U8G8_YieldChartView.fxml"));
@@ -163,5 +164,10 @@ public class U8G8_ViewSeedPerformanceController {
         } catch (Exception e) {
             Helper.showAlert("Error", "Could not open chart view");
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

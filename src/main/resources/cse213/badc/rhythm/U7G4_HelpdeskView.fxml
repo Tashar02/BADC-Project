@@ -11,14 +11,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500" prefWidth="700" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G4_HelpdeskController">
+<AnchorPane prefHeight="548.0" prefWidth="700" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G4_HelpdeskController">
 
     <Label layoutX="15" layoutY="10" prefHeight="25" prefWidth="150" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Helpdesk Support" />
 
     <TabPane layoutX="15" layoutY="40" prefHeight="445" prefWidth="670" tabClosingPolicy="UNAVAILABLE">
 
         <Tab text="New Ticket">
-            <AnchorPane prefHeight="445" prefWidth="670">
+            <AnchorPane prefHeight="388.0" prefWidth="670">
 
                 <Label layoutX="15" layoutY="15" prefHeight="20" prefWidth="60" text="Subject:" />
                 <TextField fx:id="subjectTextField" layoutX="80" layoutY="15" prefHeight="25" prefWidth="570" />
@@ -64,5 +64,6 @@
         </Tab>
 
     </TabPane>
+   <Button layoutX="280.0" layoutY="505.0" onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

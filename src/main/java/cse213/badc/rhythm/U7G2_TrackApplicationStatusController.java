@@ -2,28 +2,28 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
 
 public class U7G2_TrackApplicationStatusController {
-    @FXML
+    @javafx.fxml.FXML
     private TextField ApplicationIdTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<ApplicationStatus> statusHistoryTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApplicationStatus, String> applicationIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApplicationStatus, String> statusTC;
-    @FXML
-    private Label messageLabel;
 
     private ArrayList<ApplicationStatus> allApplications;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         applicationIdTC.setCellValueFactory(new PropertyValueFactory<>("applicationId"));
         statusTC.setCellValueFactory(new PropertyValueFactory<>("status"));
@@ -56,7 +56,7 @@ public class U7G2_TrackApplicationStatusController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void searchApplicationStatusOA(ActionEvent actionEvent) {
         String searchId = ApplicationIdTextField.getText();
 
@@ -70,19 +70,21 @@ public class U7G2_TrackApplicationStatusController {
         for (ApplicationStatus app: allApplications) {
             if (app.getApplicationId().equals(searchId)) {
                 statusHistoryTableView.getItems().add(app);
-                messageLabel.setText("Application found");
                 return;
             }
         }
 
         Helper.showAlert("Not Found", "Application ID not found");
-        messageLabel.setText("Application not found");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void clearSearchOA(ActionEvent actionEvent) {
         ApplicationIdTextField.clear();
         statusHistoryTableView.getItems().clear();
-        messageLabel.setText("");
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

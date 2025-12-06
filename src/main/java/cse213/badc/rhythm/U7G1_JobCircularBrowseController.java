@@ -2,74 +2,76 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.time.LocalDate;
 
 public class U7G1_JobCircularBrowseController {
-    @FXML
+    @javafx.fxml.FXML
     private TextField searchTitleTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<Circular> circularTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Circular, String> circularIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Circular, String> titleTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Circular, String> departmentTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Circular, String> deadlineTC;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea detailsTextArea;
-    @FXML
+    @javafx.fxml.FXML
     private TextField fullNameTextField;
-    @FXML
+    @javafx.fxml.FXML
     private DatePicker dobDatePicker;
-    @FXML
+    @javafx.fxml.FXML
     private TextField contactTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField emailTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea addressTextArea;
-    @FXML
+    @javafx.fxml.FXML
     private TextField nidTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField eduDegreeTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField eduInstitutionTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField eduYearTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField eduGpaTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<Education> educationTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Education, String> degreeTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Education, String> institutionTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Education, Integer> yearTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Education, Float> gpaTC;
-    @FXML
+    @javafx.fxml.FXML
     private TextField expEmployerTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField expJobTitleTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField expStartYearTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField expEndYearTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<WorkExperience> experienceTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<WorkExperience, String> employerTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<WorkExperience, String> jobTitleTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<WorkExperience, Integer> startYearTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<WorkExperience, Integer> endYearTC;
 
     private ArrayList<Circular> circularList;
@@ -77,7 +79,7 @@ public class U7G1_JobCircularBrowseController {
     private ArrayList<WorkExperience> experienceList;
     private Circular selectedCircular;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         circularIdTC.setCellValueFactory(new PropertyValueFactory<>("circularId"));
         titleTC.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -110,7 +112,7 @@ public class U7G1_JobCircularBrowseController {
         circularTableView.getItems().addAll(circularList);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void searchByTitleOA(ActionEvent actionEvent) {
         String searchText = searchTitleTextField.getText().toLowerCase();
         ArrayList<Circular> filtered = new ArrayList<>();
@@ -123,7 +125,7 @@ public class U7G1_JobCircularBrowseController {
         circularTableView.getItems().addAll(filtered);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewDetailsOA(ActionEvent actionEvent) {
         /* Selection procedure was referenced from getSelectionModel: https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableView.html#getSelectionModel-- */
         Circular selected = circularTableView.getSelectionModel().getSelectedItem();
@@ -145,7 +147,7 @@ public class U7G1_JobCircularBrowseController {
         detailsTextArea.setText(details);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void addEducationOA(ActionEvent actionEvent) {
         String degree = eduDegreeTextField.getText();
         String institution = eduInstitutionTextField.getText();
@@ -179,7 +181,7 @@ public class U7G1_JobCircularBrowseController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void removeEducationOA(ActionEvent actionEvent) {
         Education selected = educationTableView.getSelectionModel().getSelectedItem();
 
@@ -192,7 +194,7 @@ public class U7G1_JobCircularBrowseController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void addExperienceOA(ActionEvent actionEvent) {
         String employer = expEmployerTextField.getText();
         String jobTitle = expJobTitleTextField.getText();
@@ -226,7 +228,7 @@ public class U7G1_JobCircularBrowseController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void removeExperienceOA(ActionEvent actionEvent) {
         WorkExperience selected = experienceTableView.getSelectionModel().getSelectedItem();
 
@@ -239,7 +241,7 @@ public class U7G1_JobCircularBrowseController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void submitApplicationOA(ActionEvent actionEvent) {
         if (selectedCircular == null) {
             Helper.showAlert("No Circular Selected", "Please select a circular first");
@@ -278,7 +280,7 @@ public class U7G1_JobCircularBrowseController {
         }
     }
 
-    @FXML
+    @Deprecated
     public void clearFormOA(ActionEvent actionEvent) {
         fullNameTextField.clear();
         dobDatePicker.setValue(null);
@@ -309,5 +311,10 @@ public class U7G1_JobCircularBrowseController {
     private String getCurrentDate() {
         LocalDate today = LocalDate.now();
         return String.format("%02d-%02d-%04d", today.getDayOfMonth(), today.getMonthValue(), today.getYear());
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

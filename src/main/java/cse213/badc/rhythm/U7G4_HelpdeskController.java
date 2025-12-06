@@ -2,45 +2,46 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class U7G4_HelpdeskController {
-    @FXML
+    @javafx.fxml.FXML
     private TextField subjectTextField;
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> categoryComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea descriptionTextArea;
-    @FXML
+    @javafx.fxml.FXML
     private Label messageLabel;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<HelpdeskTicket> ticketHistoryTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<HelpdeskTicket, String> ticketIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<HelpdeskTicket, String> subjectTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<HelpdeskTicket, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<HelpdeskTicket, String> submissionDateTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<HelpdeskTicket, String> lastUpdatedTC;
-    @FXML
+    @javafx.fxml.FXML
     private TextField detailsSubjectTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea detailsDescriptionTextArea;
 
     private ArrayList<HelpdeskTicket> allTickets;
     private int ticketCounter;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         ticketIdTC.setCellValueFactory(new PropertyValueFactory<>("ticketId"));
         subjectTC.setCellValueFactory(new PropertyValueFactory<>("subject"));
@@ -123,7 +124,7 @@ public class U7G4_HelpdeskController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void submitTicketOA(ActionEvent actionEvent) {
         String subject = subjectTextField.getText();
         String category = categoryComboBox.getValue();
@@ -159,7 +160,7 @@ public class U7G4_HelpdeskController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void clearFormOA(ActionEvent actionEvent) {
         subjectTextField.setText("");
         categoryComboBox.setValue(null);
@@ -167,7 +168,7 @@ public class U7G4_HelpdeskController {
         messageLabel.setText("");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewDetailsOA(ActionEvent actionEvent) {
         HelpdeskTicket selectedTicket = ticketHistoryTableView.getSelectionModel().getSelectedItem();
 
@@ -215,5 +216,10 @@ public class U7G4_HelpdeskController {
         for (HelpdeskTicket ticket: allTickets) {
             ticketHistoryTableView.getItems().add(ticket);
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

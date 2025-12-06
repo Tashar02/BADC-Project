@@ -2,7 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -10,25 +10,25 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class U8G2_ViewEquipmentPerformanceController {
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> regionComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<EquipmentAnalytics> equipmentTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<EquipmentAnalytics, String> pumpIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<EquipmentAnalytics, String> locationTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<EquipmentAnalytics, Float> uptimeTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<EquipmentAnalytics, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private Label summaryLabel;
 
     private ArrayList<EquipmentAnalytics> allEquipment;
     private EquipmentPerformanceSummary summary;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() throws IOException {
         setupTableColumns();
         setupComboBox();
@@ -72,7 +72,7 @@ public class U8G2_ViewEquipmentPerformanceController {
         allEquipment.add(new EquipmentAnalytics("PUMP-005", "Sylhet", 79.8f, "Sylhet"));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void filterOA(ActionEvent actionEvent) {
         displayEquipment();
     }
@@ -93,7 +93,7 @@ public class U8G2_ViewEquipmentPerformanceController {
         summaryLabel.setText(String.join("\n", report));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void exportReportOA(ActionEvent actionEvent) {
         ArrayList<String> report = summary.generateReport();
         if (Helper.appendTextFile("equipment_performance_report.txt", String.join("\n", report))) {
@@ -101,8 +101,8 @@ public class U8G2_ViewEquipmentPerformanceController {
         }
     }
 
-    @FXML
-    public void backOA(ActionEvent actionEvent) {
-        Helper.closeWindow(actionEvent);
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

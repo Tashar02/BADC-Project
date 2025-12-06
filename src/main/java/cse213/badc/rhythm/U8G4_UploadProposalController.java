@@ -2,7 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
@@ -10,22 +10,20 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 
 public class U8G4_UploadProposalController {
-    @FXML
+    @javafx.fxml.FXML
     private TextField proposalIdTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField authorIdTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField subjectTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea summaryTextArea;
-    @FXML
+    @javafx.fxml.FXML
     private TextField projectDurationTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField budgetEstimateTextField;
-    @FXML
-    private Label messageLabel;
 
-    @FXML
+    @javafx.fxml.FXML
     public void submitProposalOA(ActionEvent actionEvent) throws IOException {
         String proposalId = proposalIdTextField.getText();
         String authorId = authorIdTextField.getText();
@@ -70,11 +68,10 @@ public class U8G4_UploadProposalController {
         Proposal proposal = new Proposal(proposalId, authorId, subject, summary, projectDuration, budgetEstimate);
         Helper.writeInto("proposals.bin", proposal);
 
-        messageLabel.setText("Proposal submitted successfully!");
         clearForm();
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void clearFormOA(ActionEvent actionEvent) {
         clearForm();
     }
@@ -86,6 +83,10 @@ public class U8G4_UploadProposalController {
         summaryTextArea.setText("");
         projectDurationTextField.setText("");
         budgetEstimateTextField.setText("");
-        messageLabel.setText("");
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

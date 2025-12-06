@@ -2,7 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -10,23 +10,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class U8G5_ViewApplicationApprovalAnalyticsController {
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> regionComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<ApplicationAnalytics> applicationsTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApplicationAnalytics, String> appIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApplicationAnalytics, String> farmerNameTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApplicationAnalytics, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private Label summaryLabel;
 
     private ArrayList<ApplicationAnalytics> allApplications;
     private ApplicationApprovalSummary summary;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() throws IOException {
         setupTableColumns();
         setupComboBox();
@@ -69,7 +69,7 @@ public class U8G5_ViewApplicationApprovalAnalyticsController {
         allApplications.add(new ApplicationAnalytics("APP-005", "Farmer E", "Rejected", "Sylhet"));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void filterOA(ActionEvent actionEvent) {
         displayApplications();
     }
@@ -95,7 +95,7 @@ public class U8G5_ViewApplicationApprovalAnalyticsController {
         summaryLabel.setText(summaryText);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void exportReportOA(ActionEvent actionEvent) {
         ArrayList<String> report = summary.generateReport();
         String reportText = "";
@@ -108,8 +108,13 @@ public class U8G5_ViewApplicationApprovalAnalyticsController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backOA(ActionEvent actionEvent) {
         Helper.closeWindow(actionEvent);
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

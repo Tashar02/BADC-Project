@@ -2,33 +2,35 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import cse213.badc.saad.Report;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class U8G1_ViewFieldReportsController {
-    @FXML
+    @javafx.fxml.FXML
     private TableView<Report> fieldReportsTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Report, String> reportIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Report, String> authorIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Report, String> summaryTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Report, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<Report, LocalDate> reportDateTC;
 
     private ArrayList<Report> fieldReports;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         reportIdTC.setCellValueFactory(new PropertyValueFactory<>("reportId"));
         authorIdTC.setCellValueFactory(new PropertyValueFactory<>("authorId"));
@@ -71,5 +73,10 @@ public class U8G1_ViewFieldReportsController {
         for (Report report: fieldReports) {
             fieldReportsTableView.getItems().add(report);
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

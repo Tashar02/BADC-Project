@@ -2,43 +2,44 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class U8G6_ViewFertilizerDataController {
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> fertilizerTypeComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> fiscalYearComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<FertilizerImport> fertilizerDataTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<FertilizerImport, String> importIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<FertilizerImport, String> fertilizerTypeTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<FertilizerImport, Float> quantityTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<FertilizerImport, Float> costTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<FertilizerImport, LocalDate> importDateTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<FertilizerImport, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private Label totalQuantityLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label totalCostLabel;
 
     private ArrayList<FertilizerImport> allFertilizerImports;
     private ArrayList<FertilizerImport> filteredImports;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         importIdTC.setCellValueFactory(new PropertyValueFactory<>("reportId"));
         fertilizerTypeTC.setCellValueFactory(new PropertyValueFactory<>("fertilizerType"));
@@ -102,7 +103,7 @@ public class U8G6_ViewFertilizerDataController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void filterOA(ActionEvent actionEvent) {
         String selectedType = fertilizerTypeComboBox.getValue();
 
@@ -136,5 +137,10 @@ public class U8G6_ViewFertilizerDataController {
 
         totalQuantityLabel.setText(totalQuantity + " Tons");
         totalCostLabel.setText(String.format("%.2f", totalCost));
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU8(actionEvent);
     }
 }

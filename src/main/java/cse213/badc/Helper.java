@@ -129,4 +129,16 @@ public class Helper {
             showAlert("Error", "Could not load scene");
         }
     }
+
+    public static void backToDashboardU7(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("rhythm/U7_BADCJobApplicantDashboardView.fxml"));
+        Scene scene = new Scene(loader.load());
+        setScene(actionEvent, scene);
+    }
+
+    public static void backToDashboardU8(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("rhythm/U8_DevelopmentPartnerDashboardView.fxml"));
+        Scene scene = new Scene(loader.load());
+        setScene(actionEvent, scene);
+    }
 }

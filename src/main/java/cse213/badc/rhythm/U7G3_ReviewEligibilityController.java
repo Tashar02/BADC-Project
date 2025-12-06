@@ -2,30 +2,31 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.io.FileWriter;
 
 public class U7G3_ReviewEligibilityController {
-    @FXML
+    @javafx.fxml.FXML
     private TextField circularIdTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField ageMinTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField ageMaxTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField applicationFeeTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea qualificationsTextArea;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea experienceTextArea;
-    @FXML
 
     private ArrayList<Circular> circularList;
     private ArrayList<EligibilityCriteria> eligibilityList;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         circularList = new ArrayList<>();
         eligibilityList = new ArrayList<>();
@@ -39,17 +40,17 @@ public class U7G3_ReviewEligibilityController {
         eligibilityList.add(new EligibilityCriteria("C003", "21", "28", "Bachelor's degree in Agriculture or related field\nBangladeshi national", "0-2 years experience in seed/agriculture sector", "300 BDT"));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewC001OA(ActionEvent actionEvent) {
         displayEligibility("C001");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewC002OA(ActionEvent actionEvent) {
         displayEligibility("C002");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewC003OA(ActionEvent actionEvent) {
         displayEligibility("C003");
     }
@@ -82,7 +83,7 @@ public class U7G3_ReviewEligibilityController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void saveFullPolicyOA(ActionEvent actionEvent) {
         String circularId = circularIdTextField.getText();
 
@@ -104,5 +105,10 @@ public class U7G3_ReviewEligibilityController {
         } catch (Exception e) {
             Helper.showAlert("File Error", "Failed to save policy document");
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

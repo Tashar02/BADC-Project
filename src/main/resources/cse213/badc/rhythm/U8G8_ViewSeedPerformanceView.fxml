@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="580.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U8G8_ViewSeedPerformanceController">
+<AnchorPane prefHeight="606.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U8G8_ViewSeedPerformanceController">
 
     <Label layoutX="301.0" layoutY="22.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="View Seed Performance" />
 
@@ -34,6 +34,7 @@
 
     <Button layoutX="146.0" layoutY="517.0" onAction="#viewPerformanceChartOA" prefWidth="200.0" style="-fx-padding: 5; -fx-font-size: 11;" text="View Performance Chart" />
 
-    <Button layoutX="454.0" layoutY="517.0" onAction="#viewYieldChartOA" prefWidth="200.0" style="-fx-padding: 5; -fx-font-size: 11;" text="View Yield Chart" />
+    <Button layoutX="432.0" layoutY="517.0" onAction="#viewYieldChartOA" prefWidth="200.0" style="-fx-padding: 5; -fx-font-size: 11;" text="View Yield Chart" />
+   <Button layoutX="318.0" layoutY="567.0" onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

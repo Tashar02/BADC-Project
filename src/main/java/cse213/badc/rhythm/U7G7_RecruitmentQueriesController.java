@@ -2,7 +2,7 @@ package cse213.badc.rhythm;
 
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -11,31 +11,31 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class U7G7_RecruitmentQueriesController {
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> circularComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TextField subjectTextField;
-    @FXML
+    @javafx.fxml.FXML
     private TextArea descriptionTextArea;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<RecruitmentQuery> queriesTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<RecruitmentQuery, String> queryIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<RecruitmentQuery, String> subjectTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<RecruitmentQuery, String> circularTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<RecruitmentQuery, String> statusTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<RecruitmentQuery, String> submittedDateTC;
-    @FXML
+    @javafx.fxml.FXML
     private Label messageLabel;
 
     private ArrayList<RecruitmentQuery> queryList;
     private int nextQueryId;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() throws IOException {
         ArrayList<String> circulars = new ArrayList<>();
         circulars.add("C001 - Senior Officer");
@@ -68,7 +68,7 @@ public class U7G7_RecruitmentQueriesController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void submitQueryOA(ActionEvent actionEvent) throws IOException {
         String subject = subjectTextField.getText();
         String description = descriptionTextArea.getText();
@@ -102,7 +102,7 @@ public class U7G7_RecruitmentQueriesController {
         refreshQueriesTable();
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void clearFormOA(ActionEvent actionEvent) {
         clearForm();
     }
@@ -143,5 +143,10 @@ public class U7G7_RecruitmentQueriesController {
         for (RecruitmentQuery q: queryList) {
             queriesTableView.getItems().add(q);
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

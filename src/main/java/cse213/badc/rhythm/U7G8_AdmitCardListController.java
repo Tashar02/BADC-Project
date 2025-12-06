@@ -3,7 +3,7 @@ package cse213.badc.rhythm;
 import cse213.badc.BADCApplication;
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,24 +11,25 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class U7G8_AdmitCardListController {
-    @FXML
+    @javafx.fxml.FXML
     private TableView<ApprovedApplication> approvedApplicationsTableView;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApprovedApplication, String> applicationIdTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApprovedApplication, String> applicantNameTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApprovedApplication, String> circularTC;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<ApprovedApplication, String> statusTC;
 
     private ArrayList<ApprovedApplication> approvedApplications;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
         applicationIdTC.setCellValueFactory(new PropertyValueFactory<>("applicationId"));
         applicantNameTC.setCellValueFactory(new PropertyValueFactory<>("applicantName"));
@@ -105,7 +106,7 @@ public class U7G8_AdmitCardListController {
         }
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewAdmitCardOA(ActionEvent actionEvent) {
         if (approvedApplicationsTableView.getItems().isEmpty()) {
             Helper.showAlert("Error", "No applications available");
@@ -135,5 +136,10 @@ public class U7G8_AdmitCardListController {
         } catch (Exception e) {
             Helper.showAlert("Error", "Could not load admit card view");
         }
+    }
+
+    @javafx.fxml.FXML
+    public void backToDashboardOA(ActionEvent actionEvent) throws IOException {
+        Helper.backToDashboardU7(actionEvent);
     }
 }

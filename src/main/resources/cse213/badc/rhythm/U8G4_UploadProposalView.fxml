@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="489.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U8G4_UploadProposalController">
+<AnchorPane prefHeight="503.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U8G4_UploadProposalController">
 
     <Label layoutX="338.0" layoutY="21.0" style="-fx-font-size: 16; -fx-font-weight: bold;" text="Upload Proposal" />
 
@@ -31,7 +31,6 @@
     <Button layoutX="239.0" layoutY="430.0" onAction="#submitProposalOA" prefWidth="150.0" style="-fx-padding: 5; -fx-font-size: 11;" text="Submit Proposal" />
 
     <Button layoutX="425.0" layoutY="430.0" onAction="#clearFormOA" prefWidth="150.0" style="-fx-padding: 5; -fx-font-size: 11;" text="Clear Form" />
-
-    <Label fx:id="messageLabel" layoutX="50.0" layoutY="490.0" prefWidth="700.0" style="-fx-font-size: 11; -fx-text-fill: #2d8e8e;" />
+   <Button layoutX="338.0" layoutY="464.0" onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 </AnchorPane>

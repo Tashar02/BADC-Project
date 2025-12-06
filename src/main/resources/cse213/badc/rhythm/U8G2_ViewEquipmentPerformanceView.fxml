@@ -21,7 +21,7 @@
             <Menu text="File">
                 <MenuItem onAction="#exportReportOA" text="Export Report" />
                 <SeparatorMenuItem />
-                <MenuItem onAction="#backOA" text="Exit" />
+                <MenuItem onAction="#backToDashboardOA" text="Exit" />
             </Menu>
         </MenuBar>
     </top>
@@ -58,6 +58,7 @@
                 <Button onAction="#exportReportOA" text="Export Report" />
                 <Button onAction="#backOA" text="Back" />
             </HBox>
+         <Button onAction="#backToDashboardOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
         </VBox>
     </center>

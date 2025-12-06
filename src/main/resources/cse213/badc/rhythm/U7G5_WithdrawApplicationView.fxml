@@ -6,9 +6,9 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="398.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G5_WithdrawApplicationController">
+<AnchorPane prefHeight="346.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.rhythm.U7G5_WithdrawApplicationController">
 
-    <TableView fx:id="applicationsTable" layoutX="32.0" layoutY="69.0" onMouseClicked="#onTableSelectionChanged" prefHeight="258.0" prefWidth="560.0" AnchorPane.bottomAnchor="69.39999999999998" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="33.60000000000002" AnchorPane.topAnchor="69.0">
+    <TableView fx:id="applicationsTable" layoutX="32.0" layoutY="69.0" onMouseClicked="#onTableSelectionChanged" prefHeight="195.0" prefWidth="557.0" AnchorPane.bottomAnchor="82.0" AnchorPane.leftAnchor="32.0" AnchorPane.rightAnchor="34.0" AnchorPane.topAnchor="69.0">
 
         <columns>
             <TableColumn fx:id="applicationIdTC" prefWidth="162.39992904663086" text="Application ID" />
@@ -19,8 +19,9 @@
 
     </TableView>
 
-    <Button layoutX="278.0" layoutY="347.0" onAction="#withdrawOA" text="Withdraw" AnchorPane.bottomAnchor="25.399999999999977" AnchorPane.leftAnchor="278.0" />
+    <Button layoutX="202.0" layoutY="284.0" onAction="#withdrawOA" text="Withdraw" AnchorPane.bottomAnchor="36.39999999999998" AnchorPane.leftAnchor="202.0" />
    <Label layoutX="236.0" layoutY="22.0" prefHeight="25" prefWidth="150" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Withdraw Application" />
+   <Button layoutX="301.0" layoutY="283.0" onAction="#backToDashboardOA" prefHeight="26.0" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Back to Dashboard" />
 
 
 </AnchorPane>
