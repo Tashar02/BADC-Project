@@ -137,11 +137,4 @@ public class ViewFertilizerDataController {
         totalQuantityLabel.setText(totalQuantity + " Tons");
         totalCostLabel.setText(String.format("%.2f", totalCost));
     }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

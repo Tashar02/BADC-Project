@@ -42,11 +42,4 @@ public class YieldChartController {
             Helper.showAlert("Error", "Could not close window");
         }
     }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }

@@ -105,11 +105,4 @@ public class ReviewEligibilityController {
             Helper.showAlert("File Error", "Failed to save policy document");
         }
     }
-
-    private void showAlert(String title, String message) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
 }
