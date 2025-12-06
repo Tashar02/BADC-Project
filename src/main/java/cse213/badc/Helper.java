@@ -90,13 +90,15 @@ public class Helper {
         }
     }
 
-    public static void appendTextFile(String fileName, String content) {
+    public static boolean appendTextFile(String fileName, String content) {
         try {
             FileWriter fw = new FileWriter(fileName, true);
             fw.write(content + "\n");
             fw.close();
+            return true;
         } catch (Exception e) {
             showAlert("File Error", "Could not append to " + fileName);
+            return false;
         }
     }
 }
