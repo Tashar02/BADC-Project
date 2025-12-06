@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -77,7 +78,7 @@ public class ReviewEligibilityController {
             qualificationsTextArea.setText(criteria.getQualifications());
             experienceTextArea.setText(criteria.getExperience());
         } else {
-            showAlert("Error", "Circular or eligibility criteria not found");
+            Helper.showAlert("Error", "Circular or eligibility criteria not found");
         }
     }
 
@@ -86,7 +87,7 @@ public class ReviewEligibilityController {
         String circularId = circularIdTextField.getText();
 
         if (circularId.isEmpty()) {
-            showAlert("Error", "Please view eligibility details first");
+            Helper.showAlert("Error", "Please view eligibility details first");
             return;
         }
 
@@ -101,7 +102,7 @@ public class ReviewEligibilityController {
 
             writer.close();
         } catch (Exception e) {
-            showAlert("File Error", "Failed to save policy document");
+            Helper.showAlert("File Error", "Failed to save policy document");
         }
     }
 

@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -90,7 +91,7 @@ public class RecruitmentQueriesController {
             oos.close();
             fos.close();
         } catch (Exception e) {
-            showAlert("File Error", "Failed to save queries");
+            Helper.showAlert("File Error", "Failed to save queries");
         }
     }
 
@@ -142,22 +143,22 @@ public class RecruitmentQueriesController {
 
     private boolean validateQuery(String subject, String description) {
         if (subject.isEmpty()) {
-            showAlert("Validation Error", "Subject cannot be empty");
+            Helper.showAlert("Validation Error", "Subject cannot be empty");
             return false;
         }
 
         if (subject.length() > 100) {
-            showAlert("Validation Error", "Subject must be 100 characters or less");
+            Helper.showAlert("Validation Error", "Subject must be 100 characters or less");
             return false;
         }
 
         if (description.isEmpty()) {
-            showAlert("Validation Error", "Description cannot be empty");
+            Helper.showAlert("Validation Error", "Description cannot be empty");
             return false;
         }
 
         if (description.length() > 1500) {
-            showAlert("Validation Error", "Description must be 1500 characters or less");
+            Helper.showAlert("Validation Error", "Description must be 1500 characters or less");
             return false;
         }
 

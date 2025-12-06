@@ -1,6 +1,7 @@
 package cse213.badc.rhythm;
 
 import cse213.badc.BADCApplication;
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,7 +82,7 @@ public class AdmitCardListController {
 
             scanner.close();
         } catch (Exception e) {
-            showAlert("File Error", "Could not read applications file");
+            Helper.showAlert("File Error", "Could not read applications file");
         }
     }
 
@@ -107,7 +108,7 @@ public class AdmitCardListController {
     @FXML
     public void viewAdmitCardOA(ActionEvent actionEvent) {
         if (approvedApplicationsTableView.getItems().isEmpty()) {
-            showAlert("Error", "No applications available");
+            Helper.showAlert("Error", "No applications available");
             return;
         }
 
@@ -118,7 +119,7 @@ public class AdmitCardListController {
         }
 
         if (selectedApp == null) {
-            showAlert("Error", "No application found");
+            Helper.showAlert("Error", "No application found");
             return;
         }
 
@@ -131,7 +132,7 @@ public class AdmitCardListController {
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
         } catch (Exception e) {
-            showAlert("Error", "Could not load admit card view");
+            Helper.showAlert("Error", "Could not load admit card view");
         }
     }
 

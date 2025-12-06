@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -119,7 +120,7 @@ public class HelpdeskController {
 
             scanner.close();
         } catch (Exception e) {
-            showAlert("File Error", "Could not read helpdesk tickets file");
+            Helper.showAlert("File Error", "Could not read helpdesk tickets file");
         }
     }
 
@@ -161,7 +162,7 @@ public class HelpdeskController {
             clearFormOA(null);
             displayTickets();
         } catch (Exception e) {
-            showAlert("File Error", "Failed to save ticket");
+            Helper.showAlert("File Error", "Failed to save ticket");
         }
     }
 
@@ -178,7 +179,7 @@ public class HelpdeskController {
         HelpdeskTicket selectedTicket = ticketHistoryTableView.getSelectionModel().getSelectedItem();
 
         if (selectedTicket == null) {
-            showAlert("No Selection", "Please select a ticket to view details");
+            Helper.showAlert("No Selection", "Please select a ticket to view details");
             return;
         }
 
@@ -188,27 +189,27 @@ public class HelpdeskController {
 
     private boolean validateTicketFields(String subject, String category, String description) {
         if (subject.isEmpty()) {
-            showAlert("Validation Error", "Subject cannot be empty");
+            Helper.showAlert("Validation Error", "Subject cannot be empty");
             return false;
         }
 
         if (subject.length() > 100) {
-            showAlert("Validation Error", "Subject cannot exceed 100 characters");
+            Helper.showAlert("Validation Error", "Subject cannot exceed 100 characters");
             return false;
         }
 
         if (category == null || category.isEmpty()) {
-            showAlert("Validation Error", "Please select a category");
+            Helper.showAlert("Validation Error", "Please select a category");
             return false;
         }
 
         if (description.isEmpty()) {
-            showAlert("Validation Error", "Description cannot be empty");
+            Helper.showAlert("Validation Error", "Description cannot be empty");
             return false;
         }
 
         if (description.length() > 1000) {
-            showAlert("Validation Error", "Description cannot exceed 1000 characters");
+            Helper.showAlert("Validation Error", "Description cannot exceed 1000 characters");
             return false;
         }
 

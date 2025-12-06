@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -51,7 +52,7 @@ public class TrackApplicationStatusController {
 
             scanner.close();
         } catch (Exception e) {
-            showAlert("File Error", "Could not read applications file");
+            Helper.showAlert("File Error", "Could not read applications file");
         }
     }
 
@@ -60,7 +61,7 @@ public class TrackApplicationStatusController {
         String searchId = ApplicationIdTextField.getText();
 
         if (searchId.isEmpty()) {
-            showAlert("Input Error", "Please enter an Application ID");
+            Helper.showAlert("Input Error", "Please enter an Application ID");
             return;
         }
 
@@ -74,7 +75,7 @@ public class TrackApplicationStatusController {
             }
         }
 
-        showAlert("Not Found", "Application ID not found");
+        Helper.showAlert("Not Found", "Application ID not found");
         messageLabel.setText("Application not found");
     }
 

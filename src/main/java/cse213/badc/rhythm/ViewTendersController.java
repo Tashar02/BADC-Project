@@ -55,14 +55,14 @@ public class ViewTendersController
             Helper.loadFrom("allTenders.bin", tenders);
             tenderTableView.getItems().addAll(tenders);
         } catch (Exception e) {
-            showAlert("File Error", "You are not eligible to use this feature");
+            Helper.showAlert("File Error", "You are not eligible to use this feature");
         }
     }
 
     @javafx.fxml.FXML
     public void loadBasedOnMyRegionOA(ActionEvent actionEvent) throws IOException {
         if (!currentUser.isVerified()){
-            showAlert("Permission Error", "You are not eligible to use this feature");
+            Helper.showAlert("Permission Error", "You are not eligible to use this feature");
             return;
         }
 

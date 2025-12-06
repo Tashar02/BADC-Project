@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -37,27 +38,27 @@ public class UploadProposalController {
         String budgetEstimateStr = budgetEstimateTextField.getText();
 
         if (proposalId.isEmpty()) {
-            showAlert("Validation Error", "Proposal ID cannot be empty");
+            Helper.showAlert("Validation Error", "Proposal ID cannot be empty");
             return;
         }
 
         if (authorId.isEmpty()) {
-            showAlert("Validation Error", "Author ID cannot be empty");
+            Helper.showAlert("Validation Error", "Author ID cannot be empty");
             return;
         }
 
         if (subject.isEmpty() || subject.length() > 100) {
-            showAlert("Validation Error", "Subject must be between 1 and 100 characters");
+            Helper.showAlert("Validation Error", "Subject must be between 1 and 100 characters");
             return;
         }
 
         if (summary.isEmpty() || summary.length() > 2000) {
-            showAlert("Validation Error", "Summary must be between 1 and 2000 characters");
+            Helper.showAlert("Validation Error", "Summary must be between 1 and 2000 characters");
             return;
         }
 
         if (projectDuration.isEmpty()) {
-            showAlert("Validation Error", "Project Duration cannot be empty");
+            Helper.showAlert("Validation Error", "Project Duration cannot be empty");
             return;
         }
 
@@ -65,7 +66,7 @@ public class UploadProposalController {
         try {
             budgetEstimate = Float.parseFloat(budgetEstimateStr);
         } catch (Exception e) {
-            showAlert("Validation Error", "Budget Estimate must be a numeric value");
+            Helper.showAlert("Validation Error", "Budget Estimate must be a numeric value");
             return;
         }
 
@@ -79,7 +80,7 @@ public class UploadProposalController {
             messageLabel.setText("Proposal submitted successfully!");
             clearForm();
         } catch (Exception e) {
-            showAlert("File Error", "Could not save proposal");
+            Helper.showAlert("File Error", "Could not save proposal");
         }
     }
 

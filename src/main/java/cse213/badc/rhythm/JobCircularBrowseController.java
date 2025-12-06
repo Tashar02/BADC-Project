@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -129,7 +130,7 @@ public class JobCircularBrowseController {
         Circular selected = circularTableView.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
-            showAlert("Select Circular", "Please select a circular first");
+            Helper.showAlert("Select Circular", "Please select a circular first");
             return;
         }
 
@@ -153,7 +154,7 @@ public class JobCircularBrowseController {
         String gpaStr = eduGpaTextField.getText();
 
         if (degree.isEmpty() || institution.isEmpty() || yearStr.isEmpty() || gpaStr.isEmpty()) {
-            showAlert("Input Error", "Please fill all education fields");
+            Helper.showAlert("Input Error", "Please fill all education fields");
             return;
         }
 
@@ -170,12 +171,12 @@ public class JobCircularBrowseController {
                 eduInstitutionTextField.clear();
                 eduYearTextField.clear();
                 eduGpaTextField.clear();
-                showAlert("Success", "Education added successfully");
+                Helper.showAlert("Success", "Education added successfully");
             } else {
-                showAlert("Validation Error", "Invalid education details");
+                Helper.showAlert("Validation Error", "Invalid education details");
             }
         } catch (Exception e) {
-            showAlert("Input Error", "Please provide correct input data");
+            Helper.showAlert("Input Error", "Please provide correct input data");
         }
     }
 
@@ -186,9 +187,9 @@ public class JobCircularBrowseController {
         if (selected != null) {
             educationList.remove(selected);
             educationTableView.getItems().remove(selected);
-            showAlert("Success", "Education entry removed");
+            Helper.showAlert("Success", "Education entry removed");
         } else {
-            showAlert("Select Entry", "Please select an education entry to remove");
+            Helper.showAlert("Select Entry", "Please select an education entry to remove");
         }
     }
 
@@ -200,7 +201,7 @@ public class JobCircularBrowseController {
         String endYearStr = expEndYearTextField.getText();
 
         if (employer.isEmpty() || jobTitle.isEmpty() || startYearStr.isEmpty() || endYearStr.isEmpty()) {
-            showAlert("Input Error", "Please fill all experience fields");
+            Helper.showAlert("Input Error", "Please fill all experience fields");
             return;
         }
 
@@ -217,12 +218,12 @@ public class JobCircularBrowseController {
                 expJobTitleTextField.clear();
                 expStartYearTextField.clear();
                 expEndYearTextField.clear();
-                showAlert("Success", "Work experience added successfully");
+                Helper.showAlert("Success", "Work experience added successfully");
             } else {
-                showAlert("Validation Error", "Invalid work experience details");
+                Helper.showAlert("Validation Error", "Invalid work experience details");
             }
         } catch (Exception e) {
-            showAlert("Input Error", "Please enter valid data");
+            Helper.showAlert("Input Error", "Please enter valid data");
         }
     }
 
@@ -233,16 +234,16 @@ public class JobCircularBrowseController {
         if (selected != null) {
             experienceList.remove(selected);
             experienceTableView.getItems().remove(selected);
-            showAlert("Success", "Work experience entry removed");
+            Helper.showAlert("Success", "Work experience entry removed");
         } else {
-            showAlert("Select Entry", "Please select a work experience entry to remove");
+            Helper.showAlert("Select Entry", "Please select a work experience entry to remove");
         }
     }
 
     @FXML
     public void submitApplicationOA(ActionEvent actionEvent) {
         if (selectedCircular == null) {
-            showAlert("No Circular Selected", "Please select a circular first");
+            Helper.showAlert("No Circular Selected", "Please select a circular first");
             return;
         }
 
@@ -273,13 +274,13 @@ public class JobCircularBrowseController {
                 FileWriter writer = new FileWriter("applications.txt", true);
                 writer.write(application.toString() + "\n");
                 writer.close();
-                showAlert("Success", "Application Submitted! ID: " + application.getApplicationId());
+                Helper.showAlert("Success", "Application Submitted! ID: " + application.getApplicationId());
                 clearFormOA(actionEvent);
             } catch (Exception e) {
-                showAlert("File Error", "Failed to save application");
+                Helper.showAlert("File Error", "Failed to save application");
             }
         } else {
-            showAlert("Validation Error", "Application form is incomplete or has errors");
+            Helper.showAlert("Validation Error", "Application form is incomplete or has errors");
         }
     }
 

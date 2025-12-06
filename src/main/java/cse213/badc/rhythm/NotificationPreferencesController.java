@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -128,7 +129,7 @@ public class NotificationPreferencesController {
             currentPreference = preference;
             displayCurrentPreferences();
         } catch (Exception e) {
-            showAlert("File Error", "Failed to save preferences");
+            Helper.showAlert("File Error", "Failed to save preferences");
         }
     }
 
@@ -161,42 +162,42 @@ public class NotificationPreferencesController {
 
     private boolean validatePreferences(ArrayList<String> departments, String jobLevel, String email, String phone, boolean emailSelected, boolean smsSelected) {
         if (departments.isEmpty()) {
-            showAlert("Validation Error", "Please select at least one department");
+            Helper.showAlert("Validation Error", "Please select at least one department");
             return false;
         }
 
         if (jobLevel == null || jobLevel.isEmpty()) {
-            showAlert("Validation Error", "Please select a job level");
+            Helper.showAlert("Validation Error", "Please select a job level");
             return false;
         }
 
         if (!emailSelected && !smsSelected) {
-            showAlert("Validation Error", "Please select at least one notification method");
+            Helper.showAlert("Validation Error", "Please select at least one notification method");
             return false;
         }
 
         if (emailSelected) {
             if (email.isEmpty()) {
-                showAlert("Validation Error", "Email address cannot be empty if Email is selected");
+                Helper.showAlert("Validation Error", "Email address cannot be empty if Email is selected");
                 return false;
             }
             if (!email.contains("@")) {
-                showAlert("Validation Error", "Email address must contain '@' symbol");
+                Helper.showAlert("Validation Error", "Email address must contain '@' symbol");
                 return false;
             }
         }
 
         if (smsSelected) {
             if (phone.isEmpty()) {
-                showAlert("Validation Error", "Phone number cannot be empty if SMS is selected");
+                Helper.showAlert("Validation Error", "Phone number cannot be empty if SMS is selected");
                 return false;
             }
             if (phone.length() != 11) {
-                showAlert("Validation Error", "Phone number must be exactly 11 digits");
+                Helper.showAlert("Validation Error", "Phone number must be exactly 11 digits");
                 return false;
             }
             if (!phone.startsWith("01")) {
-                showAlert("Validation Error", "Phone number must start with 01");
+                Helper.showAlert("Validation Error", "Phone number must start with 01");
                 return false;
             }
         }

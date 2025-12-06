@@ -1,6 +1,7 @@
 package cse213.badc.rhythm;
 
 import cse213.badc.BADCApplication;
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -48,15 +49,7 @@ public class AdmitCardDisplayController {
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
             stage.setScene(scene);
         } catch (Exception e) {
-            showAlert("Error", "Could not load admit card list view");
+            Helper.showAlert("Error", "Could not load admit card list view");
         }
-    }
-
-
-    private void showAlert(String title, String message) {
-        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.showAndWait();
     }
 }

@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
@@ -38,7 +39,7 @@ public class YieldChartController {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             stage.close();
         } catch (Exception e) {
-            showAlert("Error", "Could not close window");
+            Helper.showAlert("Error", "Could not close window");
         }
     }
 

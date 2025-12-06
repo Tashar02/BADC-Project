@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -78,7 +79,7 @@ public class ViewFertilizerDataController {
                     FertilizerImport imp = (FertilizerImport)ois.readObject();
                     allFertilizerImports.add(imp);
                 } catch (Exception e) {
-                    showAlert("File error", "Failed to load import data");
+                    Helper.showAlert("File error", "Failed to load import data");
                     break;
                 }
             }

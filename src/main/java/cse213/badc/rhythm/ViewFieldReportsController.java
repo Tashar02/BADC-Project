@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import cse213.badc.saad.Report;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,7 +64,7 @@ public class ViewFieldReportsController {
 
             ois.close();
         } catch (Exception e) {
-            showAlert("File Error", "Could not read field reports");
+            Helper.showAlert("File Error", "Could not read field reports");
         }
     }
 

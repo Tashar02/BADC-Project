@@ -1,5 +1,6 @@
 package cse213.badc.rhythm;
 
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -143,7 +144,7 @@ public class ViewSeedPerformanceController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            showAlert("Error", "Could not open chart view");
+            Helper.showAlert("Error", "Could not open chart view");
         }
     }
 
@@ -161,7 +162,7 @@ public class ViewSeedPerformanceController {
             stage.setScene(new Scene(root));
             stage.show();
         } catch (Exception e) {
-            showAlert("Error", "Could not open chart view");
+            Helper.showAlert("Error", "Could not open chart view");
         }
     }
 
