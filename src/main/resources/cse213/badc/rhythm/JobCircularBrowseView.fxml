@@ -103,6 +103,7 @@
             <TableColumn fx:id="endYearTC" prefWidth="133.5999755859375" text="End" />
         </columns>
     </TableView>
-   <Button layoutX="364.0" layoutY="634.0" onAction="#submitApplicationOA" prefHeight="26.0" prefWidth="100.0" style="-fx-padding: 2; -fx-font-size: 10;" text="Submit application" />
+   <Button layoutX="717.0" layoutY="634.0" onAction="#submitApplicationOA" prefHeight="20.0" prefWidth="100.0" style="-fx-padding: 2; -fx-font-size: 10;" text="Submit application" />
+   <Button layoutX="12.0" layoutY="637.0" onAction="#removeExperienceOA" prefWidth="140" style="-fx-padding: 2; -fx-font-size: 10;" text="Remove Education" />
 
 </AnchorPane>
