@@ -26,6 +26,32 @@ public class BADCApplication extends Application {
     }
 
     private void initializeCredentials() {
+        File badcFieldOfficerFile = new File("BADCFieldOfficer.bin");
+        if (!badcFieldOfficerFile.exists()) {
+            ArrayList<BADCJobApplicant> officers = new ArrayList<>();
+            officers.add(new BADCJobApplicant("1000", "1000officer", "Saad Islam", "2432029@iub.edu.bd"));
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("BADCFieldOfficer.bin"))) {
+                oos.writeObject(officers);
+                System.out.println("BADC Field Officer credentials created successfully");
+            } catch (Exception e) {
+                Helper.showAlert("File error", "Could not write credentials for BADC Field Officer");
+            }
+        }
+
+        File supplierFile = new File("IrrigationEquipmentSupplier.bin");
+        if (!supplierFile.exists()) {
+            ArrayList<BADCJobApplicant> suppliers = new ArrayList<>();
+            suppliers.add(new BADCJobApplicant("0001", "0001reshma", "Reshma Sultana", "reshma@gmail.com"));
+
+            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("IrrigationEquipmentSupplier.bin"))) {
+                oos.writeObject(suppliers);
+                System.out.println("Irrigation Equipment Supplier credentials created successfully");
+            } catch (Exception e) {
+                Helper.showAlert("File error", "Could not write credentials for BADC Job Applicant");
+            }
+        }
+
         File badcjobApplicantsFile = new File("BADCJobApplicant.bin");
         if (!badcjobApplicantsFile.exists()) {
             ArrayList<BADCJobApplicant> applicants = new ArrayList<>();

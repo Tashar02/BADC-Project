@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class FieldOfficer implements Serializable {
 
-    private String officerId, officerRegion, password;
+    private String officerId, officerRegion, password, fullName, email;
 
 
     public FieldOfficer(String officerId, String officerRegion, String password) {
@@ -13,7 +13,20 @@ public class FieldOfficer implements Serializable {
         this.password = password;
     }
 
+    public FieldOfficer(String supplierID, String password, String fullName, String email) {
+        this.officerId = supplierID;
+        this.password = password;
+        this.fullName = fullName;
+        this.email = email;
+    }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
 
     public String getOfficerId() {
         return officerId;

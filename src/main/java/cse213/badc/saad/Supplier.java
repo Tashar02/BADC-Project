@@ -8,6 +8,7 @@ public class Supplier implements Serializable {
     private long tradeLicenseNo;
     private boolean assigned, verified, applied;
     private LocalDate dateOfRegistration;
+    private String fullName;
 
     public Supplier(String supplierID, String name, String mobileNo, String email, String password) {
         this.supplierID = supplierID;
@@ -24,9 +25,18 @@ public class Supplier implements Serializable {
         this.applied = false;
         this.verificationRemark = "N/A";
         this.password = password;
-
     }
 
+    public Supplier(String supplierID, String password, String fullName, String email) {
+        this.supplierID = supplierID;
+        this.password = password;
+        this.fullName = fullName;
+        this.email = email;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
     public String getSupplierID() {
         return supplierID;
     }
