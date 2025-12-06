@@ -35,11 +35,6 @@ public class PerformanceChartController {
 
     @FXML
     public void backToMainOA(ActionEvent actionEvent) {
-        try {
-            Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
-            stage.close();
-        } catch (Exception e) {
-            Helper.showAlert("Error", "Could not close window");
-        }
+        Helper.closeWindow(actionEvent);
     }
 }
