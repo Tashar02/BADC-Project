@@ -1,0 +1,5 @@
+=== Application Approval Summary ===
+Total Applications: 5
+Approved Applications: 3
+Approval Rate: 60.0%
+

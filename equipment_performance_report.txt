@@ -1,0 +1,12 @@
+=== Equipment Performance Summary ===
+Total Equipment: 5
+Good/Excellent Status: 4
+Average Uptime: 87.0%
+=== Equipment Performance Summary ===
+Total Equipment: 5
+Good/Excellent Status: 4
+Average Uptime: 87.0%
+=== Equipment Performance Summary ===
+Total Equipment: 5
+Good/Excellent Status: 4
+Average Uptime: 87.0%
