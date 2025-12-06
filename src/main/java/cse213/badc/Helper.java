@@ -1,5 +1,6 @@
-package cse213.badc.saad;
+package cse213.badc;
 
+import cse213.badc.saad.AOOStream;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -11,33 +12,43 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Helper {
-
     public static void showAlert(String s){
         Alert a = new Alert(Alert.AlertType.ERROR);
         a.setContentText(s);
         a.showAndWait();
     }
 
-
-
-    public static void changeScene(ActionEvent event, String fxmlFile, String title){
-        try {
-            FXMLLoader loader = new FXMLLoader(Helper.class.getResource(fxmlFile));
-
-            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            Scene scene = new Scene(loader.load());
-            stage.setScene(scene);
-            stage.setTitle(title);
-
-            stage.show();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
+    public static void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
-    public static  <T>void writeInto(String binFile, T data) throws IOException {
+    public static void switchScene(ActionEvent actionEvent, String fxmlFileName, String title) {
+        try {
+            FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource(fxmlFileName));
+            Scene scene = new Scene(loader.load());
+
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.setTitle(title);
+            stage.show();
+        } catch (Exception e) {
+            showAlert("Error", "Could not load view");
+        }
+    }
+
+    public static void closeWindow(ActionEvent actionEvent) {
+        try {
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            stage.close();
+        } catch (Exception e) {
+            showAlert("Error", "Could not close window");
+        }
+    }
+
+    public static <T>void writeInto(String binFile, T data) throws IOException {
         File file = new File(binFile);
         FileOutputStream fos;
         ObjectOutputStream oos;
@@ -54,20 +65,16 @@ public class Helper {
         oos.close();
     }
 
-
-    public static  <T>void loadFrom(String binFile, ArrayList<T> lst) throws IOException {
+    public static <T>void loadFrom(String binFile, ArrayList<T> lst) throws IOException {
         File file = new File(binFile);
 
         if (!file.exists()) {
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("File not found");
-            a.showAndWait();
+            showAlert("File Error", "File not found");
             return;
         }
 
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream ois = new ObjectInputStream(fis);
-
 
         try {
             while (true) {
@@ -75,7 +82,7 @@ public class Helper {
                 lst.add(obj);
             }
         } catch (EOFException e) {
-            System.out.println("Sesh");
+            System.out.println("We have reached the end of file");
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
@@ -85,18 +92,21 @@ public class Helper {
     }
 
     public void deleteFile(String binFile){
-
         File file = new File(binFile);
-        if (!file.exists()){
-            Alert a = new Alert(Alert.AlertType.ERROR);
-            a.setContentText("File not found");
-            a.showAndWait();
-            return;
+        if (!file.exists()) {
+            showAlert("File Error", "File not found");
         } else {
             file.delete();
         }
-
     }
 
-
+    public static void appendTextFile(String fileName, String content) {
+        try {
+            FileWriter fw = new FileWriter(fileName, true);
+            fw.write(content + "\n");
+            fw.close();
+        } catch (Exception e) {
+            showAlert("File Error", "Could not append to " + fileName);
+        }
+    }
 }
