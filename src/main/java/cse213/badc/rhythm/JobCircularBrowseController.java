@@ -270,14 +270,9 @@ public class JobCircularBrowseController {
         );
 
         if (application.isFormComplete()) {
-            try {
-                FileWriter writer = new FileWriter("applications.txt", true);
-                writer.write(application.toString() + "\n");
-                writer.close();
+            if (Helper.appendTextFile("applications.txt", application.toString())) {
                 Helper.showAlert("Success", "Application Submitted! ID: " + application.getApplicationId());
                 clearFormOA(actionEvent);
-            } catch (Exception e) {
-                Helper.showAlert("File Error", "Failed to save application");
             }
         } else {
             Helper.showAlert("Validation Error", "Application form is incomplete or has errors");

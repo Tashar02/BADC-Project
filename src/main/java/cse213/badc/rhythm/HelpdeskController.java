@@ -153,16 +153,10 @@ public class HelpdeskController {
 
         allTickets.add(newTicket);
 
-        try {
-            FileWriter writer = new FileWriter("helpdesk_tickets.txt", true);
-            writer.write(newTicket.toString() + "\n");
-            writer.close();
-
+        if (Helper.appendTextFile("helpdesk_tickets.txt", newTicket.toString())) {
             messageLabel.setText("Ticket created successfully. Ticket ID: " + ticketId);
             clearFormOA(null);
             displayTickets();
-        } catch (Exception e) {
-            Helper.showAlert("File Error", "Failed to save ticket");
         }
     }
 
