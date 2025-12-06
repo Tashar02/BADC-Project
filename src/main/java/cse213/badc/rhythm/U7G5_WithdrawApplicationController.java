@@ -16,13 +16,10 @@ public class U7G5_WithdrawApplicationController {
     private TableView<JobApplication> applicationsTable;
     @javafx.fxml.FXML
     private TableColumn<JobApplication, String> applicationIdTC;
-
     @javafx.fxml.FXML
     private TableColumn<JobApplication, String> circularIdTC;
-
     @javafx.fxml.FXML
     private TableColumn<JobApplication, String> statusTC;
-
     @javafx.fxml.FXML
     private TableColumn<JobApplication, String> submissionDateTC;
 

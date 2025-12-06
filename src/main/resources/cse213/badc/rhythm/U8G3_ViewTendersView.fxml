@@ -11,9 +11,9 @@
     <Label alignment="CENTER" layoutX="189.0" layoutY="23.0" prefHeight="17.0" prefWidth="242.0" text="View Government Tenders" />
     <TableView fx:id="tenderTableView" layoutX="21.0" layoutY="61.0" prefHeight="278.0" prefWidth="289.0">
       <columns>
-          <TableColumn fx:id="titleTableColumn" prefWidth="83.0" text="Title" />
-          <TableColumn fx:id="publishDateTableColumn" prefWidth="112.0" text="Publish Date" />
-          <TableColumn fx:id="regionTableColumn" prefWidth="93.0" text="Region" />
+          <TableColumn fx:id="titleTC" prefWidth="83.0" text="Title" />
+          <TableColumn fx:id="publishDateTC" prefWidth="112.0" text="Publish Date" />
+          <TableColumn fx:id="regionTC" prefWidth="93.0" text="Region" />
       </columns>
     </TableView>
     <Button layoutX="52.0" layoutY="351.0" mnemonicParsing="false" onAction="#loadAllOA" text="Load All" />

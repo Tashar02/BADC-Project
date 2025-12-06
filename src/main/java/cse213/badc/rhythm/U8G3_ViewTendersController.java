@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class U8G3_ViewTendersController
 {
     @javafx.fxml.FXML
-    private TableColumn<Tender, String> titleTableColumn;
+    private TableColumn<Tender, String> titleTC;
     @javafx.fxml.FXML
-    private TableColumn<Tender, String> regionTableColumn;
+    private TableColumn<Tender, String> regionTC;
     @javafx.fxml.FXML
     private TableView<Tender> tenderTableView;
     @javafx.fxml.FXML
@@ -22,13 +22,13 @@ public class U8G3_ViewTendersController
     @javafx.fxml.FXML
     private Label messageLabel;
     @javafx.fxml.FXML
-    private TableColumn<Tender, String> publishDateTableColumn;
+    private TableColumn<Tender, String> publishDateTC;
 
     @javafx.fxml.FXML
     public void initialize() {
-        titleTableColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        publishDateTableColumn.setCellValueFactory(new PropertyValueFactory<>("publishDate"));
-        regionTableColumn.setCellValueFactory(new PropertyValueFactory<>("region"));
+        titleTC.setCellValueFactory(new PropertyValueFactory<>("title"));
+        publishDateTC.setCellValueFactory(new PropertyValueFactory<>("publishDate"));
+        regionTC.setCellValueFactory(new PropertyValueFactory<>("region"));
     }
 
     Supplier currentUser;
