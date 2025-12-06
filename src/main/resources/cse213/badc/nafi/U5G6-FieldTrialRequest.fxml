@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.nafi.U5G6-PolicyUpdateViewerController" hgap="12" vgap="8">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="25"/>
+        <ColumnConstraints percentWidth="75"/>
+    </columnConstraints>
+    <children>
+        <Label text="Request New Field Trial" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.columnSpan="2" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+
+        <Label text="Trial Title:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtTitle" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Objective:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextArea fx:id="txtObjective" prefRowCount="3" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Proposed Region:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtRegion" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Land Area (Acres):" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtArea" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Required Farmers:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtFarmers" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Duration (Months):" GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtDuration" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        <Label text="Protocol Doc (PDF):" GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+        <HBox spacing="8" GridPane.rowIndex="7" GridPane.columnIndex="1">
+            <children>
+                <TextField fx:id="txtProtocol" editable="false" HBox.hgrow="ALWAYS"/>
+                <Button text="Browse" onAction="#handleBrowseProtocol"/>
+            </children>
+        </HBox>
+        <HBox spacing="8" GridPane.rowIndex="8" GridPane.columnIndex="1" alignment="CENTER_RIGHT">
+            <children>
+                <Button text="Validate" onAction="#handleValidate"/>
+                <Button text="Submit Request" onAction="#handleSubmit"/>
+            </children>
+        </HBox>
+        <Label fx:id="lblStatus" GridPane.rowIndex="9" GridPane.columnIndex="1"/>
+    </children>
+</GridPane>

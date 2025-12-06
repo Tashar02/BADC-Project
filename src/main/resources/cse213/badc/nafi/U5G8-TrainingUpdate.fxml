@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.nafi.U5G8-RegionalReportAccessController" spacing="12">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+    <children>
+        <Label text="Training &amp; Professional Development" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+        <HBox spacing="10">
+            <children>
+                <VBox spacing="8" prefWidth="320">
+                    <children>
+                        <Label text="Available Trainings:" style="-fx-font-weight:bold"/>
+                        <ListView fx:id="lstTrainings" prefHeight="200"/>
+                    </children>
+                </VBox>
+                <VBox spacing="8" HBox.hgrow="ALWAYS">
+                    <children>
+                        <Label text="Register for Training" style="-fx-font-weight:bold"/>
+                        <Label text="Selected Training:"/>
+                        <TextField fx:id="txtTopics" editable="false" promptText="Select from list"/>
+                        <Label text="Motivation / Reason:"/>
+                        <TextArea fx:id="txtMotivation" prefRowCount="5" wrapText="true"/>
+                        <HBox alignment="CENTER_RIGHT" spacing="10">
+                            <Button text="Validate" onAction="#handleValidate"/>
+                            <Button text="Register" onAction="#handleRegister"/>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </HBox>
+        <Label fx:id="lblStatus" />
+    </children>
+</VBox>

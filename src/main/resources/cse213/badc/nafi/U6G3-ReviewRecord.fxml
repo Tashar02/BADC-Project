@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="cse213.badc.nafi.U6G3-ReviewRecordController" spacing="12">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+    <children>
+        <Label text="Field Reports Review" style="-fx-font-size:16px; -fx-font-weight:bold;"/>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <Label text="Region:"/>
+            <TextField fx:id="txtRegionFilter"/>
+            <Button text="Fetch Reports" onAction="#handleFetch"/>
+        </HBox>
+        <TableView fx:id="tblReports" prefHeight="250">
+            <columns>
+                <TableColumn text="Date" prefWidth="100"/>
+                <TableColumn text="Officer" prefWidth="120"/>
+                <TableColumn text="Region" prefWidth="100"/>
+                <TableColumn text="Issue" prefWidth="150"/>
+                <TableColumn text="Status" prefWidth="100"/>
+            </columns>
+        </TableView>
+        <HBox spacing="10" alignment="CENTER_RIGHT">
+            <Button text="Mark as Reviewed" onAction="#handleReview"/>
+        </HBox>
+        <Label fx:id="lblStatus"/>
+    </children>
+</VBox>
