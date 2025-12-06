@@ -65,7 +65,29 @@ public class Helper {
         }
 
         ois.close();
+    }
 
+    public static Object loadFromSingleObject(String fileName) {
+        try {
+            File file = new File(fileName);
+
+            if (!file.exists()) {
+                showAlert("File Error", "File not found");
+                return null;
+            }
+
+            FileInputStream fis = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fis);
+
+            Object data = ois.readObject();
+            ois.close();
+            fis.close();
+
+            return data;
+        } catch (Exception e) {
+            showAlert("File Error", "Could not read from " + fileName);
+            return null;
+        }
     }
 
     public static void appendTextFile(String fileName, String content) {

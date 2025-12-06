@@ -4,10 +4,8 @@ import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -47,21 +45,12 @@ public class NotificationPreferencesController {
     }
 
     private void loadPreferences() {
-        try {
-            FileInputStream fis = new FileInputStream("notification_preferences.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
-
-            currentPreference = (NotificationPreference) ois.readObject();
-            ois.close();
-            fis.close();
-            displayCurrentPreferences();
-        } catch (Exception e) {
-            currentPreferencesLabel.setText("No preferences saved yet.");
-        }
+        currentPreference = (NotificationPreference) Helper.loadFromSingleObject("notification_preferences.bin");
+        displayCurrentPreferences();
     }
 
     @FXML
-    public void savePreferencesOA(ActionEvent actionEvent) {
+    public void savePreferencesOA(ActionEvent actionEvent) throws IOException {
         ArrayList<String> selectedDepartments = new ArrayList<>();
         if (hrCheckBox.isSelected()) {
             selectedDepartments.add("HR");
@@ -118,19 +107,10 @@ public class NotificationPreferencesController {
                 updatedDate
         );
 
-        try {
-            FileOutputStream fos = new FileOutputStream("notification_preferences.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(preference);
-            oos.close();
-            fos.close();
-
-            currentPreference = preference;
-            displayCurrentPreferences();
-        } catch (Exception e) {
-            Helper.showAlert("File Error", "Failed to save preferences");
-        }
+        Helper.writeInto("notification_preferences.bin", preference);
+        currentPreference = preference;
+        displayCurrentPreferences();
+        Helper.showAlert("Success", "Preferences saved successfully");
     }
 
     @FXML

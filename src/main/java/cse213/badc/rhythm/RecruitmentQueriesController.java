@@ -5,10 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -38,7 +36,7 @@ public class RecruitmentQueriesController {
     private int nextQueryId;
 
     @FXML
-    public void initialize() {
+    public void initialize() throws IOException {
         ArrayList<String> circulars = new ArrayList<>();
         circulars.add("C001 - Senior Officer");
         circulars.add("C002 - Research Officer");
@@ -57,46 +55,21 @@ public class RecruitmentQueriesController {
         refreshQueriesTable();
     }
 
-    private void loadQueries() {
-        try {
-            FileInputStream fis = new FileInputStream("recruitment_queries.bin");
-            ObjectInputStream ois = new ObjectInputStream(fis);
+    private void loadQueries() throws IOException {
+        ArrayList<RecruitmentQuery> loadedQueries = new ArrayList<>();
+        Helper.loadFrom("recruitment_queries.bin", loadedQueries);
 
-            queryList = (ArrayList<RecruitmentQuery>) ois.readObject();
-            ois.close();
-            fis.close();
-
-            if (queryList != null && !queryList.isEmpty()) {
-                RecruitmentQuery lastQuery = null;
-                for (RecruitmentQuery q: queryList) {
-                    lastQuery = q;
-                }
-                if (lastQuery != null) {
-                    nextQueryId = Integer.parseInt(lastQuery.getQueryId()) + 1;
-                }
-            } else {
-                queryList = new ArrayList<>();
-            }
-        } catch (Exception e) {
+        if (!loadedQueries.isEmpty()) {
+            queryList = loadedQueries;
+            RecruitmentQuery lastQuery = queryList.getLast();
+            nextQueryId = Integer.parseInt(lastQuery.getQueryId()) + 1;
+        } else {
             queryList = new ArrayList<>();
         }
     }
 
-    private void saveQueries() {
-        try {
-            FileOutputStream fos = new FileOutputStream("recruitment_queries.bin");
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
-
-            oos.writeObject(queryList);
-            oos.close();
-            fos.close();
-        } catch (Exception e) {
-            Helper.showAlert("File Error", "Failed to save queries");
-        }
-    }
-
     @FXML
-    public void submitQueryOA(ActionEvent actionEvent) {
+    public void submitQueryOA(ActionEvent actionEvent) throws IOException {
         String subject = subjectTextField.getText();
         String description = descriptionTextArea.getText();
         String circular = circularComboBox.getValue();
@@ -122,7 +95,7 @@ public class RecruitmentQueriesController {
 
         queryList.add(query);
         nextQueryId++;
-        saveQueries();
+        Helper.writeInto("recruitment_queries.bin", query);
 
         messageLabel.setText("Query submitted successfully with ID: " + query.getQueryId());
         clearForm();

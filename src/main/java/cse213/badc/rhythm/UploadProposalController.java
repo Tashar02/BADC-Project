@@ -3,14 +3,11 @@ package cse213.badc.rhythm;
 import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
+
+import java.io.IOException;
 
 public class UploadProposalController {
     @FXML
@@ -29,7 +26,7 @@ public class UploadProposalController {
     private Label messageLabel;
 
     @FXML
-    public void submitProposalOA(ActionEvent actionEvent) {
+    public void submitProposalOA(ActionEvent actionEvent) throws IOException {
         String proposalId = proposalIdTextField.getText();
         String authorId = authorIdTextField.getText();
         String subject = subjectTextField.getText();
@@ -70,18 +67,11 @@ public class UploadProposalController {
             return;
         }
 
-        try {
-            Proposal proposal = new Proposal(proposalId, authorId, subject, summary, projectDuration, budgetEstimate);
+        Proposal proposal = new Proposal(proposalId, authorId, subject, summary, projectDuration, budgetEstimate);
+        Helper.writeInto("proposals.bin", proposal);
 
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("proposals.bin", true));
-            oos.writeObject(proposal);
-            oos.close();
-
-            messageLabel.setText("Proposal submitted successfully!");
-            clearForm();
-        } catch (Exception e) {
-            Helper.showAlert("File Error", "Could not save proposal");
-        }
+        messageLabel.setText("Proposal submitted successfully!");
+        clearForm();
     }
 
     @FXML
