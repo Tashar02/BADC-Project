@@ -1,6 +1,6 @@
 package cse213.badc.nusrat;
 
-import com.example.farmer_seed_dealer_project.HelloApplication;
+import cse213.badc.BADCApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,11 +19,11 @@ public class SeedDealerDashboardController {
     private void gotoView(String resourcePath, String title) {
         try {
             AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
-                    HelloApplication.class.getResource(resourcePath)
+                    BADCApplication.class.getResource(resourcePath)
             ));
             Scene scene = new Scene(root);
-            HelloApplication.stage.setTitle(title);
-            HelloApplication.stage.setScene(scene);
+            BADCApplication.stage.setTitle(title);
+            BADCApplication.stage.setScene(scene);
         } catch (IOException | NullPointerException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setHeaderText("Failed to open screen");
@@ -50,6 +50,6 @@ public class SeedDealerDashboardController {
 
     @FXML
     private void onClose() {
-        HelloApplication.stage.close();
+        BADCApplication.stage.close();
     }
 }

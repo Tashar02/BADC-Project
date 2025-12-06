@@ -1,6 +1,7 @@
 package cse213.badc.nusrat;
 
-import com.example.farmer_seed_dealer_project.HelloApplication;
+import cse213.badc.BADCApplication;
+import cse213.badc.BADCApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -144,11 +145,11 @@ public class Goal1Controller {
     @FXML
     private void onBack() throws IOException {
         AnchorPane root = FXMLLoader.load(Objects.requireNonNull(
-                HelloApplication.class.getResource("nusrat/farmerDashboard.fxml")
+                BADCApplication.class.getResource("nusrat/farmerDashboard.fxml")
         ));
         Scene scene = new Scene(root);
-        HelloApplication.stage.setTitle("Farmer Dashboard");
-        HelloApplication.stage.setScene(scene);
+        BADCApplication.stage.setTitle("Farmer Dashboard");
+        BADCApplication.stage.setScene(scene);
 
     }
 
