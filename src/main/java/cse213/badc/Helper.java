@@ -25,29 +25,6 @@ public class Helper {
         alert.showAndWait();
     }
 
-    public static void switchScene(ActionEvent actionEvent, String fxmlFileName, String title) {
-        try {
-            FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource(fxmlFileName));
-            Scene scene = new Scene(loader.load());
-
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.setTitle(title);
-            stage.show();
-        } catch (Exception e) {
-            showAlert("Error", "Could not load view");
-        }
-    }
-
-    public static void closeWindow(ActionEvent actionEvent) {
-        try {
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            stage.close();
-        } catch (Exception e) {
-            showAlert("Error", "Could not close window");
-        }
-    }
-
     public static <T>void writeInto(String binFile, T data) throws IOException {
         File file = new File(binFile);
         FileOutputStream fos;
@@ -89,15 +66,6 @@ public class Helper {
 
         ois.close();
 
-    }
-
-    public void deleteFile(String binFile){
-        File file = new File(binFile);
-        if (!file.exists()) {
-            showAlert("File Error", "File not found");
-        } else {
-            file.delete();
-        }
     }
 
     public static void appendTextFile(String fileName, String content) {

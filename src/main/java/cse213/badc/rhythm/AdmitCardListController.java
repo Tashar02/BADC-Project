@@ -130,6 +130,7 @@ public class AdmitCardListController {
             controller.setApprovedApplication(selectedApp);
 
             Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+            stage.setTitle("Admit Card List");
             stage.setScene(scene);
         } catch (Exception e) {
             Helper.showAlert("Error", "Could not load admit card view");

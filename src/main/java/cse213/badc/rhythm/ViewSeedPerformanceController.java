@@ -135,7 +135,6 @@ public class ViewSeedPerformanceController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("PerformanceChartView.fxml"));
             Parent root = loader.load();
-
             PerformanceChartController controller = loader.getController();
             controller.setTrials(seedTrials);
 
