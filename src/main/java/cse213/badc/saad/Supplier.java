@@ -10,11 +10,14 @@ public class Supplier implements Serializable {
     private LocalDate dateOfRegistration;
     private String fullName;
 
-    public Supplier(String supplierID, String name, String mobileNo, String email, String password) {
+
+
+    public Supplier(String supplierID, String password, String fullName, String email, String mobileNo) {
         this.supplierID = supplierID;
-        this.name = name;
-        this.mobileNo = mobileNo;
+        this.password = password;
+        this.fullName = fullName;
         this.email = email;
+        this.mobileNo = mobileNo;
         this.companyName = "N/A";
         this.serviceArea = "N/A";
         this.tradeLicenseNo = 0;
@@ -24,14 +27,7 @@ public class Supplier implements Serializable {
         this.verified = false;
         this.applied = false;
         this.verificationRemark = "N/A";
-        this.password = password;
-    }
 
-    public Supplier(String supplierID, String password, String fullName, String email) {
-        this.supplierID = supplierID;
-        this.password = password;
-        this.fullName = fullName;
-        this.email = email;
     }
 
     public String getFullName() {

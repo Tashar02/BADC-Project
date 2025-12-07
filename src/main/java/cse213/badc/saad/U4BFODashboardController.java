@@ -1,6 +1,7 @@
 package cse213.badc.saad;
 
 import cse213.badc.BADCApplication;
+import cse213.badc.Helper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,7 +67,7 @@ public class U4BFODashboardController {
     @javafx.fxml.FXML
     public void logOutOA(ActionEvent actionEvent) throws IOException {
 
-        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/logInbySaad.fxml"));
+        FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("LoginView.fxml"));
 
         Stage stage = (Stage) rootPane.getScene().getWindow();
 
@@ -75,6 +76,11 @@ public class U4BFODashboardController {
         stage.setTitle("Log IN");
 
         stage.show();
+
+
+
+
+
 
     }
 

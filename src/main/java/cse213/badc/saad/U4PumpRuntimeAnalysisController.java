@@ -41,7 +41,7 @@ public class U4PumpRuntimeAnalysisController
         ArrayList<MaintenanceReport> mrList = new ArrayList<>();
         Helper.loadFrom("allMaintenanceReports.bin", mrList);
 
-        // reset counters
+
         summerACount = 0;
         monsoonACount = 0;
         winterACount = 0;
@@ -70,7 +70,7 @@ public class U4PumpRuntimeAnalysisController
             }
         }
 
-        // default load: approved only
+
         list.clear();
         list.add(new PieChart.Data("Summer", summerACount));
         list.add(new PieChart.Data("Monsoon", monsoonACount));

@@ -4,6 +4,8 @@ import cse213.badc.rhythm.BADCJobApplicant;
 import cse213.badc.rhythm.DevelopmentPartner;
 import cse213.badc.saad.FieldOfficer;
 import cse213.badc.saad.Supplier;
+import cse213.badc.saad.U3IESDashboardController;
+import cse213.badc.saad.U4BFODashboardController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -62,14 +64,15 @@ public class LoginController {
 
     private void loginIrrigationEquipmentSupplier(String userId, String password, ActionEvent actionEvent) throws IOException {
         ArrayList<Supplier> suppliers = new ArrayList<>();
+        Helper.loadFrom("allSuppliers.bin", suppliers);
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("IrrigationEquipmentSupplier.bin"))) {
-            ArrayList<Supplier> data = (ArrayList<Supplier>) ois.readObject();
-            suppliers.addAll(data);
-        } catch (Exception e) {
-            Helper.showAlert("File Error", "Could not load credentials file");
-            return;
-        }
+//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("allSuppliers.bin"))) {
+//            ArrayList<Supplier> data = (ArrayList<Supplier>) ois.readObject();
+//            suppliers.addAll(data);
+//        } catch (Exception e) {
+//            Helper.showAlert("File Error", "Could not load credentials file");
+//            return;
+//        }
 
         for (Supplier supplier: suppliers) {
             if (supplier.getSupplierID().equals(userId) && supplier.getPassword().equals(password)) {
@@ -80,6 +83,9 @@ public class LoginController {
 
                 FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U3IESDashboardView.fxml"));
                 Scene scene = new Scene(loader.load());
+                U3IESDashboardController controller = loader.getController();
+                controller.passIESDashboard(supplier);
+
                 Helper.setScene(actionEvent, scene);
                 return;
             }
@@ -91,24 +97,32 @@ public class LoginController {
 
     private void loginBADCFieldOfficer(String userId, String password, ActionEvent actionEvent) throws IOException {
         ArrayList<FieldOfficer> officers = new ArrayList<>();
+        Helper.loadFrom("allFieldOfficers.bin", officers);
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("BADCFieldOfficer.bin"))) {
-            ArrayList<FieldOfficer> data = (ArrayList<FieldOfficer>) ois.readObject();
-            officers.addAll(data);
-        } catch (Exception e) {
-            Helper.showAlert("File Error", "Could not load credentials file");
-            return;
-        }
+//        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("allFieldOfficers.bin"))) {
+//            ArrayList<FieldOfficer> data = (ArrayList<FieldOfficer>) ois.readObject();
+//            officers.addAll(data);
+//        } catch (Exception e) {
+//            Helper.showAlert("File Error", "Could not load credentials file");
+//            return;
+//        }
 
         for (FieldOfficer officer: officers) {
             if (officer.getOfficerId().equals(userId) && officer.getPassword().equals(password)) {
-                User.applicantId = officer.getOfficerId();
+                User.officerId = officer.getOfficerId();
                 User.fullName = officer.getFullName();
                 User.email = officer.getEmail();
                 User.userType = "BADCFieldOfficer";
 
+
                 FXMLLoader loader = new FXMLLoader(BADCApplication.class.getResource("saad/U4BFODashboardView.fxml"));
                 Scene scene = new Scene(loader.load());
+
+                U4BFODashboardController controller = loader.getController();
+                controller.passBFODashboard(officer);
+
+
+
                 Helper.setScene(actionEvent, scene);
                 return;
             }

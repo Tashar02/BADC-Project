@@ -106,7 +106,7 @@ public class U3IESDashboardController {
     @FXML
     public void logOutOA(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(
-                BADCApplication.class.getResource("saad/logInbySaad.fxml")
+                BADCApplication.class.getResource("LoginView.fxml")
         );
         Stage stage = (Stage) rootPane.getScene().getWindow();
         Scene scene = new Scene(loader.load());
@@ -141,7 +141,7 @@ public class U3IESDashboardController {
         );
         Scene scene = new Scene(loader.load());
 
-        U8G3_ViewTendersController controller = loader.getController();
+        U3ViewTendersController controller = loader.getController();
         controller.passTenderInterface(currentUser);
 
         Stage stage = (Stage) rootPane.getScene().getWindow();

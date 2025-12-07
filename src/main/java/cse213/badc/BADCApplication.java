@@ -2,6 +2,8 @@ package cse213.badc;
 
 import cse213.badc.rhythm.BADCJobApplicant;
 import cse213.badc.rhythm.DevelopmentPartner;
+import cse213.badc.saad.FieldOfficer;
+import cse213.badc.saad.Supplier;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -25,32 +27,36 @@ public class BADCApplication extends Application {
         stage.show();
     }
 
-    private void initializeCredentials() {
-        File badcFieldOfficerFile = new File("BADCFieldOfficer.bin");
-        if (!badcFieldOfficerFile.exists()) {
-            ArrayList<BADCJobApplicant> officers = new ArrayList<>();
-            officers.add(new BADCJobApplicant("1000", "1000officer", "Saad Islam", "2432029@iub.edu.bd"));
+    private void initializeCredentials() throws IOException {
+        FieldOfficer fo = (new FieldOfficer("1000", "1000officer", "Saad Islam", "2432029@iub.edu.bd", "Dhaka"));
+        Helper.writeInto("allFieldOfficers.bin", fo);
+//        File badcFieldOfficerFile = new File("allFieldOfficers.bin");
+//        if (!badcFieldOfficerFile.exists()) {
+//            ArrayList<FieldOfficer> officers = new ArrayList<>();
+//            officers.add(new FieldOfficer("1000", "1000officer", "Saad Islam", "2432029@iub.edu.bd", "Dhaka"));
+//
+//            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("allFieldOfficers.bin"))) {
+//                oos.writeObject(officers);
+//                System.out.println("BADC Field Officer credentials created successfully");
+//            } catch (Exception e) {
+//                Helper.showAlert("File error", "Could not write credentials for BADC Field Officer");
+//            }
+//        }
 
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("BADCFieldOfficer.bin"))) {
-                oos.writeObject(officers);
-                System.out.println("BADC Field Officer credentials created successfully");
-            } catch (Exception e) {
-                Helper.showAlert("File error", "Could not write credentials for BADC Field Officer");
-            }
-        }
-
-        File supplierFile = new File("IrrigationEquipmentSupplier.bin");
-        if (!supplierFile.exists()) {
-            ArrayList<BADCJobApplicant> suppliers = new ArrayList<>();
-            suppliers.add(new BADCJobApplicant("0001", "0001reshma", "Reshma Sultana", "reshma@gmail.com"));
-
-            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("IrrigationEquipmentSupplier.bin"))) {
-                oos.writeObject(suppliers);
-                System.out.println("Irrigation Equipment Supplier credentials created successfully");
-            } catch (Exception e) {
-                Helper.showAlert("File error", "Could not write credentials for BADC Job Applicant");
-            }
-        }
+        Supplier s = new Supplier("0001", "0001reshma", "Reshma Sultana", "reshma@gmail.com", "0123456780");
+        Helper.writeInto("allSuppliers.bin", s);
+//       File supplierFile = new File("allSuppliers.bin");
+//        if (!supplierFile.exists()) {
+//            ArrayList<Supplier> suppliers = new ArrayList<>();
+//            suppliers.add(new Supplier("0001", "0001reshma", "Reshma Sultana", "reshma@gmail.com", "0123456780"));
+//
+//            try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("allSuppliers.bin"))) {
+//                oos.writeObject(suppliers);
+//                System.out.println("Irrigation Equipment Supplier credentials created successfully");
+//            } catch (Exception e) {
+//                Helper.showAlert("File error", "Could not write credentials for BADC Job Applicant");
+//            }
+//        }
 
         File badcjobApplicantsFile = new File("BADCJobApplicant.bin");
         if (!badcjobApplicantsFile.exists()) {

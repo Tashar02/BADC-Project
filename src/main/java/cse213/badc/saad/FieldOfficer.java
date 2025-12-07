@@ -13,11 +13,12 @@ public class FieldOfficer implements Serializable {
         this.password = password;
     }
 
-    public FieldOfficer(String supplierID, String password, String fullName, String email) {
+    public FieldOfficer(String supplierID, String password, String fullName, String email, String officerRegion) {
         this.officerId = supplierID;
         this.password = password;
         this.fullName = fullName;
         this.email = email;
+        this.officerRegion = officerRegion;
     }
 
     public String getFullName() {

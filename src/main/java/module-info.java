@@ -4,7 +4,7 @@ module cse213.badc {
 
     requires javafx.graphics;
     requires jdk.compiler;
-    requires cse213.badc;
+
 
     opens cse213.badc to javafx.fxml;
     opens cse213.badc.rhythm to javafx.fxml;
